@@ -3,6 +3,10 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+I’m Fabius Lihanda Achevi from Nairobi Kenya, a passionate Cybersecurity Analyst, Data Scientist, and Python Web Developer dedicated to building secure, scalable, and intelligent digital solutions.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+Driven by curiosity and precision, I thrive at the intersection of data and security. My experience spans from uncovering threats in digital environments to transforming raw data into meaningful insights and developing web applications that are both robust and user-friendly.
+
+Whether it's hunting vulnerabilities, crafting data-driven strategies, or coding backends with Python, I approach every challenge with a growth mindset and an eye for detail.
+
+I believe in continuous learning, collaboration, and solving real-world problems through technology.
