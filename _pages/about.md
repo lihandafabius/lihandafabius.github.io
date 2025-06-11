@@ -2,14 +2,12 @@
 layout: single
 title: "About Me"
 permalink: /about/
-author_profile: true
 ---
 
 <p align="center">
   <img src="/assets/images/ChatGPT Image Jun 11, 2025, 10_57_13 PM.png" alt="Banner - Fabius Lihanda" width="100%">
 </p>
 
-## 👨‍💻 About Me
 
 I’m **Fabius Lihanda** — a passionate **Cybersecurity Analyst**, **Data Scientist**, and **Python Web Developer** dedicated to building secure, scalable, and intelligent digital solutions.
 
