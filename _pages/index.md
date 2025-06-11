@@ -1,6 +1,6 @@
 ---
 layout: splash
-title: "Hi, I'm Fabius"
+title: "Fabius Lihanda Achevi"
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
