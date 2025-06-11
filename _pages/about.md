@@ -3,6 +3,8 @@ permalink: /about/
 title: "About"
 ---
 
+👨‍💻 About Me
+
 I’m Fabius Lihanda Achevi from Nairobi Kenya, a passionate Cybersecurity Analyst, Data Scientist, and Python Web Developer dedicated to building secure, scalable, and intelligent digital solutions.
 
 Driven by curiosity and precision, I thrive at the intersection of data and security. My experience spans from uncovering threats in digital environments to transforming raw data into meaningful insights and developing web applications that are both robust and user-friendly.
