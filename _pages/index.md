@@ -11,9 +11,8 @@ header:
     - label: "Connect on LinkedIn"
       url: "https://linkedin.com/in/fabius-lihanda-228947241"
 excerpt: >
-  Cybersecurity | Data Science | Python Web Development
 
-  <p align="center">
+  <p>
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=650&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" alt="Typing SVG">
   </p>
 
