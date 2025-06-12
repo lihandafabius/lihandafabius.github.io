@@ -4,43 +4,84 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.5"
 excerpt: >
-  <!-- Grid Container -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 40px; align-items: center; justify-items: center;">
+  <style>
+    .intro-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      padding: 60px 40px 20px;
+      align-items: center;
+      justify-items: center;
+      color: white;
+    }
+    .intro-image img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 6px solid #00FF00;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    }
+    .intro-text {
+      max-width: 600px;
+      text-align: center;
+    }
+    .intro-text h1 {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #00FF00;
+    }
+    .intro-text p {
+      font-size: 1.1em;
+      line-height: 1.6em;
+      margin-bottom: 25px;
+      color: #e0e0e0;
+    }
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .button-group a {
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .cv-btn { background-color: #00FF00; color: black; }
+    .linkedin-btn { background-color: #0077B5; color: white; }
+    .github-btn { background-color: #333; color: white; }
+  </style>
 
-    <!-- Profile Picture -->
-    <div>
-      <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
-           alt="Fabius Lihanda Achevi" 
-           style="border-radius: 20px; width: 100%; max-width: 350px; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+  <div class="intro-container">
+    <!-- Profile Image -->
+    <div class="intro-image">
+      <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" alt="Profile Picture">
     </div>
 
-    <!-- Info & Links -->
-    <div style="text-align: center; max-width: 600px;">
-
-      <!-- Short Bio or Tagline -->
-      <p style="color: white; font-size: 1.2em; line-height: 1.6em; margin-bottom: 20px;">
-        I’m a passionate <strong style="color: #00FF00;">Cybersecurity Enthusiast</strong> and <strong style="color: #00FF00;">Data Analyst</strong> with a love for solving real-world problems using code. I thrive at the intersection of security and analytics, and I'm on a mission to make digital spaces safer and smarter.
+    <!-- Text Content -->
+    <div class="intro-text">
+      <h1>Cybersecurity | Data Analytics | Secure Web Dev</h1>
+      <p>
+        Enthusiastic about protecting digital ecosystems and extracting meaningful insights from data. 
+        I bring a fusion of cybersecurity awareness, programming knowledge, and analytical thinking 
+        to build solutions that are both impactful and secure.
       </p>
 
-      <!-- Typing Animation -->
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
-           alt="Typing SVG" 
-           style="max-width: 100%; height: auto; margin-bottom: 20px;">
+      <!-- Typing SVG -->
+      <img 
+        src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
+        alt="Typing SVG" 
+        style="max-width: 100%; height: auto; margin-bottom: 20px;">
 
-      <!-- Action Buttons -->
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
-        <a href="/assets/Fabius_Lihanda_CV.pdf" download 
-           style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-           📄 Download CV
-        </a>
-        <a href="https://www.linkedin.com/in/your-linkedin-username" target="_blank" 
-           style="background-color: #0077B5; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-           🔗 LinkedIn
-        </a>
-        <a href="https://github.com/your-github-username" target="_blank" 
-           style="background-color: #333; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-           💻 GitHub
-        </a>
+      <!-- Buttons -->
+      <div class="button-group">
+        <a href="/assets/Fabius_Lihanda_CV.pdf" download class="cv-btn">📄 Download CV</a>
+        <a href="https://www.linkedin.com/in/your-linkedin-username" target="_blank" class="linkedin-btn">🔗 LinkedIn</a>
+        <a href="https://github.com/your-github-username" target="_blank" class="github-btn">💻 GitHub</a>
       </div>
     </div>
   </div>
