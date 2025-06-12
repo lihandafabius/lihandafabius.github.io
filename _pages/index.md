@@ -4,30 +4,36 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.5"
 excerpt: >
-  <!-- Centered Name -->
-  <div style="text-align: center; margin-top: 30px;">
-    <h1 style="color: #00FF00; font-size: 3em; margin-bottom: 10px;">Fabius Lihanda Achevi</h1>
-    <p style="color: #ccc; font-size: 1.2em; font-style: italic;">Adversity fuels growth, and code builds the future.</p>
-  </div>
+  <!-- Grid Container -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 40px; align-items: center; justify-items: center;">
 
-  <!-- Main Content Layout -->
-  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; padding: 30px;">
-    <!-- Left Side: Profile Picture -->
-    <div style="flex: 1 1 300px; display: flex; justify-content: center;">
+    <!-- Profile Picture -->
+    <div>
       <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
            alt="Fabius Lihanda Achevi" 
-           style="border-radius: 20px; width: 100%; max-width: 350px; height: auto; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+           style="border-radius: 20px; width: 100%; max-width: 350px; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
     </div>
 
-    <!-- Right Side: Typing SVG and Button -->
-    <div style="flex: 2 1 500px; text-align: left;">
+    <!-- Info & Links -->
+    <div style="text-align: center;">
+      <!-- Typing Animation -->
       <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
            alt="Typing SVG" 
            style="max-width: 100%; height: auto; margin-bottom: 20px;">
-      <div style="margin-top: 10px;">
+
+      <!-- Action Buttons -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
         <a href="/assets/Fabius_Lihanda_CV.pdf" download 
            style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
            📄 Download CV
+        </a>
+        <a href="https://www.linkedin.com/in/your-linkedin-username" target="_blank" 
+           style="background-color: #0077B5; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+           🔗 LinkedIn
+        </a>
+        <a href="https://github.com/your-github-username" target="_blank" 
+           style="background-color: #333; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+           💻 GitHub
         </a>
       </div>
     </div>
