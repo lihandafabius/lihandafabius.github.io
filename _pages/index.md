@@ -1,10 +1,13 @@
 ---
 layout: splash
-title: "Fabius Lihanda Achevi"
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
 excerpt: >
+<div style="text-align: center; margin-top: 30px;">
+  <h1 style="color: #00FF00; font-size: 3em; margin-bottom: 10px;">Fabius Lihanda Achevi</h1>
+</div>
+
   <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; padding: 30px;">
     <!-- Left Side: Full-height Profile Picture -->
     <div style="flex: 1 1 300px; display: flex; justify-content: center;">
