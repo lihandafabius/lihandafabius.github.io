@@ -4,38 +4,35 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.5"
 excerpt: >
-  <!-- Grid Container -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 40px; align-items: center; justify-items: center;">
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; gap: 25px; text-align: center;">
+
+    <!-- Name -->
+    <h1 style="color: white; font-size: 3em; font-weight: bold; margin: 0;">Fabius Lihanda Achevi</h1>
 
     <!-- Profile Picture -->
-    <div>
-      <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
-           alt="Fabius Lihanda Achevi" 
-           style="border-radius: 20px; width: 100%; max-width: 350px; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
-    </div>
+    <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
+         alt="Fabius Lihanda Achevi" 
+         style="border-radius: 20px; width: 100%; max-width: 320px; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
 
-    <!-- Info & Links -->
-    <div style="text-align: center;">
-      <!-- Typing Animation -->
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
-           alt="Typing SVG" 
-           style="max-width: 100%; height: auto; margin-bottom: 20px;">
+    <!-- Subtitle / Expertise -->
+    <p style="color: #00FF00; font-weight: bold; font-size: 1.3em; margin: 0;">
+      Cybersecurity | Data Science | Python
+    </p>
 
-      <!-- Action Buttons -->
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
-        <a href="/assets/Fabius_Lihanda_CV.pdf" download 
-           style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-           📄 Download CV
-        </a>
-        <a href="https://www.linkedin.com/in/your-linkedin-username" target="_blank" 
-           style="background-color: #0077B5; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-           🔗 LinkedIn
-        </a>
-        <a href="https://github.com/your-github-username" target="_blank" 
-           style="background-color: #333; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-           💻 GitHub
-        </a>
-      </div>
+    <!-- Action Buttons -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+      <a href="/assets/Fabius_Lihanda_CV.pdf" download 
+         style="background-color: #00FF00; color: black; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+         📄 Download CV
+      </a>
+      <a href="https://www.linkedin.com/in/your-linkedin-username" target="_blank" 
+         style="background-color: #0077B5; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+         🔗 LinkedIn
+      </a>
+      <a href="https://github.com/your-github-username" target="_blank" 
+         style="background-color: #333; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+         💻 GitHub
+      </a>
     </div>
   </div>
 
