@@ -15,14 +15,14 @@ excerpt: >
     </div>
 
     <!-- Info & Links -->
-    <div style="text-align: center;">
+    <div style="text-align: left;">
       <!-- Typing Animation -->
       <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
            alt="Typing SVG" 
            style="max-width: 100%; height: auto; margin-bottom: 20px;">
 
       <!-- Action Buttons -->
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: left; gap: 15px; margin-top: 20px;">
         <a href="/assets/Fabius_Lihanda_CV.pdf" download 
            style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
            📄 Download CV
