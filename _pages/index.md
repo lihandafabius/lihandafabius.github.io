@@ -11,17 +11,24 @@ header:
     - label: "Connect on LinkedIn"
       url: "https://linkedin.com/in/fabius-lihanda-228947241"
 excerpt: >
-  <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 30px; padding: 20px 0;">
-    <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
-         alt="Fabius Lihanda Achevi" 
-         style="border-radius: 50%; width: 160px; height: 160px; object-fit: cover; border: 4px solid #00FF00; box-shadow: 0 4px 12px rgba(0,0,0,0.5); transition: transform 0.3s ease-in-out;" 
-         onmouseover="this.style.transform='scale(1.05)'" 
-         onmouseout="this.style.transform='scale(1)'">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px; padding: 30px;">
+    <!-- Left Side: Full-height Profile Picture -->
+    <div style="flex: 1 1 300px; display: flex; justify-content: center;">
+      <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
+           alt="Fabius Lihanda Achevi" 
+           style="border-radius: 20px; width: 100%; max-width: 350px; height: auto; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+    </div>
 
-    <div>
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=650&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
+    <!-- Right Side: Name, Typing SVG, Buttons -->
+    <div style="flex: 2 1 500px; text-align: left;">
+      <h1 style="color: #00FF00; font-size: 2.5em; margin-bottom: 15px;">Fabius Lihanda Achevi</h1>
+      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
            alt="Typing SVG" 
-           style="max-width: 100%; height: auto;">
+           style="max-width: 100%; height: auto; margin-bottom: 20px;">
+      <div style="margin-top: 10px;">
+        <a href="https://github.com/lihandafabius" style="background-color: #00FF00; color: black; padding: 10px 20px; margin-right: 10px; border-radius: 6px; text-decoration: none; font-weight: bold;">View My GitHub</a>
+        <a href="https://linkedin.com/in/fabius-lihanda-228947241" style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">Connect on LinkedIn</a>
+      </div>
     </div>
   </div>
 
