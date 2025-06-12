@@ -18,12 +18,28 @@ excerpt: >
 
 permalink: /
 ---
+feature_row:
+  - title: "🎓 Education"
+    excerpt: "**BSc. in Computer Science**  \nEgerton University (2020–2025)  \nFocus: Cybersecurity, Cloud Computing, and Data Analytics."
+    icon: "fas fa-graduation-cap"
+    align: left
+
+  - title: "🛠 Skills"
+    excerpt: "- Python, Flask, Django  \n- SQL, Power BI, Pandas  \n- Web Security, Wireshark, Burp Suite  \n- HTML, CSS, Git & GitHub"
+    icon: "fas fa-tools"
+    align: left
+
+  - title: "📚 Certifications"
+    excerpt: "- Google Cybersecurity Certificate  \n- Cisco CCNA & Cybersecurity Essentials  \n- AWS re/Start Program  \n- Active in Bug Bounty Platforms"
+    icon: "fas fa-certificate"
+    align: left
+
+  - title: "💡 Interests"
+    excerpt: "Threat Intelligence, Open Source, Digital Forensics,  \nMachine Learning, Community Volunteering"
+    icon: "fas fa-lightbulb"
+    align: left
+---
 
 Welcome to my portfolio! Explore my projects, blog posts, and journey in tech.
 
-{% include feature_row id="intro" %}
-
-{% assign intro = site.data.feature_row.intro %}
-{% assign feature_row = site.data.feature_row.feature_row %}
-
-{% include feature_row id="feature_row" type="icon" %}
+{% include feature_row %}
