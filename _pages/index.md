@@ -4,7 +4,6 @@ title: "Fabius Lihanda Achevi"
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
-  overlay_image: /assets/images/ChatGPT Image Jun 11, 2025, 10_57_13 PM.png # Optional: replace with your own
   actions:
     - label: "View My GitHub"
       url: "https://github.com/lihandafabius"
