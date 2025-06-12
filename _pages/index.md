@@ -31,6 +31,33 @@ excerpt: >
     </div>
   </div>
 
+  <div style="max-width: 900px; margin: 0 auto; padding: 30px; background: rgba(0, 0, 0, 0.5); border-radius: 10px; color: white;">
+    <h2>Cover Letter</h2>
+    <p><strong>Fabius Lihanda Achevi</strong><br>
+    16913-00620, Muthaiga, Nairobi<br>
+    +254715371294 | fabiuslihanda8@gmail.com<br>
+    Date: 12/06/2025</p>
+
+    <p><strong>To:</strong><br>
+    IAESTE Austria – Infineon Technologies Austria AG<br>
+    Villach, Austria</p>
+
+    <p><strong>Reference:</strong> Application for IAESTE Internship – Post-Silicon Verification and Electrical Measurements <strong>(Ref. No: AT-2025-013187)</strong></p>
+
+    <p>Dear IAESTE Selection Committee,</p>
+
+    <p>I am writing to express my interest in the IAESTE internship opportunity at Infineon Technologies Austria AG in Villach, focused on post-silicon verification and electrical measurements. As a final-year BSc. Computer Science student at Egerton University in Kenya, with a strong foundation in electronics, data analysis, and cybersecurity, I am eager to contribute to your analog-mixed-signal verification projects and expand my technical competencies in a world-class semiconductor environment.</p>
+
+    <p>Through my coursework and hands-on experience in Python, circuit analysis, embedded systems, and cloud technologies, I’ve developed a holistic understanding of system design and digital logic. I recently completed internships at the Communications Authority of Kenya and am a graduate of the Google Cybersecurity and Cisco Networking programs, which sharpened my analytical, scripting, and documentation skills—essential for validation and post-silicon debug processes.</p>
+
+    <p>I am particularly drawn to Infineon's mission of driving innovation in secure electronics and its emphasis on research collaboration and excellence. I bring not only a passion for testing and verification but also soft skills in teamwork, multicultural communication, and adaptability—qualities nurtured through volunteering and leadership within the LiveAndGive community in Kenya.</p>
+
+    <p>I would be honored to join your team and contribute to meaningful, hands-on verification tasks while learning from your esteemed professionals. Thank you for considering my application. I look forward to the opportunity to support your engineering goals and grow as a global technology professional.</p>
+
+    <p>Sincerely,<br>
+    <strong>Fabius Lihanda Achevi</strong></p>
+  </div>
+
 permalink: /
 feature_row:
   - title: "🎓 Education"
@@ -46,27 +73,3 @@ feature_row:
       - Python, Flask, Django  
       - SQL, Power BI, Pandas  
       - Web Security, Wireshark, Burp Suite  
-      - HTML, CSS, Git & GitHub
-    icon: "fas fa-tools"
-    align: left
-
-  - title: "📚 Certifications"
-    excerpt: >
-      - Google Cybersecurity Certificate  
-      - Cisco CCNA & Cybersecurity Essentials  
-      - AWS re/Start Program  
-      - Active in Bug Bounty Platforms
-    icon: "fas fa-certificate"
-    align: left
-
-  - title: "💡 Interests"
-    excerpt: >
-      Threat Intelligence, Open Source, Digital Forensics  
-      Machine Learning, Community Volunteering
-    icon: "fas fa-lightbulb"
-    align: left
----
-
-Welcome to my portfolio! Explore my projects, blog posts, and journey in tech.
-
-{% include feature_row %}
