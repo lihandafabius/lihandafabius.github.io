@@ -15,17 +15,16 @@ excerpt: >
     </div>
 
     <!-- Info & Links -->
-    <div style="text-align: center; max-width: 720px;">
+    <div style="text-align: center; max-width: 600px;">
 
       <!-- Typing Animation -->
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&center=true&width=800&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
+      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&pause=1000&color=00FF00&width=700&height=100&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
            alt="Typing SVG" 
-           style="max-width: 100%; height: 90px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+           style="display: block; margin: 0 auto 30px auto; width: 100%; max-width: 700px; height: auto;">
 
-      <!-- Short Bio -->
-      <p style="color: white; font-size: 1.15em; line-height: 1.6em; margin-top: -10px; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto;">
-        I’m a passionate <strong style="color: #00FF00;">Cybersecurity Enthusiast</strong> and <strong style="color: #00FF00;">Data Analyst</strong> with a love for solving real-world problems using code.<br>
-        I thrive at the intersection of <strong>security</strong> and <strong>analytics</strong>, and I'm on a mission to make digital spaces safer and smarter.
+      <!-- Short Bio or Tagline -->
+      <p style="color: white; font-size: 1.2em; line-height: 1.6em; margin-bottom: 20px;">
+        I’m a passionate <strong style="color: #00FF00;">Cybersecurity Enthusiast</strong> and <strong style="color: #00FF00;">Data Analyst</strong> with a love for solving real-world problems using code. I thrive at the intersection of security and analytics, and I'm on a mission to make digital spaces safer and smarter.
       </p>
 
       <!-- Action Buttons -->
@@ -45,7 +44,6 @@ excerpt: >
       </div>
     </div>
   </div>
-
 
 permalink: /
 
