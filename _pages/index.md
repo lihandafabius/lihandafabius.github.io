@@ -11,24 +11,22 @@ excerpt: >
     <div>
       <img src="/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" 
            alt="Fabius Lihanda Achevi" 
-           style="border-radius: 20px; width: 100%; max-width: 350px; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+           style="border-radius: 10px; width: 100%; max-width: 400px; object-fit: cover; border: 6px solid #00FF00; box-shadow: 0 4px 10px rgba(0,0,0,0.6);">
     </div>
 
     <!-- Info & Links -->
-    <div style="text-align: center; max-width: 600px;">
+    <div style="text-align: center; max-width: 720px;">
 
-          <!-- Typing Animation -->
-      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&width=600&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
+      <!-- Typing Animation -->
+      <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=00FF00&center=true&width=800&lines=Cybersecurity+%7C+Data+Science+%7C+Python+Web+Development;Passionate+about+Securing+the+Digital+World;Analyzing+Data+for+Meaningful+Insights;Building+Scalable+and+Secure+Web+Applications" 
            alt="Typing SVG" 
-           style="max-width: 100%; height: auto; margin-bottom: 20px;">
-           
+           style="max-width: 100%; height: 90px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
 
-      <!-- Short Bio or Tagline -->
-      <p style="color: white; font-size: 1.2em; line-height: 1.6em; margin-bottom: 20px;">
-        I’m a passionate <strong style="color: #00FF00;">Cybersecurity Enthusiast</strong> and <strong style="color: #00FF00;">Data Analyst</strong> with a love for solving real-world problems using code. I thrive at the intersection of security and analytics, and I'm on a mission to make digital spaces safer and smarter.
+      <!-- Short Bio -->
+      <p style="color: white; font-size: 1.15em; line-height: 1.6em; margin-top: -10px; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto;">
+        I’m a passionate <strong style="color: #00FF00;">Cybersecurity Enthusiast</strong> and <strong style="color: #00FF00;">Data Analyst</strong> with a love for solving real-world problems using code.<br>
+        I thrive at the intersection of <strong>security</strong> and <strong>analytics</strong>, and I'm on a mission to make digital spaces safer and smarter.
       </p>
-
-
 
       <!-- Action Buttons -->
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
@@ -47,6 +45,7 @@ excerpt: >
       </div>
     </div>
   </div>
+
 
 permalink: /
 
