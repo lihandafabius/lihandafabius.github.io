@@ -33,7 +33,7 @@ excerpt: >
            style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
            📄 Download CV
         </a>
-        <a href="https://www.linkedin.com/in/your-linkedin-username" target="_blank" 
+        <a href="https://www.linkedin.com/in/fabius-lihanda/" target="_blank" 
            style="background-color: #0077B5; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
            🔗 LinkedIn
         </a>
