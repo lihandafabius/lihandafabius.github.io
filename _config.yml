@@ -1,14 +1,14 @@
 # Site settings
-title: "Fabius Lihanda Achevi"
+title: "Fabius Lihanda | Cybersecurity Analyst & DevOps Engineer"
 email: fabiuslihandaachevi@gmail.com
 description: >-
-  Portfolio website of Fabius Lihanda — Cybersecurity Analyst, Data Scientist, and Python Web Developer.
-  Passionate about securing digital systems, analyzing data, and building web solutions.
-baseurl: "" # leave blank if using GitHub Pages with username.github.io
-url: "https://lihandafabius.github.io" # your GitHub Pages URL
+  Cybersecurity Analyst & DevOps Engineer specializing in threat detection, 
+  cloud security, infrastructure automation, and secure application development.
+baseurl: ""
+url: "https://lihandafabius.github.io"
 twitter_username: lihanda_fabius
 github_username: lihandafabius
-minimal_mistakes_skin: dark # ✨ Set to dark theme
+minimal_mistakes_skin: dark
 search: true
 
 # Build settings
@@ -33,8 +33,8 @@ plugins:
 # Author settings
 author:
   name   : "Fabius Lihanda Achevi"
-  avatar : "/assets/images/WhatsApp Image 2025-04-07 at 14.26.08.jpeg" # Place your avatar in this path
-  bio    : "Cybersecurity Analyst | Data Scientist | Python Web Developer"
+  avatar : "/assets/images/bio-photo.jpg" # Consider a professional headshot
+  bio    : "Cybersecurity Analyst | DevOps Engineer | Cloud Security Specialist"
   location : "Nairobi, Kenya"
   links:
     - label: "LinkedIn"
@@ -49,6 +49,26 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter"
       url: "https://twitter.com/lihanda_fabius"
+    - label: "Resume"
+      icon: "fas fa-fw fa-file-pdf"
+      url: "/assets/documents/resume.pdf"
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: /
+  - title: "About"
+    url: /about/
+  - title: "Projects"
+    url: /projects/
+  - title: "Certifications"
+    url: /certifications/
+  - title: "Skills"
+    url: /skills/
+  - title: "Blog"
+    url: /blog/
+  - title: "Contact"
+    url: /contact/
 
 # Footer links
 footer:
@@ -63,7 +83,7 @@ footer:
       icon: "fas fa-fw fa-envelope"
       url: "mailto:fabiuslihandaachevi@gmail.com"
 
-# Defaults for layout
+# Defaults
 defaults:
   - scope:
       path: ""
@@ -79,8 +99,8 @@ defaults:
       path: ""
       type: pages
     values:
-      layout: splash
-      author_profile: true
+      layout: single
+      author_profile: false
 
 # Archives
 category_archive:
