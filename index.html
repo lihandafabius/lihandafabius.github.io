@@ -158,6 +158,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid var(--accent);
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -176,6 +177,25 @@
         .btn-outline:hover {
             background: var(--accent);
             color: white;
+        }
+
+        .btn-download {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-download i {
+            margin-right: 8px;
+        }
+
+        .download-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
         section {
@@ -471,6 +491,43 @@
             color: var(--accent);
         }
 
+        /* Modal styles for CV download */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 992px) {
             .about-content {
                 flex-direction: column;
@@ -497,6 +554,15 @@
             .projects-grid,
             .certifications-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .btn-small {
+                width: 100%;
+                margin-bottom: 0.5rem;
             }
         }
     </style>
@@ -549,7 +615,10 @@
                     <p>When I'm not fortifying systems or building automation pipelines, I enjoy contributing to open-source projects, writing technical articles, and mentoring aspiring cybersecurity professionals.</p>
                     <div class="about-buttons" style="margin-top: 2rem;">
                         <a href="#contact" class="btn">Request Services</a>
-                        <a href="#" class="btn btn-outline">Download CV</a>
+                        <button id="downloadCV" class="btn btn-outline btn-download">
+                            <i class="fas fa-download"></i>Download CV
+                            <div class="download-progress"></div>
+                        </button>
                     </div>
                 </div>
                 <div class="about-image">
@@ -862,6 +931,25 @@
         </div>
     </footer>
 
+    <!-- Download Modal -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <h3>Download CV</h3>
+            <p>How would you like to download my CV?</p>
+            <div class="modal-buttons">
+                <button id="directDownload" class="btn btn-small">
+                    <i class="fas fa-file-pdf"></i> Direct Download
+                </button>
+                <button id="viewFirst" class="btn btn-outline btn-small">
+                    <i class="fas fa-eye"></i> View First
+                </button>
+                <button id="cancelDownload" class="btn btn-small" style="background: #6c757d;">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
@@ -893,6 +981,96 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                }
+            });
+        });
+
+        // CV Download Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtn = document.getElementById('downloadCV');
+            const downloadModal = document.getElementById('downloadModal');
+            const directDownloadBtn = document.getElementById('directDownload');
+            const viewFirstBtn = document.getElementById('viewFirst');
+            const cancelBtn = document.getElementById('cancelDownload');
+            const progressBar = document.querySelector('.download-progress');
+
+            // CV file path - Update this with your actual CV file path
+            const cvFilePath = 'assets/documents/Fabius_Lihanda_CV.pdf';
+            
+            // Open download modal
+            downloadBtn.addEventListener('click', function() {
+                downloadModal.style.display = 'flex';
+            });
+
+            // Close modal
+            cancelBtn.addEventListener('click', function() {
+                downloadModal.style.display = 'none';
+            });
+
+            // Direct download
+            directDownloadBtn.addEventListener('click', function() {
+                downloadCV(true);
+                downloadModal.style.display = 'none';
+            });
+
+            // View first then download
+            viewFirstBtn.addEventListener('click', function() {
+                // Open in new tab for viewing
+                window.open(cvFilePath, '_blank');
+                // Also trigger download
+                setTimeout(() => {
+                    downloadCV(false);
+                }, 1000);
+                downloadModal.style.display = 'none';
+            });
+
+            // Download function with progress simulation
+            function downloadCV(showProgress) {
+                if (showProgress) {
+                    // Simulate download progress
+                    let progress = 0;
+                    const progressInterval = setInterval(() => {
+                        progress += 10;
+                        progressBar.style.width = progress + '%';
+                        
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                            // Actual download
+                            triggerDownload();
+                            // Reset progress bar after download
+                            setTimeout(() => {
+                                progressBar.style.width = '0%';
+                            }, 1000);
+                        }
+                    }, 100);
+                } else {
+                    triggerDownload();
+                }
+            }
+
+            // Trigger the actual download
+            function triggerDownload() {
+                // Create a temporary anchor element
+                const link = document.createElement('a');
+                link.href = cvFilePath;
+                
+                // Extract filename from path for download attribute
+                const filename = cvFilePath.split('/').pop();
+                link.download = filename || 'Fabius_Lihanda_CV.pdf';
+                
+                // Append to body, click, and remove
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Optional: Track download with analytics
+                console.log('CV downloaded:', filename);
+            }
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === downloadModal) {
+                    downloadModal.style.display = 'none';
                 }
             });
         });
