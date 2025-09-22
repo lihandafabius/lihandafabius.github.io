@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabius Lihanda | Cybersecurity & DevOps Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CSKV5PDER0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CSKV5PDER0');
+    </script>
+    
     <style>
         :root {
             --primary: #0d3b66;
@@ -515,6 +525,20 @@
             box-shadow: var(--shadow);
         }
 
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .file-info p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
         .modal-buttons {
             display: flex;
             gap: 1rem;
@@ -526,6 +550,26 @@
         .btn-small {
             padding: 0.6rem 1.5rem;
             font-size: 0.9rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         @media (max-width: 992px) {
@@ -935,20 +979,30 @@
     <div id="downloadModal" class="modal">
         <div class="modal-content">
             <h3>Download CV</h3>
-            <p>How would you like to download my CV?</p>
+            <p>Choose how you'd like to access my CV:</p>
+            
+            <div class="file-info">
+                <p><strong>File:</strong> Fabius_Lihanda_CV.pdf</p>
+                <p><strong>Size:</strong> <span id="fileSize">Calculating...</span></p>
+                <p><strong>Format:</strong> PDF (Portable Document Format)</p>
+            </div>
+            
             <div class="modal-buttons">
                 <button id="directDownload" class="btn btn-small">
-                    <i class="fas fa-file-pdf"></i> Direct Download
+                    <i class="fas fa-file-download"></i> Download Now
                 </button>
                 <button id="viewFirst" class="btn btn-outline btn-small">
-                    <i class="fas fa-eye"></i> View First
+                    <i class="fas fa-eye"></i> View Online
                 </button>
                 <button id="cancelDownload" class="btn btn-small" style="background: #6c757d;">
-                    Cancel
+                    <i class="fas fa-times"></i> Cancel
                 </button>
             </div>
         </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
     <script>
         // Theme toggle functionality
@@ -985,7 +1039,7 @@
             });
         });
 
-        // CV Download Functionality
+        // Enhanced CV Download Functionality
         document.addEventListener('DOMContentLoaded', function() {
             const downloadBtn = document.getElementById('downloadCV');
             const downloadModal = document.getElementById('downloadModal');
@@ -993,35 +1047,82 @@
             const viewFirstBtn = document.getElementById('viewFirst');
             const cancelBtn = document.getElementById('cancelDownload');
             const progressBar = document.querySelector('.download-progress');
+            const fileSizeElement = document.getElementById('fileSize');
+            const toast = document.getElementById('toast');
 
             // CV file path - Update this with your actual CV file path
-            const cvFilePath = 'assets/CV.pdf';
+            const cvFilePath = 'assets/documents/Fabius_Lihanda_CV.pdf';
             
+            // Get file size when modal opens
+            async function getFileSize() {
+                try {
+                    const response = await fetch(cvFilePath, { method: 'HEAD' });
+                    if (response.ok) {
+                        const size = response.headers.get('content-length');
+                        if (size) {
+                            const sizeInKB = Math.round(size / 1024);
+                            const sizeInMB = (size / (1024 * 1024)).toFixed(1);
+                            fileSizeElement.textContent = sizeInKB > 1024 ? 
+                                `${sizeInMB} MB` : `${sizeInKB} KB`;
+                        } else {
+                            fileSizeElement.textContent = 'Unknown size';
+                        }
+                    }
+                } catch (error) {
+                    fileSizeElement.textContent = 'Unknown size';
+                }
+            }
+
+            // Show toast notification
+            function showToast(message, type = 'success') {
+                toast.textContent = message;
+                toast.style.background = type === 'error' ? '#dc3545' : 'var(--accent)';
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Track download event in Google Analytics
+            function trackDownload(action) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'cv_download', {
+                        'event_category': 'engagement',
+                        'event_label': action,
+                        'value': 1
+                    });
+                }
+                console.log(`CV ${action} tracked`);
+            }
+
             // Open download modal
             downloadBtn.addEventListener('click', function() {
+                getFileSize();
                 downloadModal.style.display = 'flex';
+                trackDownload('modal_opened');
             });
 
             // Close modal
             cancelBtn.addEventListener('click', function() {
                 downloadModal.style.display = 'none';
+                trackDownload('modal_cancelled');
             });
 
             // Direct download
             directDownloadBtn.addEventListener('click', function() {
                 downloadCV(true);
                 downloadModal.style.display = 'none';
+                trackDownload('direct_download');
             });
 
-            // View first then download
+            // View first (without download)
             viewFirstBtn.addEventListener('click', function() {
-                // Open in new tab for viewing
-                window.open(cvFilePath, '_blank');
-                // Also trigger download
-                setTimeout(() => {
-                    downloadCV(false);
-                }, 1000);
+                // Open in new tab for viewing only
+                window.open(cvFilePath, '_blank', 'noopener,noreferrer');
                 downloadModal.style.display = 'none';
+                showToast('CV opened in new tab for viewing');
+                trackDownload('view_only');
             });
 
             // Download function with progress simulation
@@ -1050,29 +1151,51 @@
 
             // Trigger the actual download
             function triggerDownload() {
-                // Create a temporary anchor element
-                const link = document.createElement('a');
-                link.href = cvFilePath;
-                
-                // Extract filename from path for download attribute
-                const filename = cvFilePath.split('/').pop();
-                link.download = filename || 'Fabius_Lihanda_CV.pdf';
-                
-                // Append to body, click, and remove
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                // Optional: Track download with analytics
-                console.log('CV downloaded:', filename);
+                try {
+                    // Create a temporary anchor element
+                    const link = document.createElement('a');
+                    link.href = cvFilePath;
+                    
+                    // Extract filename from path for download attribute
+                    const filename = cvFilePath.split('/').pop();
+                    link.download = filename || 'Fabius_Lihanda_CV.pdf';
+                    
+                    // Append to body, click, and remove
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    showToast('CV download started successfully!');
+                    trackDownload('download_completed');
+                    
+                } catch (error) {
+                    showToast('Error downloading CV. Please try again.', 'error');
+                    trackDownload('download_error');
+                    console.error('Download error:', error);
+                }
             }
 
             // Close modal when clicking outside
             window.addEventListener('click', function(event) {
                 if (event.target === downloadModal) {
                     downloadModal.style.display = 'none';
+                    trackDownload('modal_closed_outside');
                 }
             });
+
+            // Handle file not found
+            fetch(cvFilePath, { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        console.warn('CV file not found at:', cvFilePath);
+                        downloadBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> CV Not Available';
+                        downloadBtn.style.background = '#6c757d';
+                        downloadBtn.disabled = true;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking CV file:', error);
+                });
         });
     </script>
 </body>
