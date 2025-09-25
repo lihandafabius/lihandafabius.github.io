@@ -33,8 +33,6 @@
                         primary: '#000000',
                         secondary: '#1a1a1a',
                         accent: '#404040',
-                        aws: '#FF9900',
-                        awsBg: '#232F3E'
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -123,44 +121,6 @@
             background: linear-gradient(135deg, #000 0%, #404040 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        
-        /* AWS Console Style */
-        .aws-console {
-            background-color: #232F3E;
-            color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .aws-console-header {
-            background-color: #131A22;
-            padding: 12px 16px;
-            border-bottom: 1px solid #37475A;
-        }
-        
-        .aws-console-content {
-            padding: 16px;
-        }
-        
-        .aws-service-card {
-            background-color: #2A3A4B;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-left: 4px solid #FF9900;
-        }
-        
-        .aws-status-healthy {
-            color: #00D1B2;
-        }
-        
-        .aws-status-warning {
-            color: #FFDD57;
-        }
-        
-        .aws-status-error {
-            color: #FF3860;
         }
         
         /* Custom scrollbar */
@@ -287,7 +247,6 @@
                     <a href="#projects" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Projects</a>
                     <a href="#skills" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Skills</a>
                     <a href="#certifications" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Certifications</a>
-                    <a href="#aws-console" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">AWS Console</a>
                     <a href="#game" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Game</a>
                     <a href="#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
                 </div>
@@ -320,19 +279,17 @@
                     Fabius <span class="gradient-text">Lihanda</span>
                 </h1>
                 <div class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    <span class="typing-animation">Senior DevOps & Cybersecurity Engineer</span>
+                    <span class="typing-animation">Cybersecurity Analyst & DevOps Engineer</span>
                 </div>
                 <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    I specialize in architecting scalable cloud infrastructure with AWS-native solutions, 
-                    implementing advanced security frameworks, and optimizing DevOps workflows for maximum efficiency.
+                    I specialize in building secure, scalable infrastructure solutions with a focus on 
+                    cloud security, automation, and threat intelligence. Currently working on advanced 
+                    security frameworks and DevOps optimization.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="#projects" class="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105">
                         View My Work
-                    </a>
-                    <a href="#aws-console" class="bg-aws text-white px-8 py-3 rounded-lg font-medium hover:bg-aws/90 transition-all transform hover:scale-105">
-                        AWS Console
                     </a>
                     <a href="#game" class="border-2 border-black text-black px-8 py-3 rounded-lg font-medium hover:bg-black hover:text-white transition-all transform hover:scale-105">
                         Play Game
@@ -351,12 +308,8 @@
                         <div class="text-sm">Years Experience</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-black">99.9%</div>
-                        <div class="text-sm">System Uptime</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-black">8</div>
-                        <div class="text-sm">Certifications</div>
+                        <div class="text-2xl font-bold text-black">100%</div>
+                        <div class="text-sm">Client Satisfaction</div>
                     </div>
                 </div>
             </div>
@@ -377,7 +330,7 @@
                     <h2 class="text-4xl font-bold mb-6">About Me</h2>
                     <div class="space-y-4 text-gray-600 leading-relaxed">
                         <p>
-                            I'm a Senior DevOps Engineer with extensive experience in securing cloud infrastructure, 
+                            I'm a cybersecurity professional with extensive experience in securing cloud infrastructure, 
                             implementing DevOps practices, and developing automation solutions. My work focuses on 
                             creating resilient systems that can withstand modern security threats while maintaining 
                             optimal performance.
@@ -415,155 +368,8 @@
         </div>
     </section>
 
-    <!-- AWS Console Section -->
-    <section id="aws-console" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">AWS Infrastructure Dashboard</h2>
-            
-            <div class="aws-console shadow-2xl animate-fade-in-up">
-                <div class="aws-console-header">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h3 class="font-semibold">Senior DevOps Engineer</h3>
-                            <p class="text-sm text-gray-400">Architecting scalable cloud infrastructure with AWS-native solutions</p>
-                        </div>
-                        <div class="text-xs bg-aws/20 text-aws px-3 py-1 rounded-full">
-                            <i class="fas fa-circle mr-1"></i> Active
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="aws-console-content">
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div>
-                            <h4 class="font-medium mb-2 text-gray-300">Service Instance Details</h4>
-                            <div class="space-y-2 text-sm">
-                                <div class="flex justify-between">
-                                    <span class="text-gray-400">Instance ID:</span>
-                                    <span>i-0a1b2c3d4e5f6g7h8</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-400">Instance Type:</span>
-                                    <span>t3.xlarge</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-400">Launch Time:</span>
-                                    <span>2024-01-15 08:30:00 UTC</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-400">Availability Zone:</span>
-                                    <span>us-east-1a</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h4 class="font-medium mb-2 text-gray-300">Actions</h4>
-                            <div class="space-y-3">
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="devops-journey" class="mr-2">
-                                    <label for="devops-journey" class="text-sm">View DevOps Journey</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="developed-resource" class="mr-2" checked>
-                                    <label for="developed-resource" class="text-sm">Developed Resource</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="font-medium mb-4 text-gray-300">CloudWatch Metrics (Last 30 days)</h4>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>System Uptime</span>
-                                        <span class="font-semibold">99.9%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-700 rounded-full h-2">
-                                        <div class="bg-aws h-2 rounded-full" style="width: 99.9%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Experience</span>
-                                        <span class="font-semibold">5+ Years</span>
-                                    </div>
-                                    <div class="w-full bg-gray-700 rounded-full h-2">
-                                        <div class="bg-aws h-2 rounded-full" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Projects Deployed</span>
-                                        <span class="font-semibold">50+</span>
-                                    </div>
-                                    <div class="w-full bg-gray-700 rounded-full h-2">
-                                        <div class="bg-aws h-2 rounded-full" style="width: 100%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span>Certifications</span>
-                                        <span class="font-semibold">8</span>
-                                    </div>
-                                    <div class="w-full bg-gray-700 rounded-full h-2">
-                                        <div class="bg-aws h-2 rounded-full" style="width: 80%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h4 class="font-medium mb-4 text-gray-300">AWS Service Health Systems</h4>
-                            <div class="space-y-3">
-                                <div class="aws-service-card">
-                                    <div class="flex justify-between items-center">
-                                        <span>EC2 Instances</span>
-                                        <span class="aws-status-healthy"><i class="fas fa-check-circle mr-1"></i> Healthy</span>
-                                    </div>
-                                    <div class="text-xs text-gray-400 mt-1">RSS Chapter • Clear/Watch</div>
-                                </div>
-                                <div class="aws-service-card">
-                                    <div class="flex justify-between items-center">
-                                        <span>Lambda Functions</span>
-                                        <span class="aws-status-healthy"><i class="fas fa-check-circle mr-1"></i> Active</span>
-                                    </div>
-                                    <div class="text-xs text-gray-400 mt-1">Running • Monitoring Enabled</div>
-                                </div>
-                                <div class="aws-service-card">
-                                    <div class="flex justify-between items-center">
-                                        <span>OpenMetal</span>
-                                        <span class="aws-status-healthy"><i class="fas fa-check-circle mr-1"></i> Healthy</span>
-                                    </div>
-                                    <div class="text-xs text-gray-400 mt-1">Active • Running</div>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-6">
-                                <h4 class="font-medium mb-3 text-gray-300">Console Actions</h4>
-                                <div class="space-y-2">
-                                    <button class="w-full text-left bg-aws/20 hover:bg-aws/30 text-aws py-2 px-3 rounded text-sm transition-colors">
-                                        <i class="fas fa-folder-open mr-2"></i> View Project Portfolio
-                                    </button>
-                                    <button class="w-full text-left bg-aws/20 hover:bg-aws/30 text-aws py-2 px-3 rounded text-sm transition-colors">
-                                        <i class="fas fa-diagram-project mr-2"></i> View Architecture Diagrams
-                                    </button>
-                                    <button class="w-full text-left bg-aws/20 hover:bg-aws/30 text-aws py-2 px-3 rounded text-sm transition-colors">
-                                        <i class="fas fa-calendar-alt mr-2"></i> Schedule Consultation
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white">
+    <section id="experience" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Experience</h2>
             
@@ -576,14 +382,14 @@
                     <div class="relative animate-fade-in-up">
                         <div class="md:flex items-center justify-center">
                             <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
-                                <h3 class="text-xl font-semibold">Senior DevOps Engineer</h3>
+                                <h3 class="text-xl font-semibold">Senior Cybersecurity Analyst</h3>
                                 <p class="text-gray-600">2023 - Present</p>
                             </div>
                             <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full"></div>
                             <div class="md:w-1/2 md:pl-12">
                                 <p class="text-gray-600">
-                                    Leading cloud infrastructure initiatives with AWS-native solutions, implementing advanced CI/CD pipelines, 
-                                    and developing security automation frameworks. Focus on container security, infrastructure as code, and DevSecOps.
+                                    Leading security initiatives for cloud infrastructure, implementing advanced threat detection systems, 
+                                    and developing security automation frameworks. Focus on AWS security, container security, and DevSecOps.
                                 </p>
                             </div>
                         </div>
@@ -628,7 +434,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50">
+    <section id="skills" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
             
@@ -748,7 +554,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
             
@@ -835,7 +641,7 @@
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-gray-50">
+    <section id="certifications" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Certifications</h2>
             
@@ -880,7 +686,7 @@
     </section>
 
     <!-- Interactive Game Section -->
-    <section id="game" class="py-20 bg-white">
+    <section id="game" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Cybersecurity Challenge</h2>
             <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
@@ -940,7 +746,7 @@
                     </div>
                     
                     <!-- Game Board -->
-                    <div id="gameBoard" class="grid grid-cols-3 gap-4 mb-6">
+                    <div class="grid grid-cols-3 gap-4 mb-6">
                         <!-- Game cells will be generated by JavaScript -->
                     </div>
                     
@@ -978,7 +784,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Get In Touch</h2>
             
@@ -1286,7 +1092,7 @@
             const resetGameBtn = document.getElementById('resetGame');
             const endGameBtn = document.getElementById('endGame');
             const playAgainBtn = document.getElementById('playAgain');
-            const gameBoard = document.getElementById('gameBoard');
+            const gameBoard = gameScreen.querySelector('.grid');
             const scoreElement = document.getElementById('score');
             const livesElement = document.getElementById('lives');
             const timeElement = document.getElementById('time');
