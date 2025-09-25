@@ -252,6 +252,50 @@
             margin-bottom: 20px;
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
         }
+                /* Resume Section Styles */
+        .resume-item {
+            border-left: 2px solid #6b7280;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .resume-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: #f8fafc;
+        }
+        
+        .achievement-item {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cert-badge {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .cert-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
         
         /* Dark theme adjustments */
         body {
@@ -370,11 +414,11 @@
             <div class="mt-20 animate-fade-in-up" style="animation-delay: 0.3s;">
                 <div class="flex justify-center space-x-8 text-light">
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-text">50+</div>
+                        <div class="text-2xl font-bold text-text">5+</div>
                         <div class="text-sm">Projects Completed</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-text">5+</div>
+                        <div class="text-2xl font-bold text-text">1+</div>
                         <div class="text-sm">Years Experience</div>
                     </div>
                     <div class="text-center">
@@ -438,71 +482,197 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-primary">
+    <!-- Resume Section -->
+    <section id="resume" class="py-20 bg-primary">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Experience</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center">Resume</h2>
             
-            <div class="relative">
-                <!-- Timeline line -->
-                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gray-800"></div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Professional Experience Column -->
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-briefcase text-text mr-3"></i>
+                        Professional Experience
+                    </h3>
+                    
+                    <div class="space-y-8">
+                        <!-- Experience 1 -->
+                        <div class="resume-item animate-fade-in-up">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-xl font-semibold">Senior Cybersecurity Analyst</h4>
+                                <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">2023 - Present</span>
+                            </div>
+                            <p class="text-light mb-4">Thefacing Solutions - Remote</p>
+                            <p class="text-light mb-4">Lead DevOps initiatives for enterprise-scale applications serving IM+ users</p>
+                            
+                            <div class="space-y-3">
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Reduced deployment time by 85% through automated CI/CD pipelines
+                                    </p>
+                                </div>
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Achieved 98.9% uptime for critical production systems
+                                    </p>
+                                </div>
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Implemented infrastructure as code reducing provisioning time by 79%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience 2 -->
+                        <div class="resume-item animate-fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-xl font-semibold">DevOps Engineer</h4>
+                                <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">2022 - 2023</span>
+                            </div>
+                            <p class="text-light mb-4">CloudFirst Technologies - Noda, India</p>
+                            <p class="text-light mb-4">Designed and maintained cloud infrastructure for SaaS applications</p>
+                            
+                            <div class="space-y-3">
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Migrated legacy applications to AWS saving 40% in infrastructure costs
+                                    </p>
+                                </div>
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Implemented monitoring solutions reducing incident response time by 60%
+                                    </p>
+                                </div>
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Led team of 3 junior engineers in DevOps best practices
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience 3 -->
+                        <div class="resume-item animate-fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-xl font-semibold">Cloud Engineer</h4>
+                                <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">2021 - 2022</span>
+                            </div>
+                            <p class="text-light mb-4">StartupTech Inc - Cash, India</p>
+                            <p class="text-light mb-4">Built scalable cloud solutions and automated deployment processes</p>
+                            
+                            <div class="space-y-3">
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Architected multi-region deployment strategy
+                                    </p>
+                                </div>
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Automated backup and disaster recovery procedures
+                                    </p>
+                                </div>
+                                <div class="achievement-item">
+                                    <p class="text-light flex items-start">
+                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                        Implemented security best practices across all environments
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="space-y-12">
-                    <!-- Experience 1 -->
-                    <div class="relative animate-fade-in-up">
-                        <div class="md:flex items-center justify-center">
-                            <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
-                                <h3 class="text-xl font-semibold">Senior Cybersecurity Analyst</h3>
-                                <p class="text-light">2023 - Present</p>
-                            </div>
-                            <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-text rounded-full"></div>
-                            <div class="md:w-1/2 md:pl-12">
-                                <p class="text-light">
-                                    Leading security initiatives for cloud infrastructure, implementing advanced threat detection systems, 
-                                    and developing security automation frameworks. Focus on AWS security, container security, and DevSecOps.
-                                </p>
-                            </div>
+                <!-- Certifications & Achievements Column -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-award text-text mr-3"></i>
+                        Certifications
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-4 mb-8">
+                        <div class="cert-badge animate-fade-in-up">
+                            <i class="fab fa-aws text-3xl text-text mb-2"></i>
+                            <h4 class="font-semibold">AWS Certified Solutions Architect</h4>
+                            <p class="text-light text-sm">Professional</p>
+                        </div>
+                        
+                        <div class="cert-badge animate-fade-in-up" style="animation-delay: 0.1s;">
+                            <i class="fab fa-aws text-3xl text-text mb-2"></i>
+                            <h4 class="font-semibold">AWS Certified DevOps Engineer</h4>
+                            <p class="text-light text-sm">Professional</p>
+                        </div>
+                        
+                        <div class="cert-badge animate-fade-in-up" style="animation-delay: 0.2s;">
+                            <i class="fas fa-server text-3xl text-text mb-2"></i>
+                            <h4 class="font-semibold">Certified Kubernetes Administrator</h4>
+                            <p class="text-light text-sm">(CKA)</p>
+                        </div>
+                        
+                        <div class="cert-badge animate-fade-in-up" style="animation-delay: 0.3s;">
+                            <i class="fas fa-code text-3xl text-text mb-2"></i>
+                            <h4 class="font-semibold">Hashicorp Terraform Associate</h4>
+                            <p class="text-light text-sm"></p>
                         </div>
                     </div>
-
-                    <!-- Experience 2 -->
-                    <div class="relative animate-fade-in-up" style="animation-delay: 0.1s;">
-                        <div class="md:flex items-center justify-center">
-                            <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0 order-2 md:order-1">
-                                <p class="text-light">
-                                    Designed and implemented CI/CD pipelines with integrated security scanning, 
-                                    containerized applications using Docker and Kubernetes, and automated infrastructure deployment.
-                                </p>
-                            </div>
-                            <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-text rounded-full"></div>
-                            <div class="md:w-1/2 md:pl-12 order-1 md:order-2">
-                                <h3 class="text-xl font-semibold">DevOps Engineer</h3>
-                                <p class="text-light">2022 - 2023</p>
-                            </div>
+                    
+                    <h3 class="text-2xl font-bold mb-6 flex items-center mt-8">
+                        <i class="fas fa-trophy text-text mr-3"></i>
+                        Key Achievements
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.4s;">
+                            <p class="text-light flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                                Reduced deployment time by 85% through automation
+                            </p>
+                        </div>
+                        
+                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.5s;">
+                            <p class="text-light flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                                Achieved 98.9% uptime for critical production systems
+                            </p>
+                        </div>
+                        
+                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.6s;">
+                            <p class="text-light flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                                Saved 40% in infrastructure costs through cloud optimization
+                            </p>
+                        </div>
+                        
+                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.7s;">
+                            <p class="text-light flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
+                                Reduced incident response time by 60% with monitoring solutions
+                            </p>
                         </div>
                     </div>
-
-                    <!-- Experience 3 -->
-                    <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
-                        <div class="md:flex items-center justify-center">
-                            <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
-                                <h3 class="text-xl font-semibold">Security Consultant</h3>
-                                <p class="text-light">2021 - 2022</p>
-                            </div>
-                            <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-text rounded-full"></div>
-                            <div class="md:w-1/2 md:pl-12">
-                                <p class="text-light">
-                                    Provided security assessments and recommendations for various organizations, 
-                                    focusing on cloud security, compliance frameworks, and security architecture design.
-                                </p>
-                            </div>
-                        </div>
+                    
+                    <h3 class="text-2xl font-bold mb-6 flex items-center mt-8">
+                        <i class="fas fa-graduation-cap text-text mr-3"></i>
+                        Education
+                    </h3>
+                    
+                    <div class="resume-item animate-fade-in-up" style="animation-delay: 0.8s;">
+                        <h4 class="text-xl font-semibold">Bachelor of Science in Computer Science</h4>
+                        <p class="text-light">University of Nairobi</p>
+                        <p class="text-light">2017 - 2021</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Tools & Services Section -->
     <section id="tools" class="py-20 bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
