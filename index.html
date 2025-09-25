@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabius Lihanda | Cybersecurity & DevOps Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Analytics -->
@@ -15,759 +25,395 @@
         gtag('config', 'G-CSKV5PDER0');
     </script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#1a1a1a',
+                        accent: '#404040',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-in-left': 'slideInLeft 0.6s ease-out',
+                        'slide-in-right': 'slideInRight 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        :root {
-            --primary: #0d3b66;
-            --secondary: #1a5e7a;
-            --accent: #28a793;
-            --dark: #0a2333;
-            --light: #f8f9fa;
-            --text: #333;
-            --text-light: #f8f9fa;
-            --gradient: linear-gradient(135deg, #0d3b66 0%, #1a5e7a 50%, #28a793 100%);
-            --card-bg: #ffffff;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        /* Custom styles */
+        .gradient-text {
+            background: linear-gradient(135deg, #000000 0%, #404040 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .dark-mode {
-            --primary: #1a5e7a;
-            --secondary: #28a793;
-            --dark: #0a2333;
-            --light: #0d3b66;
-            --text: #f8f9fa;
-            --text-light: #f8f9fa;
-            --card-bg: #0a2333;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #000, transparent);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+        .project-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-            transition: all 0.3s ease;
+        
+        .project-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        
+        .skill-bar {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        header {
-            background: var(--gradient);
-            color: var(--text-light);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-left: 2rem;
-        }
-
-        .hero {
-            padding: 6rem 0;
-            text-align: center;
-            background: var(--dark);
-            color: var(--text-light);
+        
+        .nav-link {
             position: relative;
-            overflow: hidden;
         }
-
-        .hero::before {
-            content: "";
+        
+        .nav-link::after {
+            content: '';
             position: absolute;
-            top: 0;
+            bottom: -5px;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230d3b66" fill-opacity="0.2" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,128C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--accent);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-download {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-download i {
-            margin-right: 8px;
-        }
-
-        .download-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: var(--primary);
-            width: 0%;
+            width: 0;
+            height: 2px;
+            background: #000;
             transition: width 0.3s ease;
         }
-
-        section {
-            padding: 5rem 0;
+        
+        .nav-link:hover::after {
+            width: 100%;
         }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #000 0%, #404040 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
-
-        .section-title h2::after {
-            content: "";
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040;
+        }
+        
+        /* Selection color */
+        ::selection {
+            background: #000;
+            color: #fff;
+        }
+        
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Game-specific styles */
+        .game-container {
+            perspective: 1000px;
+        }
+        
+        .game-card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .game-card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .game-card-front, .game-card-back {
+            backface-visibility: hidden;
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .skill-category h3 i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-
-        .skill-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient);
-            border-radius: 4px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .project-tag {
-            background: var(--secondary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .certification-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .certification-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .certification-card i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .certification-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--accent);
-            width: 40px;
-            height: 40px;
-            background: rgba(40, 167, 147, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-form {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            background: var(--card-bg);
-            color: var(--text);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        footer {
-            background: var(--dark);
-            color: var(--text-light);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Modal styles for CV download */
-        .modal {
-            display: none;
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
         }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: var(--shadow);
+        
+        .game-card-back {
+            transform: rotateY(180deg);
         }
-
-        .file-info {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
-            border-left: 4px solid var(--accent);
+        
+        .threat {
+            animation: float 2s ease-in-out infinite;
         }
-
-        .file-info p {
-            margin: 0.5rem 0;
-            font-size: 0.9rem;
-            color: var(--secondary);
+        
+        @keyframes threat-float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-5px) translateX(2px); }
+            50% { transform: translateY(0) translateX(5px); }
+            75% { transform: translateY(5px) translateX(2px); }
         }
-
-        .modal-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-small {
-            padding: 0.6rem 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
-            box-shadow: var(--shadow);
-            transform: translateY(100px);
-            opacity: 0;
+        
+        .firewall {
             transition: all 0.3s ease;
-            z-index: 1001;
         }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
+        
+        .firewall.active {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
         }
-
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
+        
+        .progress-bar {
+            transition: width 0.3s ease;
         }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .projects-grid,
-            .certifications-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-buttons {
-                flex-direction: column;
-            }
-
-            .btn-small {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
+        
+        .game-button {
+            transition: all 0.3s ease;
+        }
+        
+        .game-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Fabius Lihanda</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </nav>
+<body class="font-sans bg-white text-gray-900 antialiased">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-black border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p class="text-lg font-medium">Loading Portfolio</p>
         </div>
-    </header>
+    </div>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Cybersecurity Analyst & DevOps Engineer</h1>
-                <p>Securing digital infrastructure through innovative cybersecurity solutions and DevOps automation</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-black">FL</a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">About</a>
+                    <a href="#experience" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Experience</a>
+                    <a href="#projects" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Projects</a>
+                    <a href="#skills" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Skills</a>
+                    <a href="#game" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Game</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-moon text-gray-600"></i>
+                    </button>
+                    <a href="#contact" class="bg-black text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors">
+                        Get In Touch
+                    </a>
                 </div>
             </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
+        
+        <!-- Animated background elements -->
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-black/5 rounded-full animate-float"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-48 h-48 bg-black/5 rounded-full animate-float" style="animation-delay: 1s;"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <div class="animate-fade-in-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    Fabius <span class="gradient-text">Lihanda</span>
+                </h1>
+                <div class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    <span class="typing-animation">Cybersecurity Analyst & DevOps Engineer</span>
+                </div>
+                <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    I specialize in building secure, scalable infrastructure solutions with a focus on 
+                    cloud security, automation, and threat intelligence. Currently working on advanced 
+                    security frameworks and DevOps optimization.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#projects" class="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105">
+                        View My Work
+                    </a>
+                    <a href="#game" class="border-2 border-black text-black px-8 py-3 rounded-lg font-medium hover:bg-black hover:text-white transition-all transform hover:scale-105">
+                        Play Game
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-20 animate-fade-in-up" style="animation-delay: 0.3s;">
+                <div class="flex justify-center space-x-8 text-gray-500">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-black">50+</div>
+                        <div class="text-sm">Projects Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-black">5+</div>
+                        <div class="text-sm">Years Experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-black">100%</div>
+                        <div class="text-sm">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-black transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
         </div>
     </section>
 
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Me</h2>
-                <p>Get to know my background, experience, and professional journey</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hello! I'm Fabius Lihanda, a dedicated Cybersecurity Analyst and DevOps Engineer based in Nairobi, Kenya. With a passion for securing digital systems and optimizing development workflows, I bring a unique blend of security expertise and automation skills.</p>
-                    <p>My journey in technology began several years ago, and I've since developed a strong foundation in cybersecurity principles, cloud infrastructure, and DevOps practices. I'm committed to staying at the forefront of technology trends and security threats.</p>
-                    <p>When I'm not fortifying systems or building automation pipelines, I enjoy contributing to open-source projects, writing technical articles, and mentoring aspiring cybersecurity professionals.</p>
-                    <div class="about-buttons" style="margin-top: 2rem;">
-                        <a href="#contact" class="btn">Request Services</a>
-                        <button id="downloadCV" class="btn btn-outline btn-download">
-                            <i class="fas fa-download"></i>Download CV
-                            <div class="download-progress"></div>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-in-left">
+                    <h2 class="text-4xl font-bold mb-6">About Me</h2>
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            I'm a cybersecurity professional with extensive experience in securing cloud infrastructure, 
+                            implementing DevOps practices, and developing automation solutions. My work focuses on 
+                            creating resilient systems that can withstand modern security threats while maintaining 
+                            optimal performance.
+                        </p>
+                        <p>
+                            With a background in both cybersecurity and software development, I bring a unique perspective 
+                            to infrastructure design and security implementation. I'm passionate about staying ahead of 
+                            emerging threats and implementing cutting-edge security measures.
+                        </p>
+                        <p>
+                            When I'm not working on security implementations, I contribute to open-source projects, 
+                            write technical articles, and mentor aspiring cybersecurity professionals.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#contact" class="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                            Hire Me
+                        </a>
+                        <button id="downloadCV" class="border-2 border-black text-black px-6 py-3 rounded-lg font-medium hover:bg-black hover:text-white transition-colors relative overflow-hidden group">
+                            <span class="relative z-10">Download CV</span>
+                            <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                         </button>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="assets/images/7e683ae5-ea0c-433a-80de-b9bfc6a69e2b.jpg" alt="Fabius Lihanda">
+                
+                <div class="animate-slide-in-right">
+                    <div class="relative">
+                        <img src="assets/images/7e683ae5-ea0c-433a-80de-b9bfc6a69e2b.jpg" alt="Fabius Lihanda" 
+                             class="rounded-2xl shadow-2xl w-full max-w-md mx-auto">
+                        <div class="absolute -inset-4 bg-black/5 rounded-2xl -z-10"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" style="background-color: rgba(13, 59, 102, 0.05);">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Skills</h2>
-                <p>Technical expertise that I bring to the table</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Threat Detection</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Vulnerability Assessment</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Network Security</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 88%;"></div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Experience</h2>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
                 
-                <div class="skill-category">
-                    <h3><i class="fas fa-code-branch"></i> DevOps</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>CI/CD Pipelines</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 92%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Docker & Kubernetes</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%;"></div>
+                <div class="space-y-12">
+                    <!-- Experience 1 -->
+                    <div class="relative animate-fade-in-up">
+                        <div class="md:flex items-center justify-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                                <h3 class="text-xl font-semibold">Senior Cybersecurity Analyst</h3>
+                                <p class="text-gray-600">2023 - Present</p>
+                            </div>
+                            <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <p class="text-gray-600">
+                                    Leading security initiatives for cloud infrastructure, implementing advanced threat detection systems, 
+                                    and developing security automation frameworks. Focus on AWS security, container security, and DevSecOps.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Cloud Infrastructure</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Python</span>
-                            <span>93%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 93%;"></div>
+
+                    <!-- Experience 2 -->
+                    <div class="relative animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="md:flex items-center justify-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0 order-2 md:order-1">
+                                <p class="text-gray-600">
+                                    Designed and implemented CI/CD pipelines with integrated security scanning, 
+                                    containerized applications using Docker and Kubernetes, and automated infrastructure deployment.
+                                </p>
+                            </div>
+                            <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full"></div>
+                            <div class="md:w-1/2 md:pl-12 order-1 md:order-2">
+                                <h3 class="text-xl font-semibold">DevOps Engineer</h3>
+                                <p class="text-gray-600">2022 - 2023</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>JavaScript</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Bash Scripting</span>
-                            <span>87%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 87%;"></div>
+
+                    <!-- Experience 3 -->
+                    <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="md:flex items-center justify-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                                <h3 class="text-xl font-semibold">Security Consultant</h3>
+                                <p class="text-gray-600">2021 - 2022</p>
+                            </div>
+                            <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <p class="text-gray-600">
+                                    Provided security assessments and recommendations for various organizations, 
+                                    focusing on cloud security, compliance frameworks, and security architecture design.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -775,285 +421,558 @@
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Projects</h2>
-                <p>A selection of my recent work and contributions</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=874&q=80" alt="Security Automation">
-                    </div>
-                    <div class="project-content">
-                        <h3>Security Automation Framework</h3>
-                        <p>A comprehensive framework for automating security tasks and vulnerability assessments.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Security</span>
-                            <span class="project-tag">Automation</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=815&q=80" alt="DevOps Pipeline">
-                    </div>
-                    <div class="project-content">
-                        <h3>CI/CD Pipeline Implementation</h3>
-                        <p>Designed and implemented a secure CI/CD pipeline for automated testing and deployment.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Jenkins</span>
-                            <span class="project-tag">Docker</span>
-                            <span class="project-tag">Kubernetes</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80" alt="Threat Detection">
-                    </div>
-                    <div class="project-content">
-                        <h3>Advanced Threat Detection System</h3>
-                        <p>Machine learning based system for detecting and mitigating advanced cyber threats.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">ML</span>
-                            <span class="project-tag">Security</span>
-                            <span class="project-tag">Python</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" style="background-color: rgba(13, 59, 102, 0.05);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Certifications</h2>
-                <p>Professional certifications and achievements</p>
-            </div>
-            <div class="certifications-grid">
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Certified Ethical Hacker (CEH)</h3>
-                    <p>EC-Council</p>
-                    <p>2024</p>
-                </div>
-                
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>AWS Certified Cloud Practioner</h3>
-                    <p>Amazon Web Services</p>
-                    <p>2025</p>
-                </div>
-                
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>LFS250: Kubernetes and Cloud Native Essentials</h3>
-                    <p>The Linux Foundation</p>
-                    <p>2025</p>
-                </div>
-                
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>CCNA: Enterprise Networking, Security, and Automation</h3>
-                    <p>Cisco</p>
-                    <p>2023</p>
-                </div>
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
-                    <p>Cisco</p>
-                    <p>2023</p>
-                </div>
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>CCNA: Introduction to Networks</h3>
-                    <p>Cisco</p>
-                    <p>2023</p>
-                </div>
-                <div class="certification-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Google Cybersecurity Professional Certificate V2</h3>
-                    <p>Cousera</p>
-                    <p>2025</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Me</h2>
-                <p>Get in touch for collaborations or inquiries</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cybersecurity Skills -->
+                <div class="animate-fade-in-up">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-shield-alt text-black mr-3"></i>
+                        Cybersecurity
+                    </h3>
+                    <div class="space-y-4">
                         <div>
-                            <h3>Email</h3>
-                            <p>fabiuslihandaachevi@gmail.com</p>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Threat Detection & Analysis</span>
+                                <span class="text-black font-semibold">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Cloud Security</span>
+                                <span class="text-black font-semibold">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Vulnerability Assessment</span>
+                                <span class="text-black font-semibold">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps Skills -->
+                <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-code-branch text-black mr-3"></i>
+                        DevOps & Cloud
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">CI/CD Pipelines</span>
+                                <span class="text-black font-semibold">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Docker & Kubernetes</span>
+                                <span class="text-black font-semibold">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">AWS/Azure Services</span>
+                                <span class="text-black font-semibold">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 87%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Development Skills -->
+                <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-laptop-code text-black mr-3"></i>
+                        Development
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python</span>
+                                <span class="text-black font-semibold">93%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 93%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">JavaScript/Node.js</span>
+                                <span class="text-black font-semibold">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Bash Scripting</span>
+                                <span class="text-black font-semibold">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full skill-bar" style="width: 87%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-hover bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in-up">
+                    <div class="h-48 bg-gradient-to-br from-black to-gray-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white text-black px-3 py-1 rounded-full text-sm font-medium">Security</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Security Automation Framework</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Comprehensive framework for automating security tasks and vulnerability assessments across cloud infrastructure.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">AWS</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Terraform</span>
+                        </div>
+                        <a href="#" class="text-black font-medium hover:underline text-sm flex items-center">
+                            View Case Study <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-hover bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="h-48 bg-gradient-to-br from-gray-800 to-black relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white text-black px-3 py-1 rounded-full text-sm font-medium">DevOps</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">CI/CD Pipeline Implementation</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Secure CI/CD pipeline with integrated security scanning and automated deployment processes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Jenkins</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Docker</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Kubernetes</span>
+                        </div>
+                        <a href="#" class="text-black font-medium hover:underline text-sm flex items-center">
+                            View Case Study <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-hover bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="h-48 bg-gradient-to-br from-black to-gray-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-white text-black px-3 py-1 rounded-full text-sm font-medium">ML Security</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Threat Detection System</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Machine learning based system for detecting and mitigating advanced cyber threats in real-time.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Python</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">TensorFlow</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded text-xs">Security</span>
+                        </div>
+                        <a href="#" class="text-black font-medium hover:underline text-sm flex items-center">
+                            View Case Study <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-fade-in-up" style="animation-delay: 0.3s;">
+                <a href="#" class="border-2 border-black text-black px-8 py-3 rounded-lg font-medium hover:bg-black hover:text-white transition-colors">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Certifications</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center p-6 border border-gray-200 rounded-2xl hover:shadow-lg transition-shadow animate-fade-in-up">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-certificate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Certified Ethical Hacker</h3>
+                    <p class="text-gray-600 text-sm">EC-Council</p>
+                    <p class="text-black text-xs mt-2">2024</p>
+                </div>
+                
+                <div class="text-center p-6 border border-gray-200 rounded-2xl hover:shadow-lg transition-shadow animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-aws text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">AWS Cloud Practitioner</h3>
+                    <p class="text-gray-600 text-sm">Amazon Web Services</p>
+                    <p class="text-black text-xs mt-2">2025</p>
+                </div>
+                
+                <div class="text-center p-6 border border-gray-200 rounded-2xl hover:shadow-lg transition-shadow animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-server text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Kubernetes Essentials</h3>
+                    <p class="text-gray-600 text-sm">Linux Foundation</p>
+                    <p class="text-black text-xs mt-2">2025</p>
+                </div>
+                
+                <div class="text-center p-6 border border-gray-200 rounded-2xl hover:shadow-lg transition-shadow animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Google Cybersecurity</h3>
+                    <p class="text-gray-600 text-sm">Coursera</p>
+                    <p class="text-black text-xs mt-2">2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Game Section -->
+    <section id="game" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Cybersecurity Challenge</h2>
+            <p class="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+                Test your cybersecurity skills in this interactive game. Defend your network against incoming threats by identifying and blocking malicious attacks!
+            </p>
+            
+            <div class="game-container bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto">
+                <!-- Game Intro Screen -->
+                <div id="gameIntro" class="p-8 text-center">
+                    <h3 class="text-2xl font-bold mb-4">Hacker Defense Challenge</h3>
+                    <p class="text-gray-600 mb-6">
+                        Your mission is to protect the network from cyber threats. You'll see different types of attacks coming toward your firewall. 
+                        Click on the threats to block them before they reach your system!
+                    </p>
+                    <div class="flex justify-center space-x-4 mb-8">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-virus text-red-500"></i>
+                            </div>
+                            <p class="text-sm">Malware</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-user-secret text-yellow-500"></i>
+                            </div>
+                            <p class="text-sm">Phishing</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-lock text-purple-500"></i>
+                            </div>
+                            <p class="text-sm">Ransomware</p>
+                        </div>
+                    </div>
+                    <button id="startGame" class="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors game-button">
+                        Start Game
+                    </button>
+                </div>
+                
+                <!-- Game Screen -->
+                <div id="gameScreen" class="hidden relative h-96 bg-gradient-to-b from-gray-900 to-black">
+                    <!-- Firewall -->
+                    <div id="firewall" class="firewall absolute bottom-0 left-1/2 transform -translate-x-1/2 w-64 h-4 bg-green-500 rounded-t-lg"></div>
+                    
+                    <!-- Threats Container -->
+                    <div id="threatsContainer" class="absolute inset-0"></div>
+                    
+                    <!-- Game Stats -->
+                    <div class="absolute top-4 left-4 bg-black/50 text-white p-4 rounded-lg">
+                        <div class="flex space-x-6">
+                            <div>
+                                <p class="text-sm">Score</p>
+                                <p id="score" class="text-xl font-bold">0</p>
+                            </div>
+                            <div>
+                                <p class="text-sm">Lives</p>
+                                <p id="lives" class="text-xl font-bold">3</p>
+                            </div>
+                            <div>
+                                <p class="text-sm">Level</p>
+                                <p id="level" class="text-xl font-bold">1</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Nairobi, Kenya</p>
+                    <!-- Progress Bar -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gray-700">
+                        <div id="progressBar" class="progress-bar h-full bg-green-500" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Game Over Screen -->
+                <div id="gameOver" class="hidden p-8 text-center">
+                    <h3 class="text-2xl font-bold mb-4" id="gameResult">Game Over</h3>
+                    <p class="text-gray-600 mb-2">Your final score: <span id="finalScore" class="font-bold">0</span></p>
+                    <p class="text-gray-600 mb-6">Threats blocked: <span id="threatsBlocked" class="font-bold">0</span></p>
+                    <div class="flex justify-center space-x-4">
+                        <button id="playAgain" class="bg-black text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors game-button">
+                            Play Again
+                        </button>
+                        <button id="shareScore" class="border-2 border-black text-black px-6 py-2 rounded-lg font-medium hover:bg-black hover:text-white transition-colors game-button">
+                            Share Score
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center animate-fade-in-up">
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    This game demonstrates real cybersecurity concepts in a simplified way. In actual cybersecurity practice, 
+                    professionals use advanced tools and techniques to protect systems from similar threats.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Get In Touch</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate-fade-in-up">
+                    <h3 class="text-xl font-semibold mb-6">Let's Work Together</h3>
+                    <p class="text-gray-600 mb-8">
+                        I'm always interested in new opportunities and challenges. Whether you need 
+                        security consulting, DevOps implementation, or just want to connect, feel free 
+                        to reach out.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-600">fabiuslihandaachevi@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Location</h4>
+                                <p class="text-gray-600">Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p class="text-gray-600">+254 796 829 666</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+254 796 829 666</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h3>Availability</h3>
-                            <p>Mon - Fri: 9AM - 5PM EAT</p>
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/fabius-lihanda" class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/lihandafabius" class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://twitter.com/lihanda_fabius" class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://medium.com/@fabiuslihandaachevi" class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                                <i class="fab fa-medium-m"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <form action="https://formspree.io/f/meolwawg" method="POST" id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <form action="https://formspree.io/f/meolwawg" method="POST" class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Enter subject">
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" required rows="5"
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors"></textarea>
                         </div>
                         
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                            Send Message
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/fabius-lihanda" title="Linkedln"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/lihandafabius" title="Github"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/lihanda_fabius" title="X"><i class="fab fa-twitter"></i></a>
-                <a href="https://medium.com/@fabiuslihandaachevi" title="Medium">
-                    <i class="fab fa-medium-m"></i>
+    <!-- Footer -->
+    <footer class="py-12 bg-black text-white">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://www.linkedin.com/in/fabius-lihanda" class="hover:text-gray-300 transition-colors">
+                    <i class="fab fa-linkedin-in text-xl"></i>
                 </a>
-                <a href="https://www.credly.com/users/fabius-lihanda/badges#credly" title="Credly"><i class="fas fa-award"></i></a>
-                <a href="mailto:fabiuslihandaachevi@gmail.com"><i class="fas fa-envelope" title="Email"></i></a>
+                <a href="https://github.com/lihandafabius" class="hover:text-gray-300 transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://twitter.com/lihanda_fabius" class="hover:text-gray-300 transition-colors">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="https://medium.com/@fabiuslihandaachevi" class="hover:text-gray-300 transition-colors">
+                    <i class="fab fa-medium-m text-xl"></i>
+                </a>
+                <a href="https://www.credly.com/users/fabius-lihanda/badges" class="hover:text-gray-300 transition-colors">
+                    <i class="fas fa-award text-xl"></i>
+                </a>
             </div>
-            <p>&copy; 2025 Fabius Lihanda. All rights reserved.</p>
+            <p class="text-gray-400">&copy; 2025 Fabius Lihanda. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 z-40 bg-black text-white p-3 rounded-full shadow-lg hover:bg-gray-800 transition-colors hidden">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Download Modal -->
-    <div id="downloadModal" class="modal">
-        <div class="modal-content">
-            <h3>Download CV</h3>
-            <p>Choose how you'd like to access my CV:</p>
+    <div id="downloadModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl animate-fade-in-up">
+            <h3 class="text-2xl font-bold mb-4">Download CV</h3>
+            <p class="text-gray-600 mb-6">Choose how you'd like to access my CV:</p>
             
-            <div class="file-info">
-                <p><strong>File:</strong> Fabius_Lihanda_CV.pdf</p>
-                <p><strong>Size:</strong> <span id="fileSize">Calculating...</span></p>
-                <p><strong>Format:</strong> PDF (Portable Document Format)</p>
+            <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                <p class="text-sm text-gray-600"><strong>File:</strong> Fabius_Lihanda_CV.pdf</p>
+                <p class="text-sm text-gray-600"><strong>Size:</strong> <span id="fileSize">Calculating...</span></p>
+                <p class="text-sm text-gray-600"><strong>Format:</strong> PDF (Portable Document Format)</p>
             </div>
             
-            <div class="modal-buttons">
-                <button id="directDownload" class="btn btn-small">
-                    <i class="fas fa-file-download"></i> Download Now
+            <div class="flex flex-col space-y-3">
+                <button id="directDownload" class="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-download mr-2"></i>Download Now
                 </button>
-                <button id="viewFirst" class="btn btn-outline btn-small">
-                    <i class="fas fa-eye"></i> View Online
+                <button id="viewFirst" class="w-full border-2 border-black text-black py-3 rounded-lg font-semibold hover:bg-black hover:text-white transition-colors">
+                    <i class="fas fa-eye mr-2"></i>View Online
                 </button>
-                <button id="cancelDownload" class="btn btn-small" style="background: #6c757d;">
-                    <i class="fas fa-times"></i> Cancel
+                <button id="cancelDownload" class="w-full bg-gray-200 text-gray-600 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                    Cancel
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
+        // Enhanced functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove loading screen
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+            }, 1000);
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            // Typing animation
+            const typingElement = document.querySelector('.typing-animation');
+            const text = typingElement.textContent;
+            typingElement.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    typingElement.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            setTimeout(typeWriter, 1500);
+
+            // Back to top button
+            const backToTopButton = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('hidden');
+                } else {
+                    backToTopButton.classList.add('hidden');
                 }
             });
-        });
 
-        // Enhanced CV Download Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // CV Download functionality
             const downloadBtn = document.getElementById('downloadCV');
             const downloadModal = document.getElementById('downloadModal');
             const directDownloadBtn = document.getElementById('directDownload');
             const viewFirstBtn = document.getElementById('viewFirst');
             const cancelBtn = document.getElementById('cancelDownload');
-            const progressBar = document.querySelector('.download-progress');
             const fileSizeElement = document.getElementById('fileSize');
-            const toast = document.getElementById('toast');
 
-            // CV file path - Update this with your actual CV file path
-            const cvFilePath = 'assets/CV.pdf';
+            const cvFilePath = 'assets/documents/Fabius_Lihanda_CV.pdf';
             
-            // Get file size when modal opens
             async function getFileSize() {
                 try {
                     const response = await fetch(cvFilePath, { method: 'HEAD' });
@@ -1064,8 +983,6 @@
                             const sizeInMB = (size / (1024 * 1024)).toFixed(1);
                             fileSizeElement.textContent = sizeInKB > 1024 ? 
                                 `${sizeInMB} MB` : `${sizeInKB} KB`;
-                        } else {
-                            fileSizeElement.textContent = 'Unknown size';
                         }
                     }
                 } catch (error) {
@@ -1073,18 +990,6 @@
                 }
             }
 
-            // Show toast notification
-            function showToast(message, type = 'success') {
-                toast.textContent = message;
-                toast.style.background = type === 'error' ? '#dc3545' : 'var(--accent)';
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }
-
-            // Track download event in Google Analytics
             function trackDownload(action) {
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'cv_download', {
@@ -1093,109 +998,386 @@
                         'value': 1
                     });
                 }
-                console.log(`CV ${action} tracked`);
             }
 
-            // Open download modal
-            downloadBtn.addEventListener('click', function() {
+            downloadBtn.addEventListener('click', () => {
                 getFileSize();
-                downloadModal.style.display = 'flex';
+                downloadModal.classList.remove('hidden');
+                downloadModal.classList.add('flex');
                 trackDownload('modal_opened');
             });
 
-            // Close modal
-            cancelBtn.addEventListener('click', function() {
-                downloadModal.style.display = 'none';
+            cancelBtn.addEventListener('click', () => {
+                downloadModal.classList.add('hidden');
+                downloadModal.classList.remove('flex');
                 trackDownload('modal_cancelled');
             });
 
-            // Direct download
-            directDownloadBtn.addEventListener('click', function() {
-                downloadCV(true);
-                downloadModal.style.display = 'none';
+            directDownloadBtn.addEventListener('click', () => {
+                triggerDownload();
+                downloadModal.classList.add('hidden');
+                downloadModal.classList.remove('flex');
                 trackDownload('direct_download');
             });
 
-            // View first (without download)
-            viewFirstBtn.addEventListener('click', function() {
-                // Open in new tab for viewing only
+            viewFirstBtn.addEventListener('click', () => {
                 window.open(cvFilePath, '_blank', 'noopener,noreferrer');
-                downloadModal.style.display = 'none';
-                showToast('CV opened in new tab for viewing');
+                downloadModal.classList.add('hidden');
+                downloadModal.classList.remove('flex');
                 trackDownload('view_only');
             });
 
-            // Download function with progress simulation
-            function downloadCV(showProgress) {
-                if (showProgress) {
-                    // Simulate download progress
-                    let progress = 0;
-                    const progressInterval = setInterval(() => {
-                        progress += 10;
-                        progressBar.style.width = progress + '%';
-                        
-                        if (progress >= 100) {
-                            clearInterval(progressInterval);
-                            // Actual download
-                            triggerDownload();
-                            // Reset progress bar after download
-                            setTimeout(() => {
-                                progressBar.style.width = '0%';
-                            }, 1000);
-                        }
-                    }, 100);
-                } else {
-                    triggerDownload();
-                }
-            }
-
-            // Trigger the actual download
             function triggerDownload() {
                 try {
-                    // Create a temporary anchor element
                     const link = document.createElement('a');
                     link.href = cvFilePath;
-                    
-                    // Extract filename from path for download attribute
                     const filename = cvFilePath.split('/').pop();
                     link.download = filename || 'Fabius_Lihanda_CV.pdf';
-                    
-                    // Append to body, click, and remove
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    
-                    showToast('CV download started successfully!');
                     trackDownload('download_completed');
-                    
                 } catch (error) {
-                    showToast('Error downloading CV. Please try again.', 'error');
                     trackDownload('download_error');
-                    console.error('Download error:', error);
                 }
             }
 
-            // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
-                if (event.target === downloadModal) {
-                    downloadModal.style.display = 'none';
-                    trackDownload('modal_closed_outside');
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                // You can implement dark mode logic here
+            });
+
+            // Game functionality
+            const gameIntro = document.getElementById('gameIntro');
+            const gameScreen = document.getElementById('gameScreen');
+            const gameOver = document.getElementById('gameOver');
+            const startGameBtn = document.getElementById('startGame');
+            const playAgainBtn = document.getElementById('playAgain');
+            const shareScoreBtn = document.getElementById('shareScore');
+            const threatsContainer = document.getElementById('threatsContainer');
+            const scoreElement = document.getElementById('score');
+            const livesElement = document.getElementById('lives');
+            const levelElement = document.getElementById('level');
+            const finalScoreElement = document.getElementById('finalScore');
+            const threatsBlockedElement = document.getElementById('threatsBlocked');
+            const gameResultElement = document.getElementById('gameResult');
+            const progressBar = document.getElementById('progressBar');
+            const firewall = document.getElementById('firewall');
+
+            let gameState = {
+                score: 0,
+                lives: 3,
+                level: 1,
+                threatsBlocked: 0,
+                threatsMissed: 0,
+                gameActive: false,
+                threatInterval: null,
+                threatSpeed: 2000
+            };
+
+            // Threat types with different properties
+            const threatTypes = [
+                { 
+                    name: 'Malware', 
+                    icon: 'fa-virus', 
+                    color: 'red', 
+                    points: 10,
+                    speed: 3
+                },
+                { 
+                    name: 'Phishing', 
+                    icon: 'fa-user-secret', 
+                    color: 'yellow', 
+                    points: 15,
+                    speed: 4
+                },
+                { 
+                    name: 'Ransomware', 
+                    icon: 'fa-lock', 
+                    color: 'purple', 
+                    points: 20,
+                    speed: 2
+                },
+                { 
+                    name: 'DDoS', 
+                    icon: 'fa-network-wired', 
+                    color: 'orange', 
+                    points: 25,
+                    speed: 5
+                },
+                { 
+                    name: 'Zero-Day', 
+                    icon: 'fa-bug', 
+                    color: 'pink', 
+                    points: 30,
+                    speed: 6
+                }
+            ];
+
+            // Start game
+            startGameBtn.addEventListener('click', startGame);
+            playAgainBtn.addEventListener('click', startGame);
+
+            // Share score functionality
+            shareScoreBtn.addEventListener('click', () => {
+                const text = `I scored ${gameState.score} points in the Cybersecurity Challenge by Fabius Lihanda! Can you beat my score?`;
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Cybersecurity Challenge',
+                        text: text,
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('Score copied to clipboard!');
+                    });
                 }
             });
 
-            // Handle file not found
-            fetch(cvFilePath, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        console.warn('CV file not found at:', cvFilePath);
-                        downloadBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> CV Not Available';
-                        downloadBtn.style.background = '#6c757d';
-                        downloadBtn.disabled = true;
+            function startGame() {
+                // Reset game state
+                gameState = {
+                    score: 0,
+                    lives: 3,
+                    level: 1,
+                    threatsBlocked: 0,
+                    threatsMissed: 0,
+                    gameActive: true,
+                    threatInterval: null,
+                    threatSpeed: 2000
+                };
+
+                // Update UI
+                scoreElement.textContent = gameState.score;
+                livesElement.textContent = gameState.lives;
+                levelElement.textContent = gameState.level;
+                progressBar.style.width = '0%';
+
+                // Show game screen
+                gameIntro.classList.add('hidden');
+                gameOver.classList.add('hidden');
+                gameScreen.classList.remove('hidden');
+
+                // Clear any existing threats
+                threatsContainer.innerHTML = '';
+
+                // Start generating threats
+                generateThreat();
+
+                // Set up threat generation interval
+                gameState.threatInterval = setInterval(generateThreat, gameState.threatSpeed);
+
+                // Start progress bar animation
+                animateProgressBar();
+            }
+
+            function generateThreat() {
+                if (!gameState.gameActive) return;
+
+                // Randomly select a threat type
+                const threatType = threatTypes[Math.floor(Math.random() * threatTypes.length)];
+
+                // Create threat element
+                const threat = document.createElement('div');
+                threat.className = `threat absolute w-12 h-12 rounded-full flex items-center justify-center text-white ${getThreatColorClass(threatType.color)}`;
+                threat.style.left = `${Math.random() * 80 + 10}%`;
+                threat.style.top = '-3rem';
+                threat.style.animationDuration = `${5 - threatType.speed * 0.5}s`;
+
+                // Add threat icon
+                const icon = document.createElement('i');
+                icon.className = `fas ${threatType.icon}`;
+                threat.appendChild(icon);
+
+                // Add threat to container
+                threatsContainer.appendChild(threat);
+
+                // Animate threat movement
+                let position = -3;
+                const threatInterval = setInterval(() => {
+                    if (!gameState.gameActive) {
+                        clearInterval(threatInterval);
+                        return;
                     }
-                })
-                .catch(error => {
-                    console.error('Error checking CV file:', error);
+
+                    position += threatType.speed;
+                    threat.style.top = `${position}rem`;
+
+                    // Check if threat reached the firewall
+                    if (position >= 20) {
+                        clearInterval(threatInterval);
+                        threatMissed(threat, threatType);
+                    }
+                }, 50);
+
+                // Add click event to block threat
+                threat.addEventListener('click', () => {
+                    if (!gameState.gameActive) return;
+                    
+                    clearInterval(threatInterval);
+                    threatBlocked(threat, threatType);
                 });
+            }
+
+            function threatBlocked(threat, threatType) {
+                // Update score
+                gameState.score += threatType.points;
+                gameState.threatsBlocked++;
+                scoreElement.textContent = gameState.score;
+
+                // Add explosion effect
+                threat.innerHTML = '<i class="fas fa-explosion text-white text-xl"></i>';
+                threat.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    threat.remove();
+                }, 300);
+
+                // Check for level up
+                if (gameState.score >= gameState.level * 100) {
+                    levelUp();
+                }
+            }
+
+            function threatMissed(threat, threatType) {
+                threat.remove();
+                gameState.threatsMissed++;
+                gameState.lives--;
+                livesElement.textContent = gameState.lives;
+
+                // Flash firewall red
+                firewall.classList.remove('bg-green-500');
+                firewall.classList.add('bg-red-500');
+                
+                setTimeout(() => {
+                    firewall.classList.remove('bg-red-500');
+                    firewall.classList.add('bg-green-500');
+                }, 300);
+
+                // Check for game over
+                if (gameState.lives <= 0) {
+                    gameOver();
+                }
+            }
+
+            function levelUp() {
+                gameState.level++;
+                levelElement.textContent = gameState.level;
+
+                // Increase difficulty
+                clearInterval(gameState.threatInterval);
+                gameState.threatSpeed = Math.max(500, gameState.threatSpeed - 200);
+                gameState.threatInterval = setInterval(generateThreat, gameState.threatSpeed);
+
+                // Show level up message
+                const levelUpMsg = document.createElement('div');
+                levelUpMsg.className = 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/70 text-white p-4 rounded-lg text-xl font-bold';
+                levelUpMsg.textContent = `Level ${gameState.level}!`;
+                threatsContainer.appendChild(levelUpMsg);
+
+                setTimeout(() => {
+                    levelUpMsg.remove();
+                }, 1000);
+            }
+
+            function gameOver() {
+                gameState.gameActive = false;
+                clearInterval(gameState.threatInterval);
+
+                // Update final score display
+                finalScoreElement.textContent = gameState.score;
+                threatsBlockedElement.textContent = gameState.threatsBlocked;
+
+                // Set game result message
+                if (gameState.score >= 300) {
+                    gameResultElement.textContent = 'Excellent! You\'re a Cybersecurity Expert!';
+                } else if (gameState.score >= 150) {
+                    gameResultElement.textContent = 'Good Job! You have solid cybersecurity skills!';
+                } else {
+                    gameResultElement.textContent = 'Game Over. Practice makes perfect!';
+                }
+
+                // Show game over screen
+                gameScreen.classList.add('hidden');
+                gameOver.classList.remove('hidden');
+
+                // Track game completion
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'game_completed', {
+                        'event_category': 'engagement',
+                        'event_label': 'cybersecurity_game',
+                        'value': gameState.score
+                    });
+                }
+            }
+
+            function animateProgressBar() {
+                let width = 0;
+                const progressInterval = setInterval(() => {
+                    if (!gameState.gameActive) {
+                        clearInterval(progressInterval);
+                        return;
+                    }
+
+                    width += 0.5;
+                    progressBar.style.width = `${width}%`;
+
+                    if (width >= 100) {
+                        clearInterval(progressInterval);
+                        // Bonus points for completing the level
+                        if (gameState.gameActive) {
+                            gameState.score += 50;
+                            scoreElement.textContent = gameState.score;
+                            levelUp();
+                            animateProgressBar(); // Restart progress bar
+                        }
+                    }
+                }, 100);
+            }
+
+            function getThreatColorClass(color) {
+                const colorMap = {
+                    'red': 'bg-red-500',
+                    'yellow': 'bg-yellow-500',
+                    'purple': 'bg-purple-500',
+                    'orange': 'bg-orange-500',
+                    'pink': 'bg-pink-500'
+                };
+                return colorMap[color] || 'bg-gray-500';
+            }
         });
     </script>
 </body>
