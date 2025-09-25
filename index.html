@@ -351,6 +351,14 @@
             filter: blur(20px);
             opacity: 0.6;
         }
+        
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        
+        .rotate-y-5 {
+            transform: rotateY(5deg);
+        }
     </style>
 </head>
 <body class="font-sans bg-primary text-text antialiased">
@@ -448,7 +456,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+     <!-- About Section -->
     <section id="about" class="py-20 bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -484,21 +492,35 @@
                 </div>
                 
                 <div class="animate-slide-in-right">
-                    <div class="relative group">
-                        <div class="relative overflow-hidden rounded-2xl shadow-2xl w-full max-w-md mx-auto">
-                            <img src="assets/images/Passport.jpg" alt="Fabius Lihanda" 
-                                 class="w-full h-auto transition-transform duration-700 group-hover:scale-105 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-60"></div>
-                            <div class="absolute inset-0 border-2 border-text/10 rounded-2xl"></div>
+                    <div class="relative group perspective-1000">
+                        <!-- Main photo container with layered effects -->
+                        <div class="relative photo-container rounded-2xl w-full max-w-md mx-auto transform transition-transform duration-700 group-hover:rotate-y-5">
+                            <!-- Background gradient layer -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-text/10 via-transparent to-text/5 rounded-2xl"></div>
+                            
+                            <!-- Main image with smooth transitions -->
+                            <div class="relative overflow-hidden rounded-2xl">
+                                <img src="assets/images/Passport.jpg" alt="Fabius Lihanda" 
+                                     class="w-full h-auto transition-all duration-700 group-hover:scale-105 object-cover mix-blend-soft-light">
+                                <div class="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent opacity-70"></div>
+                                <div class="absolute inset-0 bg-gradient-to-r from-text/5 to-transparent opacity-30"></div>
+                            </div>
+                            
+                            <!-- Subtle border with gradient -->
+                            <div class="absolute inset-0 border border-text/20 rounded-2xl pointer-events-none"></div>
+                            <div class="absolute inset-[1px] border border-text/10 rounded-2xl pointer-events-none"></div>
                         </div>
-                        <div class="absolute -inset-4 bg-gradient-to-br from-text/5 to-text/10 rounded-2xl -z-10 blur-sm group-hover:blur-md transition-all duration-500"></div>
-                        <div class="absolute -inset-2 bg-text/3 rounded-2xl -z-20 opacity-50"></div>
+                        
+                        <!-- Multi-layered glow effects -->
+                        <div class="absolute -inset-4 bg-gradient-to-br from-text/8 to-text/3 rounded-2xl -z-10 blur-xl opacity-60 group-hover:opacity-80 transition-all duration-500"></div>
+                        <div class="absolute -inset-3 bg-gradient-to-tr from-text/5 to-transparent rounded-2xl -z-20 blur-lg opacity-40 group-hover:opacity-60 transition-all duration-700"></div>
+                        <div class="absolute -inset-2 photo-glow rounded-2xl -z-30"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Resume Section -->
     <section id="resume" class="py-20 bg-primary">
         <div class="max-w-6xl mx-auto px-6">
