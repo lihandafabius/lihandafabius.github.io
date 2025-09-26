@@ -339,155 +339,80 @@
             background-color: #1e293b;
         }
 
-        /* Professional profile photo styling */
-        .profile-container {
-            position: relative;
-            max-width: 380px;
-            margin: 0 auto;
+        /* About Section CSS */
+        .professional-text {
+            color: #e5e7eb;
+            line-height: 1.7;
         }
         
-        .profile-image-wrapper {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            transition: all 0.4s ease;
+        .section-title {
+            color: #f8fafc;
+            font-weight: 600;
+            letter-spacing: -0.025em;
         }
         
-        .profile-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-            filter: brightness(1.02) contrast(1.05);
+        .photo-container {
+            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+            box-shadow: 
+                0 15px 35px -5px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         
-        .profile-image-wrapper:hover .profile-image {
-            transform: scale(1.02);
-        }
-        
-        .profile-image-wrapper:hover {
-            box-shadow: 0 12px 35px rgba(100, 255, 218, 0.1);
-        }
-        
-        /* Very subtle frame effect */
-        .profile-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 1px solid rgba(204, 214, 246, 0.08);
-            border-radius: 8px;
-            pointer-events: none;
-            transition: all 0.4s ease;
-        }
-        
-        .profile-image-wrapper:hover .profile-frame {
-            border-color: rgba(100, 255, 218, 0.15);
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-        }
-        
-        /* Minimal accent corners */
-        .corner-accent {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .corner-top-left {
-            top: 0;
-            left: 0;
-            border-top: 1px solid var(--accent);
-            border-left: 1px solid var(--accent);
-            border-radius: 8px 0 0 0;
-        }
-        
-        .corner-top-right {
-            top: 0;
-            right: 0;
-            border-top: 1px solid var(--accent);
-            border-right: 1px solid var(--accent);
-            border-radius: 0 8px 0 0;
-        }
-        
-        .corner-bottom-left {
-            bottom: 0;
-            left: 0;
-            border-bottom: 1px solid var(--accent);
-            border-left: 1px solid var(--accent);
-            border-radius: 0 0 0 8px;
-        }
-        
-        .corner-bottom-right {
-            bottom: 0;
-            right: 0;
-            border-bottom: 1px solid var(--accent);
-            border-right: 1px solid var(--accent);
-            border-radius: 0 0 8px 0;
-        }
-        
-        .profile-image-wrapper:hover .corner-accent {
+        .photo-glow {
+            background: radial-gradient(circle at center, rgba(248, 250, 252, 0.08) 0%, transparent 70%);
+            filter: blur(15px);
             opacity: 0.4;
         }
         
-        /* Subtle background glow */
-        .profile-glow {
+        .btn-primary {
+            background-color: #f8fafc;
+            color: #0f172a;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary:hover {
+            background-color: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            border-color: #cbd5e1;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary:hover {
+            color: #0f172a;
+            border-color: #f8fafc;
+        }
+        
+        .btn-secondary::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 92%;
-            height: 92%;
-            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.03) 0%, transparent 70%);
-            border-radius: 8px;
-            filter: blur(12px);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: 0;
         }
         
-        .profile-container:hover .profile-glow {
-            opacity: 0.6;
+        .btn-secondary:hover::before {
+            transform: scaleX(1);
         }
         
-        /* Animation styles */
-        .animate-slide-in-left {
-            animation: slideInLeft 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        
-        .animate-slide-in-right {
-            animation: slideInRight 0.8s ease-out forwards;
-            animation-delay: 0.2s;
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .profile-container {
-                max-width: 300px;
-            }
+        .btn-text {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -586,12 +511,12 @@
         </div>
     </section>
     <!-- About Section -->
-    <section id="about" class="py-20 bg-secondary">
+    <section id="about" class="py-20 bg-gray-800">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="animate-slide-in-left">
-                    <h2 class="text-4xl font-bold mb-6">About Me</h2>
-                    <div class="space-y-4 text-light leading-relaxed">
+                    <h2 class="text-4xl font-bold mb-8 section-title">About Me</h2>
+                    <div class="space-y-5 professional-text">
                         <p>
                             I'm a cybersecurity professional with extensive experience in securing cloud infrastructure, 
                             implementing DevOps practices, and developing automation solutions. My work focuses on 
@@ -609,28 +534,25 @@
                         </p>
                     </div>
                     
-                    <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="#contact" class="bg-text text-primary px-6 py-3 rounded-lg font-medium hover:bg-light transition-colors">
+                    <div class="mt-10 flex flex-wrap gap-5">
+                        <a href="#contact" class="btn-primary px-7 py-3.5 rounded-lg font-medium">
                             Hire Me
                         </a>
-                        <button id="downloadCV" class="border-2 border-text text-text px-6 py-3 rounded-lg font-medium hover:bg-text hover:text-primary transition-colors relative overflow-hidden group">
-                            <span class="relative z-10">Download CV</span>
-                            <div class="absolute inset-0 bg-text transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                        <button id="downloadCV" class="btn-secondary border-2 px-7 py-3.5 rounded-lg font-medium relative overflow-hidden">
+                            <span class="btn-text">Download CV</span>
                         </button>
                     </div>
                 </div>
                 
                 <div class="animate-slide-in-right">
-                    <div class="profile-container">
-                        <div class="profile-image-wrapper">
-                            <img src="assets/images/Passport.png" alt="Fabius Lihanda" class="profile-image">
-                            <div class="profile-frame"></div>
-                            <div class="corner-accent corner-top-left"></div>
-                            <div class="corner-accent corner-top-right"></div>
-                            <div class="corner-accent corner-bottom-left"></div>
-                            <div class="corner-accent corner-bottom-right"></div>
+                    <div class="relative group">
+                        <div class="photo-container relative overflow-hidden rounded-xl shadow-lg w-full max-w-md mx-auto">
+                            <img src="assets/images/Passport.png" alt="Fabius Lihanda" 
+                                 class="w-full h-auto transition-transform duration-700 group-hover:scale-105 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent opacity-70"></div>
+                            <div class="absolute inset-0 border border-gray-600/20 rounded-xl"></div>
                         </div>
-                        <div class="profile-glow"></div>
+                        <div class="photo-glow absolute -inset-3 rounded-xl -z-10 group-hover:blur-lg transition-all duration-500"></div>
                     </div>
                 </div>
             </div>
