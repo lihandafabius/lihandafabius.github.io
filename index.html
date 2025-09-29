@@ -1646,6 +1646,7 @@
             const finalScoreElement = document.getElementById('finalScore');
             const threatsBlockedElement = document.getElementById('threatsBlocked');
             const gameResultElement = document.getElementById('gameResult');
+            const performanceTextElement = document.getElementById('performanceText');
             const gameNotification = document.getElementById('gameNotification');
             const notificationContent = document.getElementById('notificationContent');
 
@@ -1654,9 +1655,12 @@
                 lives: 3,
                 timeLeft: 30,
                 threatsBlocked: 0,
+                patchesDestroyed: 0,
                 gameActive: false,
                 gameInterval: null,
-                timeInterval: null
+                timeInterval: null,
+                threatCount: 0,
+                patchCount: 0
             };
 
             // Show notification function
@@ -1682,7 +1686,10 @@
                     lives: 3,
                     timeLeft: 30,
                     threatsBlocked: 0,
-                    gameActive: true
+                    patchesDestroyed: 0,
+                    gameActive: true,
+                    threatCount: 0,
+                    patchCount: 0
                 };
 
                 // Update UI
@@ -1707,7 +1714,7 @@
                     timeElement.textContent = `${gameState.timeLeft}s`;
                     
                     if (gameState.timeLeft <= 0) {
-                        endGame();
+                        endGame(true);
                     }
                 }, 1000);
 
@@ -1718,7 +1725,7 @@
                 gameBoard.innerHTML = '';
                 for (let i = 0; i < 9; i++) {
                     const cell = document.createElement('div');
-                    cell.className = 'game-cell';
+                    cell.className = 'game-cell w-full h-24 bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-gray-700';
                     cell.dataset.index = i;
                     cell.addEventListener('click', handleCellClick);
                     gameBoard.appendChild(cell);
@@ -1728,45 +1735,41 @@
             function handleCellClick(e) {
                 if (!gameState.gameActive) return;
                 
-                const cell = e.target;
-                const index = parseInt(cell.dataset.index);
+                const cell = e.currentTarget;
                 
                 if (cell.classList.contains('threat')) {
-                    // Correctly identified a threat
+                    // Correctly clicked a threat
                     gameState.score += 10;
                     gameState.threatsBlocked++;
                     scoreElement.textContent = gameState.score;
                     
-                    cell.classList.remove('threat');
-                    cell.classList.add('success');
-                    cell.textContent = '✅';
+                    cell.innerHTML = '<i class="fas fa-check text-green-500 text-2xl"></i>';
+                    cell.classList.remove('threat', 'bg-red-900');
+                    cell.classList.add('bg-green-900');
                     
-                    setTimeout(() => {
-                        cell.textContent = '';
-                        cell.classList.remove('success');
-                    }, 500);
-                    
-                    showNotification('Threat eliminated! +10 points');
-                } else if (cell.classList.contains('locked')) {
-                    // Clicked on a security patch (penalty)
-                    gameState.lives--;
+                    showNotification('Threat neutralized! +10 points');
+                } else if (cell.classList.contains('patch')) {
+                    // Incorrectly clicked a patch
+                    gameState.score -= 5;
+                    gameState.patchesDestroyed++;
                     livesElement.textContent = gameState.lives;
                     
-                    cell.classList.remove('locked');
-                    cell.classList.add('error');
-                    cell.textContent = '❌';
+                    cell.innerHTML = '<i class="fas fa-times text-red-500 text-2xl"></i>';
+                    cell.classList.remove('patch', 'bg-blue-900');
+                    cell.classList.add('bg-red-900');
                     
-                    setTimeout(() => {
-                        cell.textContent = '';
-                        cell.classList.remove('error');
-                    }, 500);
-                    
-                    showNotification('Security patch clicked! -1 life', 'error');
+                    showNotification('Security patch destroyed! -5 points and -1 life', 'error');
                     
                     if (gameState.lives <= 0) {
-                        endGame();
+                        endGame(false);
                     }
                 }
+                
+                // Remove the cell content after a short delay
+                setTimeout(() => {
+                    cell.innerHTML = '';
+                    cell.className = 'game-cell w-full h-24 bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-gray-700';
+                }, 500);
             }
 
             function gameLoop() {
@@ -1775,8 +1778,8 @@
                 // Clear previous items
                 const cells = document.querySelectorAll('.game-cell');
                 cells.forEach(cell => {
-                    cell.classList.remove('threat', 'locked');
-                    cell.textContent = '';
+                    cell.classList.remove('threat', 'patch');
+                    cell.innerHTML = '';
                 });
                 
                 // Add new threats and patches
@@ -1787,33 +1790,49 @@
                     patchIndex = Math.floor(Math.random() * 9);
                 } while (patchIndex === threatIndex);
                 
-                cells[threatIndex].classList.add('threat');
-                cells[threatIndex].textContent = '🔴';
+                cells[threatIndex].innerHTML = '<i class="fas fa-virus text-red-400 text-2xl"></i>';
+                cells[threatIndex].classList.add('threat', 'bg-red-900');
+                gameState.threatCount++;
                 
-                cells[patchIndex].classList.add('locked');
-                cells[patchIndex].textContent = '🔵';
+                cells[patchIndex].innerHTML = '<i class="fas fa-shield-alt text-blue-400 text-2xl"></i>';
+                cells[patchIndex].classList.add('patch', 'bg-blue-900');
+                gameState.patchCount++;
+                
+                // Remove threats after 2 seconds if not clicked
+                setTimeout(() => {
+                    if (cells[threatIndex].classList.contains('threat')) {
+                        // Threat not clicked in time - lose a life
+                        gameState.lives--;
+                        livesElement.textContent = gameState.lives;
+                        cells[threatIndex].classList.remove('threat', 'bg-red-900');
+                        cells[threatIndex].innerHTML = '';
+                        
+                        if (gameState.lives <= 0) {
+                            endGame(false);
+                        }
+                    }
+                }, 2000);
+                
+                // Remove patches after 2 seconds
+                setTimeout(() => {
+                    if (cells[patchIndex].classList.contains('patch')) {
+                        cells[patchIndex].classList.remove('patch', 'bg-blue-900');
+                        cells[patchIndex].innerHTML = '';
+                    }
+                }, 2000);
             }
 
-            function endGame() {
+            function endGame(isTimeUp) {
                 gameState.gameActive = false;
                 clearInterval(gameState.gameInterval);
                 clearInterval(gameState.timeInterval);
 
-                // Update final score display
+                // Update final score displays
                 finalScoreElement.textContent = gameState.score;
                 threatsBlockedElement.textContent = gameState.threatsBlocked;
 
-                // Set game result message
-                if (gameState.score >= 100) {
-                    gameResultElement.textContent = 'Excellent! You\'re a Cybersecurity Expert!';
-                    showNotification('Excellent! You scored ' + gameState.score + ' points!');
-                } else if (gameState.score >= 50) {
-                    gameResultElement.textContent = 'Good Job! You have solid cybersecurity skills!';
-                    showNotification('Good job! You scored ' + gameState.score + ' points!');
-                } else {
-                    gameResultElement.textContent = 'Game Over. Practice makes perfect!';
-                    showNotification('Game over! You scored ' + gameState.score + ' points.');
-                }
+                // Calculate performance rating
+                calculatePerformance(isTimeUp);
 
                 // Show game over screen
                 gameScreen.classList.add('hidden');
@@ -1827,6 +1846,53 @@
                         'value': gameState.score
                     });
                 }
+            }
+
+            function calculatePerformance(isTimeUp) {
+                const accuracy = gameState.threatsBlocked > 0 ? 
+                    (gameState.threatsBlocked / (gameState.threatsBlocked + gameState.patchesDestroyed)) * 100 : 0;
+                
+                const efficiency = gameState.threatsBlocked > 0 ? 
+                    (gameState.score / (gameState.threatsBlocked * 10)) * 100 : 0;
+                
+                let performanceRating, performanceMessage;
+                
+                if (isTimeUp) {
+                    gameResultElement.textContent = "Simulation Complete";
+                    
+                    if (gameState.score >= 100) {
+                        performanceRating = "Exceptional";
+                        performanceMessage = "Outstanding network defense! Your threat detection and response capabilities are exceptional. You maintained high system integrity while neutralizing multiple threats.";
+                    } else if (gameState.score >= 60) {
+                        performanceRating = "Proficient";
+                        performanceMessage = "Solid defensive performance. You effectively identified and neutralized threats while maintaining reasonable system stability.";
+                    } else if (gameState.score >= 30) {
+                        performanceRating = "Adequate";
+                        performanceMessage = "Adequate security response. You neutralized some threats but need to improve accuracy to avoid damaging security patches.";
+                    } else {
+                        performanceRating = "Needs Improvement";
+                        performanceMessage = "Network defense requires significant improvement. Focus on accurately identifying threats while preserving security infrastructure.";
+                    }
+                } else {
+                    gameResultElement.textContent = "Security Breach Detected";
+                    performanceRating = "Critical Failure";
+                    performanceMessage = "Multiple system breaches occurred. Immediate security protocol review required. Focus on threat prioritization and maintaining system integrity under pressure.";
+                }
+                
+                // Add detailed metrics
+                const detailedMetrics = `
+                    <div class="mt-3 text-left">
+                        <p class="text-xs text-light mb-1">Threat Accuracy: ${accuracy.toFixed(1)}%</p>
+                        <p class="text-xs text-light mb-1">Operational Efficiency: ${efficiency.toFixed(1)}%</p>
+                        <p class="text-xs text-light">Security Patches Preserved: ${gameState.patchCount - gameState.patchesDestroyed}</p>
+                    </div>
+                `;
+                
+                performanceTextElement.innerHTML = `
+                    <span class="font-bold text-accent">${performanceRating}</span><br>
+                    ${performanceMessage}
+                    ${detailedMetrics}
+                `;
             }
 
             function resetGame() {
