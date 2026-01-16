@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabius Lihanda | Cybersecurity & DevOps Engineer</title>
+    <title>Fabius Lihanda | DevOps & Data Science Engineer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,15 +27,32 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0a0a0a',
-                        secondary: '#1a1a1a',
-                        accent: '#404040',
-                        highlight: '#6b7280',
-                        text: '#f8fafc',
-                        light: '#e2e8f0'
+                        primary: {
+                            light: '#f8fafc',
+                            dark: '#0a0a0a',
+                        },
+                        secondary: {
+                            light: '#e2e8f0',
+                            dark: '#1a1a1a',
+                        },
+                        accent: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            teal: '#14b8a6',
+                            amber: '#f59e0b',
+                        },
+                        text: {
+                            light: '#1e293b',
+                            dark: '#f8fafc',
+                        },
+                        light: {
+                            light: '#475569',
+                            dark: '#cbd5e1',
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -46,6 +63,7 @@
                         'slide-in-left': 'slideInLeft 0.6s ease-out',
                         'slide-in-right': 'slideInRight 0.6s ease-out',
                         'float': 'float 3s ease-in-out infinite',
+                        'theme-transition': 'themeTransition 0.3s ease',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -67,6 +85,10 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        themeTransition: {
+                            '0%': { opacity: '0.9' },
+                            '100%': { opacity: '1' },
                         }
                     }
                 }
@@ -75,36 +97,111 @@
     </script>
     
     <style>
-        /* Custom styles */
+        /* Theme variables */
+        :root {
+            --primary: #f8fafc;
+            --secondary: #e2e8f0;
+            --background: #ffffff;
+            --text: #1e293b;
+            --accent: #3b82f6;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --background: #0a0a0a;
+            --text: #f8fafc;
+            --accent: #8b5cf6;
+            --card-bg: #1a1a1a;
+            --border: #2d2d2d;
+        }
+
+        [data-theme="blue"] {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --background: #0f172a;
+            --text: #f1f5f9;
+            --accent: #3b82f6;
+            --card-bg: #1e293b;
+            --border: #334155;
+        }
+
+        [data-theme="teal"] {
+            --primary: #134e4a;
+            --secondary: #0f766e;
+            --background: #134e4a;
+            --text: #f0fdfa;
+            --accent: #14b8a6;
+            --card-bg: #0f766e;
+            --border: #0d9488;
+        }
+
+        /* Apply theme variables */
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-bg-primary {
+            background-color: var(--primary);
+        }
+
+        .theme-bg-secondary {
+            background-color: var(--secondary);
+        }
+
+        .theme-bg-card {
+            background-color: var(--card-bg);
+        }
+
+        .theme-text {
+            color: var(--text);
+        }
+
+        .theme-border {
+            border-color: var(--border);
+        }
+
+        .theme-accent {
+            color: var(--accent);
+        }
+
         .gradient-text {
-            background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+        }
+
         .section-divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, #6b7280, transparent);
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
         }
-        
+
         .project-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .project-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-        
+
         .skill-bar {
             transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .nav-link {
             position: relative;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -112,155 +209,154 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #f8fafc;
+            background: var(--accent);
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        /* Theme selector */
+        .theme-selector {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
         }
-        
+
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            min-width: 150px;
+            display: none;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .theme-dropdown.show {
+            display: block;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .theme-option:hover {
+            background-color: var(--border);
+        }
+
+        .theme-option.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .theme-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid var(--border);
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
-        
+
         ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+            background: var(--secondary);
         }
-        
+
         ::-webkit-scrollbar-thumb {
-            background: #6b7280;
+            background: var(--accent);
             border-radius: 3px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
-            background: #f8fafc;
+            background: var(--accent);
+            opacity: 0.8;
         }
-        
+
         /* Selection color */
         ::selection {
-            background: #6b7280;
-            color: #0a0a0a;
+            background: var(--accent);
+            color: white;
         }
-        
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+        }
+
         /* Loading animation */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
-        
+
         .animate-pulse-slow {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        
-        /* Game-specific styles */
-        .game-container {
-            perspective: 1000px;
-        }
-        
-        .game-cell {
-            aspect-ratio: 1;
-            background: #1a1a1a;
-            border: 2px solid #6b7280;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            cursor: pointer;
+
+        /* Card styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             transition: all 0.3s ease;
         }
-        
-        .game-cell:hover {
-            background: #2d2d2d;
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        
-        .game-cell.locked {
-            background: #f8fafc;
-            color: #0a0a0a;
-        }
-        
-        .game-cell.threat {
-            background: #ef4444;
-            color: #fff;
-        }
-        
-        .game-cell.success {
-            background: #10b981;
-            color: #fff;
-        }
-        
-        .game-cell.error {
-            background: #f87171;
-            color: #fff;
-        }
-        
-        .game-notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: #0a0a0a;
-            color: #f8fafc;
-            padding: 15px 20px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            z-index: 1000;
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
-        }
-        
-        .game-notification.show {
-            transform: translateX(0);
-        }
-        
-        .no-js-message {
-            background: #1e293b;
-            border-left: 4px solid #ef4444;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        /* Creative Content Styles */
-        .content-card {
-            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* Tools & Services Styles */
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
+
+        /* Badge styles */
+        .badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
-        /* Resume Section Styles */
-        .resume-item {
-            border-left: 2px solid #6b7280;
+
+        .badge-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            color: white;
+        }
+
+        .badge-secondary {
+            background-color: var(--secondary);
+            color: var(--text);
+        }
+
+        /* Experience timeline */
+        .timeline-item {
+            border-left: 2px solid var(--accent);
             padding-left: 2rem;
             position: relative;
             margin-bottom: 3rem;
         }
-        
-        .resume-item::before {
+
+        .timeline-item::before {
             content: '';
             position: absolute;
             left: -0.5rem;
@@ -268,237 +364,187 @@
             width: 1rem;
             height: 1rem;
             border-radius: 50%;
-            background: #f8fafc;
-        }
-        
-        .achievement-item {
-            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .achievement-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .cert-badge {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .cert-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Dark theme adjustments */
-        body {
-            background-color: #0a0a0a;
-            color: #f8fafc;
-        }
-        
-        .bg-white {
-            background-color: #1a1a1a;
-        }
-        
-        .bg-gray-50 {
-            background-color: #0f0f0f;
-        }
-        
-        .text-gray-600 {
-            color: #cbd5e1;
-        }
-        
-        .text-gray-400 {
-            color: #94a3b8;
-        }
-        
-        .border-gray-200 {
-            border-color: #2d2d2d;
-        }
-        
-        .bg-gray-200 {
-            background-color: #2d2d2d;
-        }
-        
-        .text-gray-800 {
-            color: #e2e8f0;
-        }
-        
-        .border-gray-300 {
-            border-color: #374151;
-        }
-        
-        .bg-gray-100 {
-            background-color: #1e293b;
+            background: var(--accent);
+            border: 3px solid var(--card-bg);
         }
 
-        /* About Section CSS */
-        .professional-text {
-            color: #e5e7eb;
-            line-height: 1.7;
-        }
-        
-        .section-title {
-            color: #f8fafc;
-            font-weight: 600;
-            letter-spacing: -0.025em;
-        }
-        
-        .photo-container {
-            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
-            box-shadow: 
-                0 15px 35px -5px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-        
-        .photo-glow {
-            background: radial-gradient(circle at center, rgba(248, 250, 252, 0.08) 0%, transparent 70%);
-            filter: blur(15px);
-            opacity: 0.4;
-        }
-        
-        .btn-primary {
-            background-color: #f8fafc;
-            color: #0f172a;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-primary:hover {
-            background-color: #e2e8f0;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-secondary {
-            border-color: #cbd5e1;
-            color: #e2e8f0;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        /* Data visualization preview */
+        .chart-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(180deg, var(--secondary) 0%, transparent 100%);
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
         }
-        
-        .btn-secondary:hover {
-            color: #0f172a;
-            border-color: #f8fafc;
-        }
-        
-        .btn-secondary::before {
-            content: '';
+
+        .chart-line {
             position: absolute;
-            top: 0;
-            left: 0;
+            bottom: 0;
             width: 100%;
-            height: 100%;
-            background-color: #f8fafc;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-            z-index: 0;
+            height: 80%;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: chartAnimation 3s ease-in-out infinite;
         }
-        
-        .btn-secondary:hover::before {
-            transform: scaleX(1);
+
+        @keyframes chartAnimation {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
         }
-        
-        .btn-text {
-            position: relative;
-            z-index: 1;
+
+        /* Skill category colors */
+        .skill-category-devops {
+            border-left-color: var(--accent-blue);
+        }
+
+        .skill-category-datascience {
+            border-left-color: var(--accent-purple);
+        }
+
+        .skill-category-security {
+            border-left-color: var(--accent-amber);
+        }
+
+        .skill-category-analysis {
+            border-left-color: var(--accent-teal);
         }
     </style>
 </head>
-<body class="font-sans bg-primary text-text antialiased">
+<body class="font-sans theme-bg-primary theme-text antialiased animate-theme-transition">
     <!-- Loading Screen -->
-    <div id="loadingScreen" class="fixed inset-0 z-50 bg-primary flex items-center justify-center">
+    <div id="loadingScreen" class="fixed inset-0 z-50 theme-bg-primary flex items-center justify-center">
         <div class="text-center">
-            <div class="w-16 h-16 border-4 border-text border-t-transparent rounded-full animate-spin mb-4"></div>
+            <div class="w-16 h-16 border-4 theme-border border-t-transparent rounded-full animate-spin mb-4"></div>
             <p class="text-lg font-medium">Loading Portfolio</p>
         </div>
     </div>
 
+    <!-- Theme Selector -->
+    <div class="theme-selector fixed top-4 right-4 z-50">
+        <button id="themeToggle" class="w-10 h-10 rounded-full theme-bg-card theme-border border flex items-center justify-center hover:border-accent transition-colors">
+            <i class="fas fa-palette theme-accent"></i>
+        </button>
+        <div id="themeDropdown" class="theme-dropdown">
+            <div class="theme-option" data-theme="light">
+                <div class="theme-preview" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);"></div>
+                Light
+            </div>
+            <div class="theme-option active" data-theme="dark">
+                <div class="theme-preview" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);"></div>
+                Dark
+            </div>
+            <div class="theme-option" data-theme="blue">
+                <div class="theme-preview" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);"></div>
+                Blue
+            </div>
+            <div class="theme-option" data-theme="teal">
+                <div class="theme-preview" style="background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);"></div>
+                Teal
+            </div>
+            <div class="theme-option" data-theme="auto">
+                <div class="theme-preview" style="background: linear-gradient(135deg, #f8fafc 50%, #0a0a0a 50%);"></div>
+                Auto
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-40 bg-primary/80 backdrop-blur-md border-b border-gray-800">
+    <nav class="fixed w-full z-40 theme-bg-primary/80 backdrop-blur-md border-b theme-border">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-text">FL</a>
+                <a href="#" class="text-2xl font-bold gradient-text">FL</a>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">About</a>
-                    <a href="#resume" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">Experience</a>
-                    <a href="#projects" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">Projects</a>
-                    <a href="#tools" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">Tools & Services</a>
-                    <a href="#skills" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">Skills</a>
-                    <a href="#game" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">Challenge</a>
-                    <a href="#contact" class="nav-link text-sm font-medium text-light hover:text-text transition-colors">Contact</a>
+                    <a href="#about" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">About</a>
+                    <a href="#expertise" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Expertise</a>
+                    <a href="#experience" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Experience</a>
+                    <a href="#projects" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Projects</a>
+                    <a href="#skills" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Skills</a>
+                    <a href="#contact" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Contact</a>
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="#contact" class="bg-text text-primary px-6 py-2 rounded-lg text-sm font-medium hover:bg-light transition-colors">
+                    <a href="#contact" class="gradient-bg text-white px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-all">
                         Get In Touch
                     </a>
+                    <button id="mobileMenuBtn" class="md:hidden theme-text">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Game Notification -->
-    <div id="gameNotification" class="game-notification">
-        <div id="notificationContent"></div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-30 md:hidden theme-bg-primary">
+        <div class="flex justify-end p-6">
+            <button id="closeMobileMenu" class="theme-text">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#about" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">About</a>
+            <a href="#expertise" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Expertise</a>
+            <a href="#experience" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Experience</a>
+            <a href="#projects" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Projects</a>
+            <a href="#skills" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Skills</a>
+            <a href="#contact" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Contact</a>
+        </div>
     </div>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div class="absolute inset-0 bg-gradient-to-br from-secondary to-primary"></div>
+        <div class="absolute inset-0 theme-bg-secondary"></div>
         
         <!-- Animated background elements -->
-        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-text/5 rounded-full animate-float"></div>
-        <div class="absolute bottom-1/3 right-1/4 w-48 h-48 bg-text/5 rounded-full animate-float" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 gradient-bg rounded-full animate-float opacity-10"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-48 h-48 gradient-bg rounded-full animate-float opacity-10" style="animation-delay: 1s;"></div>
         
         <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
             <div class="animate-fade-in-up">
+                <div class="flex justify-center mb-6">
+                    <span class="badge badge-primary animate-pulse-slow">
+                        <i class="fas fa-chart-line mr-2"></i> Now focusing on Data Science & DevOps
+                    </span>
+                </div>
+                
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                     Fabius <span class="gradient-text">Lihanda</span>
                 </h1>
-                <div class="text-xl md:text-2xl text-light mb-8 max-w-3xl mx-auto">
-                    <span class="typing-animation">Cybersecurity Analyst & DevOps Engineer</span>
+                <div class="text-xl md:text-2xl theme-text mb-8 max-w-3xl mx-auto">
+                    <span class="typing-animation">DevOps Engineer & Data Science Specialist</span>
                 </div>
-                <p class="text-lg text-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                    I specialize in building secure, scalable infrastructure solutions with a focus on 
-                    cloud security, automation, and threat intelligence. Currently working on advanced 
-                    security frameworks and DevOps optimization.
+                <p class="text-lg theme-text mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Building scalable infrastructure and data-driven solutions with expertise in cloud automation, 
+                    data analysis, and security. Currently expanding into machine learning and advanced analytics.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#projects" class="bg-text text-primary px-8 py-3 rounded-lg font-medium hover:bg-light transition-all transform hover:scale-105">
+                    <a href="#projects" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-105">
                         View My Work
                     </a>
-                    <a href="#contact" class="border-2 border-text text-text px-8 py-3 rounded-lg font-medium hover:bg-text hover:text-primary transition-all transform hover:scale-105">
+                    <a href="#contact" class="border-2 theme-border theme-text px-8 py-3 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all transform hover:scale-105">
                         Request Services
                     </a>
                 </div>
             </div>
             
             <div class="mt-20 animate-fade-in-up" style="animation-delay: 0.3s;">
-                <div class="flex justify-center space-x-8 text-light">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 theme-text">
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-text">5+</div>
+                        <div class="text-2xl font-bold gradient-text">10+</div>
                         <div class="text-sm">Projects Completed</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-text">1+</div>
+                        <div class="text-2xl font-bold gradient-text">2+</div>
                         <div class="text-sm">Years Experience</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold text-text">100%</div>
+                        <div class="text-2xl font-bold gradient-text">5+</div>
+                        <div class="text-sm">Certifications</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold gradient-text">100%</div>
                         <div class="text-sm">Client Satisfaction</div>
                     </div>
                 </div>
@@ -506,1048 +552,581 @@
         </div>
         
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-light hover:text-text transition-colors">
+            <a href="#about" class="theme-text hover:theme-accent transition-colors">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </a>
         </div>
     </section>
+
     <!-- About Section -->
-    <section id="about" class="py-20 bg-secondary">
+    <section id="about" class="py-20 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="animate-slide-in-left">
-                    <h2 class="text-4xl font-bold mb-8 section-title">About Me</h2>
-                    <div class="space-y-5 professional-text">
+                    <h2 class="text-4xl font-bold mb-8">About Me</h2>
+                    <div class="space-y-5">
                         <p>
-                            I'm a cybersecurity professional with extensive experience in securing cloud infrastructure, 
-                            implementing DevOps practices, and developing automation solutions. My work focuses on 
-                            creating resilient systems that can withstand modern security threats while maintaining 
-                            optimal performance.
+                            I'm a DevOps Engineer and Data Science enthusiast with a strong foundation in cybersecurity. 
+                            My journey has evolved from securing systems to building scalable infrastructure and extracting 
+                            insights from data.
                         </p>
                         <p>
-                            With a background in both cybersecurity and software development, I bring a unique perspective 
-                            to infrastructure design and security implementation. I'm passionate about staying ahead of 
-                            emerging threats and implementing cutting-edge security measures.
+                            Currently, I'm focusing on bridging the gap between infrastructure automation and data analysis. 
+                            I work on creating robust data pipelines, implementing machine learning workflows, and ensuring 
+                            data security throughout the process.
                         </p>
                         <p>
-                            When I'm not working on security implementations, I contribute to open-source projects, 
-                            write technical articles, and mentor aspiring cybersecurity professionals.
+                            With experience in cloud technologies, automation, and data visualization, I help organizations 
+                            transform their operations through data-driven decision making and scalable infrastructure.
                         </p>
                     </div>
                     
                     <div class="mt-10 flex flex-wrap gap-5">
-                        <a href="#contact" class="btn-primary px-7 py-3.5 rounded-lg font-medium">
-                            Hire Me
+                        <a href="#contact" class="gradient-bg text-white px-7 py-3.5 rounded-lg font-medium hover:opacity-90 transition-all">
+                            <i class="fas fa-paper-plane mr-2"></i>Hire Me
                         </a>
-                        <button id="downloadCV" class="btn-secondary border-2 px-7 py-3.5 rounded-lg font-medium relative overflow-hidden">
-                            <span class="btn-text">Download CV</span>
+                        <button id="downloadCV" class="border-2 theme-border theme-text px-7 py-3.5 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all">
+                            <i class="fas fa-download mr-2"></i>Download CV
                         </button>
                     </div>
                 </div>
                 
                 <div class="animate-slide-in-right">
                     <div class="relative group">
-                        <div class="photo-container relative overflow-hidden rounded-xl shadow-lg w-full max-w-md mx-auto">
-                            <img src="assets/images/Passport.jpg" alt="Fabius Lihanda" 
-                                 class="w-full h-auto transition-transform duration-700 group-hover:scale-105 object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent opacity-70"></div>
-                            <div class="absolute inset-0 border border-gray-600/20 rounded-xl"></div>
+                        <div class="card overflow-hidden rounded-xl shadow-lg w-full max-w-md mx-auto">
+                            <div class="relative aspect-square overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-accent-blue/20 to-accent-purple/20"></div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="w-32 h-32 rounded-full border-4 theme-border mx-auto mb-4 overflow-hidden">
+                                            <!-- Profile image placeholder -->
+                                            <div class="w-full h-full gradient-bg flex items-center justify-center">
+                                                <span class="text-4xl font-bold text-white">FL</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="text-2xl font-bold mb-2">Fabius Lihanda</h3>
+                                        <p class="theme-text">DevOps & Data Science</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="text-center">
+                                        <div class="text-sm theme-text">Location</div>
+                                        <div class="font-semibold">Nairobi, KE</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-sm theme-text">Available</div>
+                                        <div class="font-semibold gradient-text">For Work</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="photo-glow absolute -inset-3 rounded-xl -z-10 group-hover:blur-lg transition-all duration-500"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-      <!-- Resume Section -->
-    <section id="resume" class="py-20 bg-primary">
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-20 theme-bg-primary">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Resume</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center">Areas of Expertise</h2>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Professional Experience Column -->
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-briefcase text-text mr-3"></i>
-                        Professional Experience
-                    </h3>
-                    
-                    <div class="space-y-8">
-                                                <!-- Experience 3 -->
-                            <div class="resume-item animate-fade-in-up" style="animation-delay: 0.2s;">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-xl font-semibold">DevOps Engineering Bootcamp</h4>
-                                    <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">Current</span>
-                                </div>
-                                <p class="text-light mb-4">TechWorld with Nana - DevOps Bootcamp</p>
-                                <p class="text-light mb-4">Comprehensive training program preparing for DevOps implementation with confidence</p>
-                                
-                                <div class="space-y-3">
-                                    <div class="achievement-item">
-                                        <p class="text-light flex items-start">
-                                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                            Learning container orchestration with Kubernetes and production-ready CI/CD pipelines
-                                        </p>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <p class="text-light flex items-start">
-                                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                            Mastering automation with Terraform, Ansible, Python, Docker, AWS, Git, and Linux
-                                        </p>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <p class="text-light flex items-start">
-                                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                            Understanding underlying concepts and best practices for different use cases
-                                        </p>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <p class="text-light flex items-start">
-                                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                            Preparing to implement DevOps processes immediately in company environments
-                                        </p>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <p class="text-light flex items-start">
-                                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                            Supported by experienced DevOps engineers throughout the learning process
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Experience 1 -->
-                        <div class="resume-item animate-fade-in-up">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-semibold">Co-Founder & Community Coordinator</h4>
-                                <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">Aug 2025 - Present</span>
-                            </div>
-                            <p class="text-light mb-4">Everything Operations (EveOps)</p>
-                            <p class="text-light mb-4">Leading and coordinating community initiatives around DevOps, MLOps, AIOps, FinOps, SecOps, and CloudOps domains</p>
-                            
-                            <div class="space-y-3">
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Lead and coordinate weekly events, webinars, and knowledge-sharing sessions
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Manage community engagement and foster collaboration among members
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Organize content around multiple Ops domains and facilitate networking opportunities
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Support the mission to educate, connect, and grow the next generation of Ops professionals
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- Experience 2 -->
-                        <div class="resume-item animate-fade-in-up" style="animation-delay: 0.1s;">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-xl font-semibold">Intern, Junior Cyber Security Analyst</h4>
-                                <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">May 2024 - Aug 2024</span>
-                            </div>
-                            <p class="text-light mb-4">Communications Authority of Kenya (KE-CIRT) - Nairobi, Kenya</p>
-                            <p class="text-light mb-4">Gained hands-on experience in monitoring and analyzing cybersecurity threats to protect national critical infrastructure</p>
-                            
-                            <div class="space-y-3">
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Monitored and analyzed cybersecurity threats to protect national critical infrastructure
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Collaborated with team to investigate emerging threats within Kenyan cyberspace
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Participated in development and implementation of cybersecurity policies and awareness programs
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Honed skills in threat detection, incident response, and vulnerability assessments
-                                    </p>
-                                </div>
-                                <div class="achievement-item">
-                                    <p class="text-light flex items-start">
-                                        <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                        Applied threat intelligence to anticipate potential attacks and enhance proactive defense strategies
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- DevOps -->
+                <div class="card p-6 animate-fade-in-up">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
+                        <i class="fas fa-cloud text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">DevOps Engineering</h3>
+                    <p class="theme-text mb-4">
+                        Building scalable infrastructure, CI/CD pipelines, and automation workflows with tools like Docker, Kubernetes, and Terraform.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-secondary">AWS</span>
+                        <span class="badge badge-secondary">Docker</span>
+                        <span class="badge badge-secondary">Kubernetes</span>
+                    </div>
                 </div>
+
+                <!-- Data Science -->
+                <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-bar text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Data Science</h3>
+                    <p class="theme-text mb-4">
+                        Extracting insights from data using machine learning, statistical analysis, and data visualization techniques.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-secondary">Python</span>
+                        <span class="badge badge-secondary">ML</span>
+                        <span class="badge badge-secondary">Pandas</span>
+                    </div>
+                </div>
+
+                <!-- Data Analysis -->
+                <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
+                        <i class="fas fa-database text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Data Analysis</h3>
+                    <p class="theme-text mb-4">
+                        Transforming raw data into actionable insights through analysis, reporting, and dashboard creation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-secondary">SQL</span>
+                        <span class="badge badge-secondary">Power BI</span>
+                        <span class="badge badge-secondary">Excel</span>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Security</h3>
+                    <p class="theme-text mb-4">
+                        Implementing security best practices in infrastructure and applications with focus on cloud security.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-secondary">Cloud Sec</span>
+                        <span class="badge badge-secondary">Compliance</span>
+                        <span class="badge badge-secondary">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 theme-bg-secondary">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Professional Journey</h2>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 gradient-bg"></div>
                 
-                <!-- Certifications & Achievements Column -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-award text-text mr-3"></i>
-                        Certifications
-                    </h3>
-                    
-                    <div class="grid grid-cols-1 gap-4 mb-8">
-                        <div class="cert-badge animate-fade-in-up">
-                            <i class="fab fa-aws text-3xl text-text mb-2"></i>
-                            <h4 class="font-semibold">AWS Certified Cloud Practitioner</h4>
-                            <p class="text-light text-sm">Foundational</p>
-                        </div>
-                        
-                        <div class="cert-badge animate-fade-in-up" style="animation-delay: 0.1s;">
-                            <i class="fab fa-google text-3xl text-text mb-2"></i>
-                            <h4 class="font-semibold">Google Cybersecurity</h4>
-                            <p class="text-light text-sm">Professional Certificate</p>
-                        </div>
-                        
-                        <div class="cert-badge animate-fade-in-up" style="animation-delay: 0.2s;">
-                            <i class="fas fa-network-wired text-3xl text-text mb-2"></i>
-                            <h4 class="font-semibold">CCNA 1-3</h4>
-                            <p class="text-light text-sm">Cisco</p>
-                        </div>
-                        
-                        <div class="cert-badge animate-fade-in-up" style="animation-delay: 0.3s;">
-                            <i class="fas fa-user-secret text-3xl text-text mb-2"></i>
-                            <h4 class="font-semibold">Ethical Hacking Essentials</h4>
-                            <p class="text-light text-sm">EC-Council</p>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold mb-6 flex items-center mt-8">
-                        <i class="fas fa-trophy text-text mr-3"></i>
-                        Key Achievements
-                    </h3>
-                    
-                    <div class="space-y-4">
-                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.4s;">
-                            <p class="text-light flex items-start">
-                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
-                                Launched and showcased Mkulimaid (A web-based AI and ML platform for detecting crop diseases) at the ASK 2025 Nakuru Showground
-                            </p>
-                        </div>
-                        
-                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.5s;">
-                            <p class="text-light flex items-start">
-                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
-                                Successfully completed cybersecurity internship protecting national critical infrastructure
-                            </p>
-                        </div>
-                        
-                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.6s;">
-                            <p class="text-light flex items-start">
-                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
-                                Founded and coordinate Everything Operations community for Ops professionals
-                            </p>
-                        </div>
-                        
-                        <div class="achievement-item animate-fade-in-up" style="animation-delay: 0.7s;">
-                            <p class="text-light flex items-start">
-                                <i class="fas fa-star text-yellow-500 mt-1 mr-2"></i>
-                                Currently advancing DevOps expertise through intensive bootcamp training
-                            </p>
+                <div class="space-y-12">
+                    <!-- Current Experience -->
+                    <div class="relative animate-fade-in-up">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                                <div class="inline-block card p-6 max-w-md">
+                                    <span class="badge badge-primary mb-3">Current</span>
+                                    <h3 class="text-xl font-semibold mb-2">DevOps Engineering Bootcamp</h3>
+                                    <p class="theme-text mb-3">TechWorld with Nana</p>
+                                    <p class="text-sm theme-text">
+                                        Intensive training in container orchestration, CI/CD pipelines, and infrastructure automation.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="timeline-item md:ml-0">
+                                    <div class="card p-6">
+                                        <h4 class="font-semibold mb-3">Key Focus Areas:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                                Kubernetes orchestration and management
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                                Production CI/CD pipeline design
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                                Infrastructure as Code with Terraform
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                                Cloud security best practices
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <h3 class="text-2xl font-bold mb-6 flex items-center mt-8">
-                        <i class="fas fa-graduation-cap text-text mr-3"></i>
-                        Education
-                    </h3>
-                    
-                    <div class="resume-item animate-fade-in-up" style="animation-delay: 0.8s;">
-                        <h4 class="text-xl font-semibold">Bachelor of Science in Computer Science</h4>
-                        <p class="text-light">Egerton University</p>
-                        <p class="text-light">2021 - 2025</p>
+
+                    <!-- EveOps Experience -->
+                    <div class="relative animate-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 order-2 md:order-1">
+                                <div class="timeline-item md:mr-0 md:text-right">
+                                    <div class="card p-6">
+                                        <h4 class="font-semibold mb-3">Community Impact:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start md:justify-end">
+                                                <i class="fas fa-users text-blue-500 mt-1 mr-2"></i>
+                                                Coordinating 100+ Ops professionals
+                                            </li>
+                                            <li class="flex items-start md:justify-end">
+                                                <i class="fas fa-calendar-alt text-blue-500 mt-1 mr-2"></i>
+                                                Weekly knowledge-sharing sessions
+                                            </li>
+                                            <li class="flex items-start md:justify-end">
+                                                <i class="fas fa-network-wired text-blue-500 mt-1 mr-2"></i>
+                                                Cross-domain collaboration
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 order-1 md:order-2">
+                                <div class="inline-block card p-6 max-w-md">
+                                    <span class="badge badge-primary mb-3">Aug 2025 - Present</span>
+                                    <h3 class="text-xl font-semibold mb-2">Co-Founder & Community Coordinator</h3>
+                                    <p class="theme-text mb-3">Everything Operations (EveOps)</p>
+                                    <p class="text-sm theme-text">
+                                        Leading community initiatives around DevOps, MLOps, AIOps, and other Ops domains.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-      <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-secondary">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-4 text-center">Technical Expertise</h2>
-            <p class="text-lg text-light text-center mb-12 max-w-2xl mx-auto">
-                A comprehensive overview of my technical proficiencies across cybersecurity, cloud infrastructure, and software development domains.
-            </p>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Cybersecurity Skills -->
-                <div class="animate-fade-in-up">
-                    <div class="bg-primary rounded-xl p-6 shadow-lg border border-gray-800 hover:border-gray-700 transition-all duration-300">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-shield-alt text-red-500 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold">Cybersecurity</h3>
-                        </div>
-                        <div class="space-y-5">
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Threat Detection & Analysis</span>
-                                    <span class="text-text font-bold text-sm bg-red-500/20 px-2 py-1 rounded">95%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-2.5 rounded-full skill-bar" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Cloud Security</span>
-                                    <span class="text-text font-bold text-sm bg-red-500/20 px-2 py-1 rounded">90%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-2.5 rounded-full skill-bar" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Vulnerability Assessment</span>
-                                    <span class="text-text font-bold text-sm bg-red-500/20 px-2 py-1 rounded">92%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-2.5 rounded-full skill-bar" style="width: 92%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Incident Response</span>
-                                    <span class="text-text font-bold text-sm bg-red-500/20 px-2 py-1 rounded">88%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-2.5 rounded-full skill-bar" style="width: 88%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- DevOps & Cloud Skills -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="bg-primary rounded-xl p-6 shadow-lg border border-gray-800 hover:border-gray-700 transition-all duration-300">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-cloud text-blue-500 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold">DevOps & Cloud</h3>
-                        </div>
-                        <div class="space-y-5">
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">CI/CD Pipelines</span>
-                                    <span class="text-text font-bold text-sm bg-blue-500/20 px-2 py-1 rounded">88%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full skill-bar" style="width: 88%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Container Orchestration</span>
-                                    <span class="text-text font-bold text-sm bg-blue-500/20 px-2 py-1 rounded">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full skill-bar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Cloud Infrastructure</span>
-                                    <span class="text-text font-bold text-sm bg-blue-500/20 px-2 py-1 rounded">87%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full skill-bar" style="width: 87%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Infrastructure as Code</span>
-                                    <span class="text-text font-bold text-sm bg-blue-500/20 px-2 py-1 rounded">83%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full skill-bar" style="width: 83%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Development Skills -->
-                <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="bg-primary rounded-xl p-6 shadow-lg border border-gray-800 hover:border-gray-700 transition-all duration-300">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-code text-green-500 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-semibold">Development</h3>
-                        </div>
-                        <div class="space-y-5">
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Python Development</span>
-                                    <span class="text-text font-bold text-sm bg-green-500/20 px-2 py-1 rounded">93%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-2.5 rounded-full skill-bar" style="width: 93%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Web Frameworks</span>
-                                    <span class="text-text font-bold text-sm bg-green-500/20 px-2 py-1 rounded">80%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-2.5 rounded-full skill-bar" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">Scripting & Automation</span>
-                                    <span class="text-text font-bold text-sm bg-green-500/20 px-2 py-1 rounded">87%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-2.5 rounded-full skill-bar" style="width: 87%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-medium text-light">API Development</span>
-                                    <span class="text-text font-bold text-sm bg-green-500/20 px-2 py-1 rounded">82%</span>
-                                </div>
-                                <div class="w-full bg-gray-800 rounded-full h-2.5">
-                                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-2.5 rounded-full skill-bar" style="width: 82%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Additional Skills Overview -->
-            <div class="mt-12 bg-primary rounded-xl p-8 border border-gray-800 animate-fade-in-up" style="animation-delay: 0.3s;">
-                <h3 class="text-2xl font-bold mb-6 text-center">Tools & Technologies</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="group">
-                        <div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-text transition-colors">
-                            <i class="fab fa-aws text-2xl text-text group-hover:text-primary"></i>
-                        </div>
-                        <p class="text-sm font-medium">AWS</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-text transition-colors">
-                            <i class="fab fa-docker text-2xl text-text group-hover:text-primary"></i>
-                        </div>
-                        <p class="text-sm font-medium">Docker</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-text transition-colors">
-                            <i class="fab fa-python text-2xl text-text group-hover:text-primary"></i>
-                        </div>
-                        <p class="text-sm font-medium">Python</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-text transition-colors">
-                            <i class="fab fa-linux text-2xl text-text group-hover:text-primary"></i>
-                        </div>
-                        <p class="text-sm font-medium">Linux</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-  <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-primary">
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 theme-bg-primary">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 - AWS Bastion Host Security -->
-                <div class="project-hover bg-secondary rounded-2xl overflow-hidden shadow-lg animate-fade-in-up">
-                    <div class="h-48 bg-gray-900 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                             alt="AWS Security Infrastructure" 
-                             class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">AWS Security</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <i class="fab fa-aws text-2xl text-white opacity-90"></i>
-                        </div>
-                    </div>
+                <!-- MkulimaAid -->
+                <div class="card project-hover animate-fade-in-up">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">AWS Bastion Host Security</h3>
-                        <p class="text-light mb-4 text-sm">
-                            Comprehensive guide to securing AWS bastion hosts with Linux hardening, MFA implementation, and monitoring best practices.
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="badge badge-primary">Data Science</span>
+                            <span class="text-sm theme-text">Featured</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">MkulimaAid</h3>
+                        <p class="theme-text mb-4">
+                            AI-powered crop disease detection platform using CNN models and interactive dashboards.
                         </p>
+                        <div class="mb-6">
+                            <div class="chart-preview">
+                                <div class="chart-line"></div>
+                            </div>
+                        </div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">AWS</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">Linux</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">MFA</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">Security</span>
+                            <span class="badge badge-secondary">Flask</span>
+                            <span class="badge badge-secondary">TensorFlow</span>
+                            <span class="badge badge-secondary">CNN</span>
+                            <span class="badge badge-secondary">Plotly</span>
                         </div>
-                        <a href="https://medium.com/aws-in-plain-english/securing-aws-bastion-hosts-linux-hardening-mfa-and-monitoring-best-practices-46894c514e68" target="_blank" class="text-text font-medium hover:underline text-sm flex items-center">
-                            Read Article <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-    
-                <!-- Project 2 - Flask Application Deployment -->
-                <div class="project-hover bg-secondary rounded-2xl overflow-hidden shadow-lg animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="h-48 bg-gray-900 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                             alt="Cloud Infrastructure and Deployment" 
-                             class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-blue-900/30 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">DevOps</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <i class="fab fa-python text-2xl text-white opacity-90"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Production Flask App on AWS</h3>
-                        <p class="text-light mb-4 text-sm">
-                            Deployed a production-ready Flask application on AWS with high availability, scalability, and strong security measures.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">Flask</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">AWS</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">Docker</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">CI/CD</span>
-                        </div>
-                        <a href="https://medium.com/@fabiuslihandaachevi/how-i-deployed-a-production-ready-flask-application-on-aws-with-high-availability-3aeb643f3f9b" target="_blank" class="text-text font-medium hover:underline text-sm flex items-center">
-                            Read Article <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-    
-                <!-- Project 3 - MkulimaAid -->
-                <div class="project-hover bg-secondary rounded-2xl overflow-hidden shadow-lg animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="h-48 bg-gray-900 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                             alt="Agriculture Technology and AI" 
-                             class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-green-900/30 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">ML Web App</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <i class="fas fa-robot text-2xl text-white opacity-90"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">MkulimaAid Crop Diagnostic</h3>
-                        <p class="text-light mb-4 text-sm">
-                            AI-powered web platform for crop disease detection using CNN models, with interactive dashboards and farmer support features.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">Flask</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">TensorFlow</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">CNN</span>
-                            <span class="px-2 py-1 bg-gray-800 text-text rounded text-xs">Plotly</span>
-                        </div>
-                        <a href="https://mkulimaaid.onrender.com/" target="_blank" class="text-text font-medium hover:underline text-sm flex items-center">
+                        <a href="https://mkulimaaid.onrender.com/" target="_blank" class="inline-flex items-center theme-accent hover:underline">
                             Live Demo <i class="fas fa-external-link-alt ml-2 text-xs"></i>
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Tools & Services Section -->
-    <section id="tools" class="py-20 bg-secondary">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Tools & Services</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-primary p-8 rounded-2xl shadow-lg animate-fade-in-up">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt text-2xl text-text"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Security Assessment</h3>
-                    <p class="text-light mb-6">
-                        Comprehensive security assessments including vulnerability scanning, penetration testing, and security architecture review.
-                    </p>
-                    <ul class="space-y-2 text-light">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Vulnerability Assessment
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Penetration Testing
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Security Architecture Review
-                        </li>
-                    </ul>
-                </div>
 
-                <!-- Service 2 -->
-                <div class="bg-primary p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud text-2xl text-text"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Cloud Security</h3>
-                    <p class="text-light mb-6">
-                        Secure cloud infrastructure design and implementation for AWS, Azure, and GCP with compliance and best practices.
-                    </p>
-                    <ul class="space-y-2 text-light">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Cloud Infrastructure Security
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Identity & Access Management
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Compliance & Governance
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="bg-primary p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="service-icon">
-                        <i class="fas fa-code-branch text-2xl text-text"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">DevSecOps</h3>
-                    <p class="text-light mb-6">
-                        Integration of security practices into DevOps workflows with automated security testing and continuous monitoring.
-                    </p>
-                    <ul class="space-y-2 text-light">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            CI/CD Security Integration
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Container Security
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Infrastructure as Code Security
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="bg-primary p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <div class="service-icon">
-                        <i class="fas fa-tools text-2xl text-text"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Security Automation</h3>
-                    <p class="text-light mb-6">
-                        Development of custom security automation tools and scripts to streamline security operations and response.
-                    </p>
-                    <ul class="space-y-2 text-light">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Security Orchestration
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Threat Intelligence Automation
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Incident Response Automation
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="bg-primary p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="service-icon">
-                        <i class="fas fa-user-shield text-2xl text-text"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Security Training</h3>
-                    <p class="text-light mb-6">
-                        Custom security awareness training and technical workshops for development and operations teams.
-                    </p>
-                    <ul class="space-y-2 text-light">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Security Awareness Training
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Secure Coding Practices
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Incident Response Drills
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="bg-primary p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay: 0.5s;">
-                    <div class="service-icon">
-                        <i class="fas fa-search text-2xl text-text"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Threat Intelligence</h3>
-                    <p class="text-light mb-6">
-                        Proactive threat intelligence gathering and analysis to identify emerging threats and vulnerabilities.
-                    </p>
-                    <ul class="space-y-2 text-light">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Threat Hunting
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Malware Analysis
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            Digital Forensics
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Creative Content Section -->
-    <section id="creative" class="py-20 bg-primary">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Creative Content</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <!-- Content 1 - Your Medium Article -->
-                <div class="content-card animate-fade-in-up">
-                    <div class="h-48 bg-gradient-to-br from-green-900 to-blue-900 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">Article</span>
-                        </div>
-                    </div>
+                <!-- AWS Flask Deployment -->
+                <div class="card project-hover animate-fade-in-up" style="animation-delay: 0.1s;">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Git Best Practices Every DevOps Engineer Should Know</h3>
-                        <p class="text-light mb-4 text-sm">
-                            Essential Git workflows, branching strategies, and collaboration techniques that every DevOps professional should master for efficient version control.
-                        </p>
-                        <a href="https://medium.com/@fabiuslihandaachevi/git-best-practices-every-devops-engineer-should-know-c2266b0895cd" target="_blank" class="text-text font-medium hover:underline text-sm flex items-center">
-                            Read on Medium <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Content 2 -->
-                <div class="content-card animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="h-48 bg-gradient-to-br from-green-900 to-teal-900 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">Tutorial</span>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="badge badge-primary">DevOps</span>
+                            <span class="text-sm theme-text">Tutorial</span>
                         </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Building Secure CI/CD Pipelines</h3>
-                        <p class="text-light mb-4 text-sm">
-                            Step-by-step guide to implementing security controls in your CI/CD pipelines with practical examples.
+                        <h3 class="text-xl font-semibold mb-3">Production Flask on AWS</h3>
+                        <p class="theme-text mb-4">
+                            Complete guide to deploying scalable Flask applications on AWS with high availability.
                         </p>
-                        <a href="#" class="text-text font-medium hover:underline text-sm flex items-center">
-                            Read Tutorial <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Content 3 -->
-                <div class="content-card animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="h-48 bg-gradient-to-br from-red-900 to-orange-900 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-text text-primary px-3 py-1 rounded-full text-sm font-medium">Case Study</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Zero Trust Implementation</h3>
-                        <p class="text-light mb-4 text-sm">
-                            Case study on implementing Zero Trust architecture in a financial services organization.
-                        </p>
-                        <a href="#" class="text-text font-medium hover:underline text-sm flex items-center">
-                            View Case Study <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-       <!-- Interactive Game Section -->
-    <section id="game" class="py-20 bg-secondary">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-4 text-center">Cybersecurity Challenge</h2>
-            <p class="text-lg text-light text-center mb-12 max-w-3xl mx-auto">
-                Test your cybersecurity skills in this interactive simulation. Defend your network infrastructure by identifying and neutralizing incoming threats while maintaining system integrity.
-            </p>
-            
-            <!-- No JavaScript Message -->
-            <noscript>
-                <div class="no-js-message bg-primary border-l-4 border-accent p-4 mb-6 rounded">
-                    <p class="font-bold text-text">JavaScript is Disabled</p>
-                    <p class="text-light">This interactive cybersecurity simulation requires JavaScript to function. Please enable JavaScript in your browser to access the challenge.</p>
-                </div>
-            </noscript>
-            
-            <div class="game-container bg-primary rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto border border-gray-700">
-                <!-- Game Intro Screen -->
-                <div id="gameIntro" class="p-8 text-center">
-                    <div class="mb-6">
-                        <i class="fas fa-shield-alt text-5xl text-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">Network Defense Simulation</h3>
-                        <p class="text-light">
-                            Your objective is to protect the corporate network infrastructure from cyber threats. 
-                            Identify and neutralize malicious entities while preserving security patches.
-                        </p>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="bg-secondary p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 bg-red-900 rounded-full flex items-center justify-center mr-3">
-                                    <i class="fas fa-virus text-red-400"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-medium">Threats</p>
-                                    <p class="text-sm text-light">Malicious entities</p>
-                                </div>
+                        <div class="mb-6">
+                            <div class="h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-aws text-4xl text-blue-500"></i>
+                                <i class="fab fa-docker text-4xl text-blue-400 ml-4"></i>
                             </div>
-                            <p class="text-sm text-light text-left">Click to neutralize security threats before they breach your defenses.</p>
                         </div>
-                        <div class="bg-secondary p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center mr-3">
-                                    <i class="fas fa-shield-alt text-blue-400"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-medium">Security Patches</p>
-                                    <p class="text-sm text-light">System integrity</p>
-                                </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge badge-secondary">AWS</span>
+                            <span class="badge badge-secondary">Docker</span>
+                            <span class="badge badge-secondary">CI/CD</span>
+                            <span class="badge badge-secondary">Security</span>
+                        </div>
+                        <a href="https://medium.com/@fabiuslihandaachevi/how-i-deployed-a-production-ready-flask-application-on-aws-with-high-availability-3aeb643f3f9b" target="_blank" class="inline-flex items-center theme-accent hover:underline">
+                            Read Article <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Git Best Practices -->
+                <div class="card project-hover animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="badge badge-primary">DevOps</span>
+                            <span class="text-sm theme-text">Guide</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Git Best Practices</h3>
+                        <p class="theme-text mb-4">
+                            Essential Git workflows and collaboration techniques for DevOps professionals.
+                        </p>
+                        <div class="mb-6">
+                            <div class="h-32 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-git-alt text-4xl text-green-500"></i>
+                                <i class="fab fa-github text-4xl text-gray-800 ml-4"></i>
                             </div>
-                            <p class="text-sm text-light text-left">Avoid these to maintain system stability and security protocols.</p>
                         </div>
-                    </div>
-                    
-                    <div class="bg-secondary p-4 rounded-lg mb-6">
-                        <h4 class="font-bold mb-2">Game Mechanics</h4>
-                        <ul class="text-sm text-light text-left grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center"><i class="fas fa-clock text-accent mr-2"></i> 30-second time limit</li>
-                            <li class="flex items-center"><i class="fas fa-heart text-accent mr-2"></i> 3 security breaches allowed</li>
-                            <li class="flex items-center"><i class="fas fa-bolt text-accent mr-2"></i> +10 points per threat neutralized</li>
-                            <li class="flex items-center"><i class="fas fa-minus-circle text-accent mr-2"></i> -5 points per patch destroyed</li>
-                        </ul>
-                    </div>
-                    
-                    <button id="startGame" class="bg-accent text-primary px-8 py-3 rounded-lg font-medium hover:bg-accent-light transition-colors duration-300 shadow-md">
-                        Initialize Simulation
-                    </button>
-                </div>
-                
-                <!-- Game Screen -->
-                <div id="gameScreen" class="hidden p-6">
-                    <!-- Game Stats -->
-                    <div class="flex justify-between mb-6 bg-secondary p-4 rounded-lg">
-                        <div class="text-center flex-1">
-                            <p class="text-sm text-light">Security Score</p>
-                            <p id="score" class="text-2xl font-bold text-text">0</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge badge-secondary">Git</span>
+                            <span class="badge badge-secondary">Workflow</span>
+                            <span class="badge badge-secondary">Best Practices</span>
+                            <span class="badge badge-secondary">Collaboration</span>
                         </div>
-                        <div class="text-center flex-1 border-l border-r border-gray-700">
-                            <p class="text-sm text-light">System Integrity</p>
-                            <p id="lives" class="text-2xl font-bold text-text">3</p>
-                        </div>
-                        <div class="text-center flex-1">
-                            <p class="text-sm text-light">Time Remaining</p>
-                            <p id="time" class="text-2xl font-bold text-text">30s</p>
-                        </div>
+                        <a href="https://medium.com/@fabiuslihandaachevi/git-best-practices-every-devops-engineer-should-know-c2266b0895cd" target="_blank" class="inline-flex items-center theme-accent hover:underline">
+                            Read Guide <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
                     </div>
-                    
-                    <!-- Game Board -->
-                    <div class="grid grid-cols-3 gap-4 mb-6 bg-primary p-4 rounded-lg border border-gray-700 min-h-[300px]">
-                        <!-- Game cells will be generated by JavaScript -->
-                        <div class="flex items-center justify-center text-light">
-                            <p>Network grid loading...</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Game Controls -->
-                    <div class="text-center bg-secondary p-4 rounded-lg">
-                        <button id="resetGame" class="bg-accent text-primary px-6 py-2 rounded-lg font-medium hover:bg-accent-light transition-colors duration-300 mr-4 shadow">
-                            Reset Simulation
-                        </button>
-                        <button id="endGame" class="border-2 border-text text-text px-6 py-2 rounded-lg font-medium hover:bg-text hover:text-primary transition-colors duration-300 shadow">
-                            Terminate Session
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Game Over Screen -->
-                <div id="gameOver" class="hidden p-8 text-center">
-                    <div class="mb-6">
-                        <i class="fas fa-chart-bar text-5xl text-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2" id="gameResult">Simulation Complete</h3>
-                        <p class="text-light">Your network defense performance:</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto">
-                        <div class="bg-secondary p-4 rounded-lg">
-                            <p class="text-sm text-light">Final Score</p>
-                            <p id="finalScore" class="text-2xl font-bold text-text">0</p>
-                        </div>
-                        <div class="bg-secondary p-4 rounded-lg">
-                            <p class="text-sm text-light">Threats Neutralized</p>
-                            <p id="threatsBlocked" class="text-2xl font-bold text-text">0</p>
-                        </div>
-                    </div>
-                    
-                    <div class="performance-assessment bg-secondary p-4 rounded-lg max-w-md mx-auto mb-6">
-                        <h4 class="font-bold mb-2">Performance Assessment</h4>
-                        <p id="performanceText" class="text-sm text-light">Calculating your security rating...</p>
-                    </div>
-                    
-                    <div class="flex justify-center space-x-4">
-                        <button id="playAgain" class="bg-accent text-primary px-6 py-2 rounded-lg font-medium hover:bg-accent-light transition-colors duration-300 shadow">
-                            Run New Simulation
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-center animate-fade-in-up">
-                <div class="bg-primary p-6 rounded-lg border border-gray-700 max-w-2xl mx-auto">
-                    <h4 class="text-xl font-bold mb-3">Real-World Application</h4>
-                    <p class="text-light">
-                        This simulation demonstrates core cybersecurity concepts in a controlled environment. 
-                        In professional practice, security analysts utilize advanced threat detection systems, 
-                        intrusion prevention mechanisms, and comprehensive security protocols to protect 
-                        organizational assets from sophisticated cyber threats.
-                    </p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 theme-bg-secondary">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- DevOps Skills -->
+                <div class="card p-6 animate-fade-in-up skill-category-devops">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-cloud mr-3 theme-accent"></i>
+                        DevOps & Cloud
+                    </h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">AWS Services</span>
+                                <span class="badge badge-primary">90%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">Docker & Kubernetes</span>
+                                <span class="badge badge-primary">85%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">CI/CD Pipelines</span>
+                                <span class="badge badge-primary">88%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">Infrastructure as Code</span>
+                                <span class="badge badge-primary">83%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 83%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Science Skills -->
+                <div class="card p-6 animate-fade-in-up skill-category-datascience" style="animation-delay: 0.1s;">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-chart-line mr-3 theme-accent"></i>
+                        Data Science & Analysis
+                    </h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">Python Data Stack</span>
+                                <span class="badge badge-primary">92%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">Machine Learning</span>
+                                <span class="badge badge-primary">85%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">Data Visualization</span>
+                                <span class="badge badge-primary">87%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 87%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium theme-text">SQL & Databases</span>
+                                <span class="badge badge-primary">90%</span>
+                            </div>
+                            <div class="w-full theme-bg-primary rounded-full h-2.5">
+                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="mt-12 card p-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <h3 class="text-2xl font-bold mb-6 text-center">Tools & Technologies</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
+                    <div class="group">
+                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
+                            <i class="fab fa-aws text-2xl group-hover:text-white"></i>
+                        </div>
+                        <p class="text-sm font-medium theme-text">AWS</p>
+                    </div>
+                    <div class="group">
+                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
+                            <i class="fab fa-docker text-2xl group-hover:text-white"></i>
+                        </div>
+                        <p class="text-sm font-medium theme-text">Docker</p>
+                    </div>
+                    <div class="group">
+                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
+                            <i class="fab fa-python text-2xl group-hover:text-white"></i>
+                        </div>
+                        <p class="text-sm font-medium theme-text">Python</p>
+                    </div>
+                    <div class="group">
+                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
+                            <i class="fas fa-database text-2xl group-hover:text-white"></i>
+                        </div>
+                        <p class="text-sm font-medium theme-text">SQL</p>
+                    </div>
+                    <div class="group">
+                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
+                            <i class="fab fa-git-alt text-2xl group-hover:text-white"></i>
+                        </div>
+                        <p class="text-sm font-medium theme-text">Git</p>
+                    </div>
+                    <div class="group">
+                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
+                            <i class="fas fa-chart-bar text-2xl group-hover:text-white"></i>
+                        </div>
+                        <p class="text-sm font-medium theme-text">Power BI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-primary">
+    <section id="contact" class="py-20 theme-bg-primary">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Get In Touch</h2>
             
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="animate-fade-in-up">
-                    <h3 class="text-xl font-semibold mb-6">Let's Work Together</h3>
-                    <p class="text-light mb-8">
-                        I'm always interested in new opportunities and challenges. Whether you need 
-                        security consulting, DevOps implementation, or just want to connect, feel free 
-                        to reach out.
+                    <h3 class="text-xl font-semibold mb-6">Let's Collaborate</h3>
+                    <p class="theme-text mb-8">
+                        Interested in DevOps, data science, or security projects? Let's discuss how we can work together 
+                        to build scalable solutions and extract insights from your data.
                     </p>
                     
                     <div class="space-y-4">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-text rounded-lg flex items-center justify-center">
-                                <i class="fas fa-envelope text-primary"></i>
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
                             </div>
                             <div>
                                 <h4 class="font-semibold">Email</h4>
-                                <p class="text-light">fabiuslihandaachevi@gmail.com</p>
+                                <p class="theme-text">fabiuslihandaachevi@gmail.com</p>
                             </div>
                         </div>
                         
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-text rounded-lg flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
                             </div>
                             <div>
                                 <h4 class="font-semibold">Location</h4>
-                                <p class="text-light">Nairobi, Kenya</p>
+                                <p class="theme-text">Nairobi, Kenya</p>
                             </div>
                         </div>
                         
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-text rounded-lg flex items-center justify-center">
-                                <i class="fas fa-phone text-primary"></i>
+                            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
                             </div>
                             <div>
                                 <h4 class="font-semibold">Phone</h4>
-                                <p class="text-light">+254 796 829 666</p>
+                                <p class="theme-text">+254 796 829 666</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="mt-8">
-                        <h4 class="font-semibold mb-4">Follow Me</h4>
+                        <h4 class="font-semibold mb-4">Connect With Me</h4>
                         <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/fabius-lihanda" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-text hover:text-primary transition-colors">
+                            <a href="https://www.linkedin.com/in/fabius-lihanda" class="w-10 h-10 theme-bg-primary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://github.com/lihandafabius" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-text hover:text-primary transition-colors">
+                            <a href="https://github.com/lihandafabius" class="w-10 h-10 theme-bg-primary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://twitter.com/lihanda_fabius" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-text hover:text-primary transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://medium.com/@fabiuslihandaachevi" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-text hover:text-primary transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="fab fill-current" style="width: 1.25rem; height: 1.25rem;">
-                                    <path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z"/>
-                                </svg>
+                            <a href="https://medium.com/@fabiuslihandaachevi" class="w-10 h-10 theme-bg-primary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
+                                <i class="fab fa-medium"></i>
                             </a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <form action="https://formspree.io/f/meolwawg" method="POST" class="bg-primary rounded-2xl p-8 shadow-lg">
+                    <form action="https://formspree.io/f/meolwawg" method="POST" class="card p-8">
                         <div class="mb-6">
-                            <label for="name" class="block text-sm font-medium text-light mb-2">Name</label>
+                            <label for="name" class="block text-sm font-medium theme-text mb-2">Name</label>
                             <input type="text" id="name" name="name" required 
-                                   class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:border-text transition-colors bg-secondary text-light">
+                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text">
                         </div>
                         
                         <div class="mb-6">
-                            <label for="email" class="block text-sm font-medium text-light mb-2">Email</label>
+                            <label for="email" class="block text-sm font-medium theme-text mb-2">Email</label>
                             <input type="email" id="email" name="email" required 
-                                   class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:border-text transition-colors bg-secondary text-light">
+                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text">
                         </div>
                         
                         <div class="mb-6">
-                            <label for="subject" class="block text-sm font-medium text-light mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" 
-                                   class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:border-text transition-colors bg-secondary text-light">
+                            <label for="service" class="block text-sm font-medium theme-text mb-2">Service Interested In</label>
+                            <select id="service" name="service" 
+                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text">
+                                <option value="">Select a service</option>
+                                <option value="devops">DevOps Engineering</option>
+                                <option value="datascience">Data Science</option>
+                                <option value="analysis">Data Analysis</option>
+                                <option value="security">Security Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
                         
                         <div class="mb-6">
-                            <label for="message" class="block text-sm font-medium text-light mb-2">Message</label>
+                            <label for="message" class="block text-sm font-medium theme-text mb-2">Message</label>
                             <textarea id="message" name="message" required rows="5"
-                                      class="w-full px-4 py-3 border border-gray-700 rounded-lg focus:outline-none focus:border-text transition-colors bg-secondary text-light"></textarea>
+                                      class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-text text-primary py-3 rounded-lg font-semibold hover:bg-light transition-colors">
+                        <button type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
                             Send Message
                         </button>
                     </form>
@@ -1557,71 +1136,144 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-secondary text-text">
+    <footer class="py-12 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <div class="flex justify-center items-center space-x-6 mb-6">
-                <a href="https://www.linkedin.com/in/fabius-lihanda" class="hover:text-light transition-colors">
+                <a href="https://www.linkedin.com/in/fabius-lihanda" class="theme-text hover:theme-accent transition-colors">
                     <i class="fab fa-linkedin-in text-xl"></i>
                 </a>
-                <a href="https://github.com/lihandafabius" class="hover:text-light transition-colors">
+                <a href="https://github.com/lihandafabius" class="theme-text hover:theme-accent transition-colors">
                     <i class="fab fa-github text-xl"></i>
                 </a>
-                <a href="https://twitter.com/lihanda_fabius" class="hover:text-light transition-colors">
-                    <i class="fab fa-twitter text-xl"></i>
+                <a href="https://medium.com/@fabiuslihandaachevi" class="theme-text hover:theme-accent transition-colors">
+                    <i class="fab fa-medium text-xl"></i>
                 </a>
-                <a href="https://medium.com/@fabiuslihandaachevi" class="hover:text-light transition-colors flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" fill="currentColor">
-                        <path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6l0 83.8c-1.9-.1-3.8-.2-5.7-.2l-.4 0c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1 .7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4l0 20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4L0 110.6C0 67.2 35.2 32 78.6 32l290.8 0zM82.3 138.9l.3 .1c13.2 3 19.8 7.4 19.8 23.4l0 187.2c0 16-6.7 20.4-19.9 23.4l-.3 .1 0 2.8 52.8 0 0-2.8-.3-.1c-13.2-3-19.9-7.4-19.9-23.4l0-176.3 86.1 202.5 4.9 0 88.6-208.2 0 186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3 .1 0 2.7 91.9 0 0-2.7-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8 .1 0c0-16 6.7-20.4 19.9-23.4l.3-.1 0-2.7-72.2 0-67 157.4-67-157.4-77.8 0 0 2.7zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8l0 0 41.1 0 0 67.8zm-6.4-135.6c2.3 0 4.4 .3 6.4 .9l0 57.4-40.2 0c1.5-33.6 13.6-57.9 33.8-58.3z"/>
-                    </svg>
-                </a>
-                <a href="https://www.credly.com/users/fabius-lihanda/badges" class="hover:text-light transition-colors">
+                <a href="https://www.credly.com/users/fabius-lihanda/badges" class="theme-text hover:theme-accent transition-colors">
                     <i class="fas fa-award text-xl"></i>
                 </a>
             </div>
-            <p class="text-light">&copy; 2025 Fabius Lihanda. All rights reserved.</p>
+            <p class="theme-text">&copy; 2025 Fabius Lihanda. All rights reserved.</p>
+            <p class="text-sm theme-text mt-2">DevOps • Data Science • Security</p>
         </div>
     </footer>
+
     <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-6 right-6 z-40 bg-text text-primary p-3 rounded-full shadow-lg hover:bg-light transition-colors hidden">
+    <button id="backToTop" class="fixed bottom-6 right-6 z-40 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all hidden">
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Download Modal -->
-    <div id="downloadModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm">
-        <div class="bg-secondary rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl animate-fade-in-up">
-            <h3 class="text-2xl font-bold mb-4">Download CV</h3>
-            <p class="text-light mb-6">Choose how you'd like to access my CV:</p>
-            
-            <div class="bg-primary rounded-lg p-4 mb-6">
-                <p class="text-sm text-light"><strong>File:</strong> CV.pdf</p>
-                <p class="text-sm text-light"><strong>Size:</strong> <span id="fileSize">Calculating...</span></p>
-                <p class="text-sm text-light"><strong>Format:</strong> PDF (Portable Document Format)</p>
-            </div>
-            
-            <div class="flex flex-col space-y-3">
-                <button id="directDownload" class="w-full bg-text text-primary py-3 rounded-lg font-semibold hover:bg-light transition-colors">
-                    <i class="fas fa-download mr-2"></i>Download Now
-                </button>
-                <button id="viewFirst" class="w-full border-2 border-text text-text py-3 rounded-lg font-semibold hover:bg-text hover:text-primary transition-colors">
-                    <i class="fas fa-eye mr-2"></i>View Online
-                </button>
-                <button id="cancelDownload" class="w-full bg-gray-800 text-light py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors">
-                    Cancel
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Enhanced functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Remove loading screen
+        // Theme Management
+        const themeToggle = document.getElementById('themeToggle');
+        const themeDropdown = document.getElementById('themeDropdown');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const htmlElement = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateActiveTheme(savedTheme);
+
+        // Theme toggle
+        themeToggle.addEventListener('click', () => {
+            themeDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
+                themeDropdown.classList.remove('show');
+            }
+        });
+
+        // Theme selection
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.dataset.theme;
+                
+                if (theme === 'auto') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    htmlElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    htmlElement.setAttribute('data-theme', theme);
+                }
+                
+                localStorage.setItem('portfolio-theme', theme);
+                updateActiveTheme(theme);
+                themeDropdown.classList.remove('show');
+            });
+        });
+
+        // Update active theme in dropdown
+        function updateActiveTheme(theme) {
+            themeOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.theme === theme) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        // Close mobile menu when clicking links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Loading screen
+        window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
             }, 1000);
+        });
 
-            // Typing animation
-            const typingElement = document.querySelector('.typing-animation');
+        // Typing animation
+        const typingElement = document.querySelector('.typing-animation');
+        if (typingElement) {
             const text = typingElement.textContent;
             typingElement.textContent = '';
             let i = 0;
@@ -1634,400 +1286,90 @@
                 }
             }
             setTimeout(typeWriter, 1500);
+        }
 
-            // Back to top button
-            const backToTopButton = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('hidden');
-                } else {
-                    backToTopButton.classList.add('hidden');
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
                 }
             });
+        }, { threshold: 0.1 });
 
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+        // Observe elements
+        document.querySelectorAll('.card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
 
-            // CV Download functionality
-            const downloadBtn = document.getElementById('downloadCV');
-            const downloadModal = document.getElementById('downloadModal');
-            const directDownloadBtn = document.getElementById('directDownload');
-            const viewFirstBtn = document.getElementById('viewFirst');
-            const cancelBtn = document.getElementById('cancelDownload');
-            const fileSizeElement = document.getElementById('fileSize');
-
-            const cvFilePath = 'assets/CV.pdf';
+        // CV Download functionality
+        const downloadBtn = document.getElementById('downloadCV');
+        downloadBtn.addEventListener('click', () => {
+            // Update with your actual CV path
+            const cvUrl = 'assets/CV.pdf';
             
-            async function getFileSize() {
+            // Create temporary link
+            const link = document.createElement('a');
+            link.href = cvUrl;
+            link.download = 'Fabius_Lihanda_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add animation classes to cards
+            document.querySelectorAll('.card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Handle form submission
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                // Show loading state
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+                
                 try {
-                    const response = await fetch(cvFilePath, { method: 'HEAD' });
+                    const formData = new FormData(contactForm);
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
                     if (response.ok) {
-                        const size = response.headers.get('content-length');
-                        if (size) {
-                            const sizeInKB = Math.round(size / 1024);
-                            const sizeInMB = (size / (1024 * 1024)).toFixed(1);
-                            fileSizeElement.textContent = sizeInKB > 1024 ? 
-                                `${sizeInMB} MB` : `${sizeInKB} KB`;
-                        }
-                    }
-                } catch (error) {
-                    fileSizeElement.textContent = 'Unknown size';
-                }
-            }
-
-            function trackDownload(action) {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'cv_download', {
-                        'event_category': 'engagement',
-                        'event_label': action,
-                        'value': 1
-                    });
-                }
-            }
-
-            downloadBtn.addEventListener('click', () => {
-                getFileSize();
-                downloadModal.classList.remove('hidden');
-                downloadModal.classList.add('flex');
-                trackDownload('modal_opened');
-            });
-
-            cancelBtn.addEventListener('click', () => {
-                downloadModal.classList.add('hidden');
-                downloadModal.classList.remove('flex');
-                trackDownload('modal_cancelled');
-            });
-
-            directDownloadBtn.addEventListener('click', () => {
-                triggerDownload();
-                downloadModal.classList.add('hidden');
-                downloadModal.classList.remove('flex');
-                trackDownload('direct_download');
-            });
-
-            viewFirstBtn.addEventListener('click', () => {
-                window.open(cvFilePath, '_blank', 'noopener,noreferrer');
-                downloadModal.classList.add('hidden');
-                downloadModal.classList.remove('flex');
-                trackDownload('view_only');
-            });
-
-            function triggerDownload() {
-                try {
-                    const link = document.createElement('a');
-                    link.href = cvFilePath;
-                    const filename = cvFilePath.split('/').pop();
-                    link.download = filename || 'Fabius_Lihanda_CV.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    trackDownload('download_completed');
-                } catch (error) {
-                    trackDownload('download_error');
-                }
-            }
-
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Intersection Observer for animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right').forEach(el => {
-                el.style.animationPlayState = 'paused';
-                observer.observe(el);
-            });
-
-            // Game functionality
-            const gameIntro = document.getElementById('gameIntro');
-            const gameScreen = document.getElementById('gameScreen');
-            const gameOver = document.getElementById('gameOver');
-            const startGameBtn = document.getElementById('startGame');
-            const resetGameBtn = document.getElementById('resetGame');
-            const endGameBtn = document.getElementById('endGame');
-            const playAgainBtn = document.getElementById('playAgain');
-            const gameBoard = gameScreen.querySelector('.grid');
-            const scoreElement = document.getElementById('score');
-            const livesElement = document.getElementById('lives');
-            const timeElement = document.getElementById('time');
-            const finalScoreElement = document.getElementById('finalScore');
-            const threatsBlockedElement = document.getElementById('threatsBlocked');
-            const gameResultElement = document.getElementById('gameResult');
-            const performanceTextElement = document.getElementById('performanceText');
-            const gameNotification = document.getElementById('gameNotification');
-            const notificationContent = document.getElementById('notificationContent');
-
-            let gameState = {
-                score: 0,
-                lives: 3,
-                timeLeft: 30,
-                threatsBlocked: 0,
-                patchesDestroyed: 0,
-                gameActive: false,
-                gameInterval: null,
-                timeInterval: null,
-                threatCount: 0,
-                patchCount: 0
-            };
-
-            // Show notification function
-            function showNotification(message, type = 'info') {
-                notificationContent.textContent = message;
-                gameNotification.classList.add('show');
-                
-                setTimeout(() => {
-                    gameNotification.classList.remove('show');
-                }, 3000);
-            }
-
-            // Start game
-            startGameBtn.addEventListener('click', startGame);
-            resetGameBtn.addEventListener('click', resetGame);
-            endGameBtn.addEventListener('click', endGame);
-            playAgainBtn.addEventListener('click', startGame);
-
-            function startGame() {
-                // Reset game state
-                gameState = {
-                    score: 0,
-                    lives: 3,
-                    timeLeft: 30,
-                    threatsBlocked: 0,
-                    patchesDestroyed: 0,
-                    gameActive: true,
-                    threatCount: 0,
-                    patchCount: 0
-                };
-
-                // Update UI
-                scoreElement.textContent = gameState.score;
-                livesElement.textContent = gameState.lives;
-                timeElement.textContent = `${gameState.timeLeft}s`;
-
-                // Show game screen
-                gameIntro.classList.add('hidden');
-                gameOver.classList.add('hidden');
-                gameScreen.classList.remove('hidden');
-
-                // Create game board
-                createBoard();
-
-                // Start game loop
-                gameState.gameInterval = setInterval(gameLoop, 1500);
-                
-                // Start timer
-                gameState.timeInterval = setInterval(() => {
-                    gameState.timeLeft--;
-                    timeElement.textContent = `${gameState.timeLeft}s`;
-                    
-                    if (gameState.timeLeft <= 0) {
-                        endGame(true);
-                    }
-                }, 1000);
-
-                showNotification('Game started! Click on red threats to earn points.');
-            }
-
-            function createBoard() {
-                gameBoard.innerHTML = '';
-                for (let i = 0; i < 9; i++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'game-cell w-full h-24 bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-gray-700';
-                    cell.dataset.index = i;
-                    cell.addEventListener('click', handleCellClick);
-                    gameBoard.appendChild(cell);
-                }
-            }
-
-            function handleCellClick(e) {
-                if (!gameState.gameActive) return;
-                
-                const cell = e.currentTarget;
-                
-                if (cell.classList.contains('threat')) {
-                    // Correctly clicked a threat
-                    gameState.score += 10;
-                    gameState.threatsBlocked++;
-                    scoreElement.textContent = gameState.score;
-                    
-                    cell.innerHTML = '<i class="fas fa-check text-green-500 text-2xl"></i>';
-                    cell.classList.remove('threat', 'bg-red-900');
-                    cell.classList.add('bg-green-900');
-                    
-                    showNotification('Threat neutralized! +10 points');
-                } else if (cell.classList.contains('patch')) {
-                    // Incorrectly clicked a patch
-                    gameState.score -= 5;
-                    gameState.patchesDestroyed++;
-                    livesElement.textContent = gameState.lives;
-                    
-                    cell.innerHTML = '<i class="fas fa-times text-red-500 text-2xl"></i>';
-                    cell.classList.remove('patch', 'bg-blue-900');
-                    cell.classList.add('bg-red-900');
-                    
-                    showNotification('Security patch destroyed! -5 points and -1 life', 'error');
-                    
-                    if (gameState.lives <= 0) {
-                        endGame(false);
-                    }
-                }
-                
-                // Remove the cell content after a short delay
-                setTimeout(() => {
-                    cell.innerHTML = '';
-                    cell.className = 'game-cell w-full h-24 bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-gray-700';
-                }, 500);
-            }
-
-            function gameLoop() {
-                if (!gameState.gameActive) return;
-                
-                // Clear previous items
-                const cells = document.querySelectorAll('.game-cell');
-                cells.forEach(cell => {
-                    cell.classList.remove('threat', 'patch');
-                    cell.innerHTML = '';
-                });
-                
-                // Add new threats and patches
-                const threatIndex = Math.floor(Math.random() * 9);
-                let patchIndex;
-                
-                do {
-                    patchIndex = Math.floor(Math.random() * 9);
-                } while (patchIndex === threatIndex);
-                
-                cells[threatIndex].innerHTML = '<i class="fas fa-virus text-red-400 text-2xl"></i>';
-                cells[threatIndex].classList.add('threat', 'bg-red-900');
-                gameState.threatCount++;
-                
-                cells[patchIndex].innerHTML = '<i class="fas fa-shield-alt text-blue-400 text-2xl"></i>';
-                cells[patchIndex].classList.add('patch', 'bg-blue-900');
-                gameState.patchCount++;
-                
-                // Remove threats after 2 seconds if not clicked
-                setTimeout(() => {
-                    if (cells[threatIndex].classList.contains('threat')) {
-                        // Threat not clicked in time - lose a life
-                        gameState.lives--;
-                        livesElement.textContent = gameState.lives;
-                        cells[threatIndex].classList.remove('threat', 'bg-red-900');
-                        cells[threatIndex].innerHTML = '';
-                        
-                        if (gameState.lives <= 0) {
-                            endGame(false);
-                        }
-                    }
-                }, 2000);
-                
-                // Remove patches after 2 seconds
-                setTimeout(() => {
-                    if (cells[patchIndex].classList.contains('patch')) {
-                        cells[patchIndex].classList.remove('patch', 'bg-blue-900');
-                        cells[patchIndex].innerHTML = '';
-                    }
-                }, 2000);
-            }
-
-            function endGame(isTimeUp) {
-                gameState.gameActive = false;
-                clearInterval(gameState.gameInterval);
-                clearInterval(gameState.timeInterval);
-
-                // Update final score displays
-                finalScoreElement.textContent = gameState.score;
-                threatsBlockedElement.textContent = gameState.threatsBlocked;
-
-                // Calculate performance rating
-                calculatePerformance(isTimeUp);
-
-                // Show game over screen
-                gameScreen.classList.add('hidden');
-                gameOver.classList.remove('hidden');
-
-                // Track game completion
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'game_completed', {
-                        'event_category': 'engagement',
-                        'event_label': 'cybersecurity_game',
-                        'value': gameState.score
-                    });
-                }
-            }
-
-            function calculatePerformance(isTimeUp) {
-                const accuracy = gameState.threatsBlocked > 0 ? 
-                    (gameState.threatsBlocked / (gameState.threatsBlocked + gameState.patchesDestroyed)) * 100 : 0;
-                
-                const efficiency = gameState.threatsBlocked > 0 ? 
-                    (gameState.score / (gameState.threatsBlocked * 10)) * 100 : 0;
-                
-                let performanceRating, performanceMessage;
-                
-                if (isTimeUp) {
-                    gameResultElement.textContent = "Simulation Complete";
-                    
-                    if (gameState.score >= 100) {
-                        performanceRating = "Exceptional";
-                        performanceMessage = "Outstanding network defense! Your threat detection and response capabilities are exceptional. You maintained high system integrity while neutralizing multiple threats.";
-                    } else if (gameState.score >= 60) {
-                        performanceRating = "Proficient";
-                        performanceMessage = "Solid defensive performance. You effectively identified and neutralized threats while maintaining reasonable system stability.";
-                    } else if (gameState.score >= 30) {
-                        performanceRating = "Adequate";
-                        performanceMessage = "Adequate security response. You neutralized some threats but need to improve accuracy to avoid damaging security patches.";
+                        alert('Message sent successfully!');
+                        contactForm.reset();
                     } else {
-                        performanceRating = "Needs Improvement";
-                        performanceMessage = "Network defense requires significant improvement. Focus on accurately identifying threats while preserving security infrastructure.";
+                        alert('There was an error sending your message. Please try again.');
                     }
-                } else {
-                    gameResultElement.textContent = "Security Breach Detected";
-                    performanceRating = "Critical Failure";
-                    performanceMessage = "Multiple system breaches occurred. Immediate security protocol review required. Focus on threat prioritization and maintaining system integrity under pressure.";
+                } catch (error) {
+                    alert('There was an error sending your message. Please try again.');
+                } finally {
+                    // Reset button
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
                 }
-                
-                // Add detailed metrics
-                const detailedMetrics = `
-                    <div class="mt-3 text-left">
-                        <p class="text-xs text-light mb-1">Threat Accuracy: ${accuracy.toFixed(1)}%</p>
-                        <p class="text-xs text-light mb-1">Operational Efficiency: ${efficiency.toFixed(1)}%</p>
-                        <p class="text-xs text-light">Security Patches Preserved: ${gameState.patchCount - gameState.patchesDestroyed}</p>
-                    </div>
-                `;
-                
-                performanceTextElement.innerHTML = `
-                    <span class="font-bold text-accent">${performanceRating}</span><br>
-                    ${performanceMessage}
-                    ${detailedMetrics}
-                `;
-            }
+            });
+        }
 
-            function resetGame() {
-                gameState.gameActive = false;
-                clearInterval(gameState.gameInterval);
-                clearInterval(gameState.timeInterval);
-                
-                startGame();
+        // Auto theme detection for 'auto' theme
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        prefersDarkScheme.addEventListener('change', (e) => {
+            const currentTheme = localStorage.getItem('portfolio-theme');
+            if (currentTheme === 'auto') {
+                htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
             }
         });
     </script>
