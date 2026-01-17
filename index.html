@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabius Lihanda | DevOps & Data Science Engineer</title>
+    <title>Fabius Lihanda</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,6 +64,7 @@
                         'slide-in-right': 'slideInRight 0.6s ease-out',
                         'float': 'float 3s ease-in-out infinite',
                         'theme-transition': 'themeTransition 0.3s ease',
+                        'modal-fade-in': 'modalFadeIn 0.3s ease',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -89,6 +90,10 @@
                         themeTransition: {
                             '0%': { opacity: '0.9' },
                             '100%': { opacity: '1' },
+                        },
+                        modalFadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px) scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
                         }
                     }
                 }
@@ -329,14 +334,17 @@
             transform: translateX(0);
         }
 
-        /* Modal Styles */
+        /* CV Download Modal - FIXED VERSION */
         .modal-overlay {
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
-            z-index: 100;
+            z-index: 1000;
             display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
 
         .modal-overlay.active {
@@ -349,10 +357,23 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
+            width: 100%;
+            max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: modalFadeIn 0.3s ease;
+            margin: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .download-option {
@@ -361,31 +382,36 @@
             border-radius: 12px;
             padding: 16px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
         }
 
         .download-option:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateX(5px);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .download-option:hover .theme-text {
-            color: white;
+            color: var(--text);
         }
 
         .download-option.active {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
             color: white;
-            border-color: var(--accent);
+            border-color: transparent;
         }
 
         .download-option.active .theme-text {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
+        }
+
+        .download-option.active .text-gray-600 {
+            color: rgba(255,255,255,0.8);
         }
 
         .file-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
         }
 
@@ -404,9 +430,29 @@
             animation: sparkle 2s infinite;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
+        /* Custom scrollbar for modal */
+        .modal-content::-webkit-scrollbar {
             width: 6px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--secondary);
+            border-radius: 0 16px 16px 0;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+            opacity: 0.8;
+        }
+
+        /* Custom scrollbar for main content */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -415,7 +461,7 @@
 
         ::-webkit-scrollbar-thumb {
             background: var(--accent);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -438,6 +484,12 @@
             
             .mobile-menu.open {
                 transform: translateX(0);
+            }
+
+            .modal-content {
+                max-height: 90vh;
+                margin: 1rem;
+                width: calc(100% - 2rem);
             }
         }
 
@@ -635,6 +687,108 @@
         <div id="notificationContent"></div>
     </div>
 
+    <!-- CV Download Modal - FIXED POSITION -->
+    <div id="cvModal" class="modal-overlay">
+        <div class="modal-content m-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Download My CV</h3>
+                    <button id="closeCvModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- File Preview -->
+                <div class="text-center mb-6">
+                    <div class="file-icon gradient-text">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Fabius Lihanda - CV.pdf</h4>
+                    <p class="theme-text mb-3 text-sm">Professional CV showcasing DevOps, Data Science, and Cybersecurity expertise</p>
+                    <div class="inline-block theme-bg-secondary px-4 py-1 rounded-full text-sm">
+                        <i class="fas fa-hdd mr-2"></i> ~2.1 MB • Updated: December 2024
+                    </div>
+                </div>
+
+                <!-- Download Options -->
+                <div class="mb-8">
+                    <h4 class="font-semibold mb-3 text-lg">Choose your option:</h4>
+                    
+                    <div class="download-option" data-option="view">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
+                                <i class="fas fa-eye text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold mb-1">View Online</h5>
+                                <p class="text-sm theme-text">Preview the CV in your browser before downloading</p>
+                            </div>
+                            <i class="fas fa-chevron-right ml-2 theme-accent"></i>
+                        </div>
+                    </div>
+
+                    <div class="download-option active" data-option="download">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
+                                <i class="fas fa-download text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold mb-1">Download Now</h5>
+                                <p class="text-sm theme-text">Direct download to your device</p>
+                            </div>
+                            <i class="fas fa-chevron-right ml-2 theme-accent"></i>
+                        </div>
+                    </div>
+
+                    <div class="download-option" data-option="linkedin">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-semibold mb-1">View LinkedIn Profile</h5>
+                                <p class="text-sm theme-text">Check my updated professional profile</p>
+                            </div>
+                            <i class="fas fa-external-link-alt ml-2 theme-accent"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Details -->
+                <div class="theme-bg-secondary rounded-lg p-4 mb-6">
+                    <h5 class="font-semibold mb-2">File Details:</h5>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div>
+                            <span class="theme-text">Format:</span>
+                            <span class="font-medium ml-2">PDF</span>
+                        </div>
+                        <div>
+                            <span class="theme-text">Pages:</span>
+                            <span class="font-medium ml-2">3</span>
+                        </div>
+                        <div>
+                            <span class="theme-text">Last Updated:</span>
+                            <span class="font-medium ml-2">Dec 2024</span>
+                        </div>
+                        <div>
+                            <span class="theme-text">Language:</span>
+                            <span class="font-medium ml-2">English</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <button id="cancelDownload" class="flex-1 theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors">
+                        Cancel
+                    </button>
+                    <button id="confirmAction" class="flex-1 gradient-bg text-white py-3 rounded-lg font-medium hover:opacity-90 transition-colors">
+                        Continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div class="absolute inset-0 theme-bg-secondary"></div>
@@ -647,7 +801,7 @@
             <div class="animate-fade-in-up">
                 <div class="flex justify-center mb-6">
                     <span class="badge badge-primary animate-pulse-slow">
-                        <i class="fas fa-chart-line mr-2"></i> Now focusing on Data Science & DevOps
+                        <i class="fas fa-chart-line mr-2"></i> Data Science & DevOps
                     </span>
                 </div>
                 
@@ -666,9 +820,9 @@
                     <a href="#projects" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-105">
                         View My Work
                     </a>
-                    <a href="#contact" class="border-2 theme-border theme-text px-8 py-3 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all transform hover:scale-105">
-                        Request Services
-                    </a>
+                    <button id="openCvModal" class="border-2 theme-border theme-text px-8 py-3 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all transform hover:scale-105">
+                        <i class="fas fa-download mr-2"></i>Download CV
+                    </button>
                 </div>
             </div>
             
@@ -728,7 +882,7 @@
                         <a href="#contact" class="gradient-bg text-white px-7 py-3.5 rounded-lg font-medium hover:opacity-90 transition-all">
                             <i class="fas fa-paper-plane mr-2"></i>Hire Me
                         </a>
-                        <button id="downloadCV" class="border-2 theme-border theme-text px-7 py-3.5 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all">
+                        <button id="openCvModal2" class="border-2 theme-border theme-text px-7 py-3.5 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all">
                             <i class="fas fa-download mr-2"></i>Download CV
                         </button>
                     </div>
@@ -939,6 +1093,7 @@
         </div>
     </section>
 
+    <!-- Rest of your content remains the same -->
     <!-- Expertise Section -->
     <section id="expertise" class="py-20 theme-bg-primary">
         <div class="max-w-6xl mx-auto px-6">
@@ -1468,112 +1623,122 @@
         </div>
     </footer>
 
-    <!-- CV Download Modal -->
-    <div id="cvModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Download My CV</h3>
-                <button id="closeCvModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <!-- File Preview -->
-            <div class="text-center mb-6">
-                <div class="file-icon gradient-text mb-3">
-                    <i class="fas fa-file-pdf text-6xl"></i>
-                </div>
-                <h4 class="text-xl font-semibold mb-2">Fabius Lihanda - CV.pdf</h4>
-                <p class="theme-text mb-3">Professional CV showcasing DevOps, Data Science, and Cybersecurity expertise</p>
-                <div class="theme-text text-sm mb-2">
-                    <i class="fas fa-hdd mr-2"></i> ~2.1 MB • Updated: December 2024
-                </div>
-            </div>
-
-            <!-- Download Options -->
-            <div class="space-y-4 mb-8">
-                <h4 class="font-semibold mb-3">Choose your option:</h4>
-                
-                <div class="download-option" data-option="view">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
-                            <i class="fas fa-eye text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h5 class="font-semibold mb-1">View Online</h5>
-                            <p class="text-sm theme-text">Preview the CV in your browser before downloading</p>
-                        </div>
-                        <i class="fas fa-chevron-right ml-2"></i>
-                    </div>
-                </div>
-
-                <div class="download-option" data-option="download">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
-                            <i class="fas fa-download text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h5 class="font-semibold mb-1">Download Now</h5>
-                            <p class="text-sm theme-text">Direct download to your device</p>
-                        </div>
-                        <i class="fas fa-chevron-right ml-2"></i>
-                    </div>
-                </div>
-
-                <div class="download-option" data-option="linkedin">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h5 class="font-semibold mb-1">View LinkedIn Profile</h5>
-                            <p class="text-sm theme-text">Check my updated professional profile</p>
-                        </div>
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- File Details -->
-            <div class="theme-bg-secondary rounded-lg p-4 mb-6">
-                <h5 class="font-semibold mb-2">File Details:</h5>
-                <div class="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                        <span class="theme-text">Format:</span>
-                        <span class="font-medium ml-2">PDF</span>
-                    </div>
-                    <div>
-                        <span class="theme-text">Pages:</span>
-                        <span class="font-medium ml-2">3</span>
-                    </div>
-                    <div>
-                        <span class="theme-text">Last Updated:</span>
-                        <span class="font-medium ml-2">Dec 2024</span>
-                    </div>
-                    <div>
-                        <span class="theme-text">Language:</span>
-                        <span class="font-medium ml-2">English</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex gap-3">
-                <button id="cancelDownload" class="flex-1 theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors">
-                    Cancel
-                </button>
-                <button id="confirmAction" class="flex-1 gradient-bg text-white py-3 rounded-lg font-medium hover:opacity-90 transition-colors">
-                    Continue
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Back to Top Button -->
     <button id="backToTop" class="fixed bottom-6 right-6 z-40 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all hidden">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <script>
+        // CV Download Modal - FIXED VERSION
+        const cvModal = document.getElementById('cvModal');
+        const openCvModal = document.getElementById('openCvModal');
+        const openCvModal2 = document.getElementById('openCvModal2');
+        const closeCvModal = document.getElementById('closeCvModal');
+        const cancelDownload = document.getElementById('cancelDownload');
+        const confirmAction = document.getElementById('confirmAction');
+        const downloadOptions = document.querySelectorAll('.download-option');
+
+        let selectedOption = 'download';
+
+        // Set default active option
+        downloadOptions.forEach(opt => {
+            if (opt.dataset.option === selectedOption) {
+                opt.classList.add('active');
+            }
+        });
+
+        // Open modal from both buttons
+        openCvModal.addEventListener('click', () => {
+            cvModal.classList.add('active');
+        });
+
+        openCvModal2.addEventListener('click', () => {
+            cvModal.classList.add('active');
+        });
+
+        closeCvModal.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+        });
+
+        cancelDownload.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+        });
+
+        // Handle download option selection
+        downloadOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                downloadOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                selectedOption = option.dataset.option;
+            });
+        });
+
+        // Handle confirm action
+        confirmAction.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+            
+            switch(selectedOption) {
+                case 'view':
+                    // Open CV in new tab
+                    window.open('assets/CV.pdf', '_blank', 'noopener,noreferrer');
+                    showNotification('Opening CV in new tab...', 'info');
+                    break;
+                    
+                case 'download':
+                    // Download CV
+                    const link = document.createElement('a');
+                    link.href = 'assets/CV.pdf';
+                    link.download = 'Fabius_Lihanda_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    showNotification('CV download started!', 'success');
+                    break;
+                    
+                case 'linkedin':
+                    // Open LinkedIn
+                    window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank', 'noopener,noreferrer');
+                    showNotification('Opening LinkedIn profile...', 'info');
+                    break;
+            }
+
+            // Track download action
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'cv_action', {
+                    'event_category': 'engagement',
+                    'event_label': selectedOption,
+                    'value': 1
+                });
+            }
+        });
+
+        // Close modal when clicking outside
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                cvModal.classList.remove('active');
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+                cvModal.classList.remove('active');
+            }
+        });
+
+        // Game notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('gameNotification');
+            const content = document.getElementById('notificationContent');
+            
+            content.textContent = message;
+            notification.className = 'game-notification show';
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
         // Theme Management
         const themeToggle = document.getElementById('themeToggle');
         const themeDropdown = document.getElementById('themeDropdown');
@@ -1713,337 +1878,6 @@
             observer.observe(el);
         });
 
-        // CV Download Modal
-        const cvModal = document.getElementById('cvModal');
-        const downloadBtn = document.getElementById('downloadCV');
-        const closeCvModal = document.getElementById('closeCvModal');
-        const cancelDownload = document.getElementById('cancelDownload');
-        const confirmAction = document.getElementById('confirmAction');
-        const downloadOptions = document.querySelectorAll('.download-option');
-
-        let selectedOption = 'download';
-
-        downloadBtn.addEventListener('click', () => {
-            cvModal.classList.add('active');
-        });
-
-        closeCvModal.addEventListener('click', () => {
-            cvModal.classList.remove('active');
-        });
-
-        cancelDownload.addEventListener('click', () => {
-            cvModal.classList.remove('active');
-        });
-
-        downloadOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                downloadOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                selectedOption = option.dataset.option;
-            });
-        });
-
-        confirmAction.addEventListener('click', () => {
-            cvModal.classList.remove('active');
-            
-            switch(selectedOption) {
-                case 'view':
-                    window.open('assets/CV.pdf', '_blank');
-                    break;
-                case 'download':
-                    const link = document.createElement('a');
-                    link.href = 'assets/CV.pdf';
-                    link.download = 'Fabius_Lihanda_CV.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    break;
-                case 'linkedin':
-                    window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank');
-                    break;
-            }
-        });
-
-        // Close modal when clicking outside
-        cvModal.addEventListener('click', (e) => {
-            if (e.target === cvModal) {
-                cvModal.classList.remove('active');
-            }
-        });
-
-        // Game functionality
-        const gameIntro = document.getElementById('gameIntro');
-        const gameScreen = document.getElementById('gameScreen');
-        const gameOver = document.getElementById('gameOver');
-        const startGameBtn = document.getElementById('startGame');
-        const resetGameBtn = document.getElementById('resetGame');
-        const endGameBtn = document.getElementById('endGame');
-        const playAgainBtn = document.getElementById('playAgain');
-        const gameBoard = gameScreen.querySelector('.grid');
-        const scoreElement = document.getElementById('score');
-        const livesElement = document.getElementById('lives');
-        const timeElement = document.getElementById('time');
-        const finalScoreElement = document.getElementById('finalScore');
-        const issuesFixedElement = document.getElementById('issuesFixed');
-        const gameResultElement = document.getElementById('gameResult');
-        const performanceTextElement = document.getElementById('performanceText');
-        const gameNotification = document.getElementById('gameNotification');
-        const notificationContent = document.getElementById('notificationContent');
-
-        let gameState = {
-            score: 0,
-            lives: 3,
-            timeLeft: 45,
-            issuesFixed: 0,
-            testsBroken: 0,
-            gameActive: false,
-            gameInterval: null,
-            timeInterval: null,
-            cellCount: 16,
-            selectedOption: null
-        };
-
-        // Show notification function
-        function showNotification(message, type = 'info') {
-            notificationContent.textContent = message;
-            gameNotification.classList.add('show');
-            
-            setTimeout(() => {
-                gameNotification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Start game
-        startGameBtn.addEventListener('click', startGame);
-        resetGameBtn.addEventListener('click', resetGame);
-        endGameBtn.addEventListener('click', () => endGame(false));
-        playAgainBtn.addEventListener('click', startGame);
-
-        function startGame() {
-            // Reset game state
-            gameState = {
-                score: 0,
-                lives: 3,
-                timeLeft: 45,
-                issuesFixed: 0,
-                testsBroken: 0,
-                gameActive: true,
-                cellCount: 16
-            };
-
-            // Update UI
-            scoreElement.textContent = gameState.score;
-            livesElement.textContent = gameState.lives;
-            timeElement.textContent = `${gameState.timeLeft}s`;
-
-            // Show game screen
-            gameIntro.classList.add('hidden');
-            gameOver.classList.add('hidden');
-            gameScreen.classList.remove('hidden');
-
-            // Create game board
-            createBoard();
-
-            // Start game loop
-            gameState.gameInterval = setInterval(gameLoop, 1500);
-            
-            // Start timer
-            gameState.timeInterval = setInterval(() => {
-                gameState.timeLeft--;
-                timeElement.textContent = `${gameState.timeLeft}s`;
-                
-                if (gameState.timeLeft <= 0) {
-                    endGame(true);
-                }
-            }, 1000);
-
-            showNotification('Pipeline debugging started! Click on red issues to fix them.');
-        }
-
-        function createBoard() {
-            gameBoard.innerHTML = '';
-            for (let i = 0; i < gameState.cellCount; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'game-cell';
-                cell.dataset.index = i;
-                cell.addEventListener('click', handleCellClick);
-                gameBoard.appendChild(cell);
-            }
-        }
-
-        function handleCellClick(e) {
-            if (!gameState.gameActive) return;
-            
-            const cell = e.currentTarget;
-            
-            if (cell.classList.contains('threat') || cell.classList.contains('critical')) {
-                // Fixed an issue
-                gameState.score += 15;
-                gameState.issuesFixed++;
-                scoreElement.textContent = gameState.score;
-                
-                cell.innerHTML = '<i class="fas fa-check"></i>';
-                cell.classList.remove('threat', 'critical');
-                cell.classList.add('success');
-                
-                showNotification('Issue fixed! +15 points');
-            } else if (cell.classList.contains('locked')) {
-                // Broke a test
-                gameState.score -= 10;
-                gameState.testsBroken++;
-                gameState.lives--;
-                livesElement.textContent = gameState.lives;
-                
-                cell.innerHTML = '<i class="fas fa-times"></i>';
-                cell.classList.remove('locked');
-                cell.classList.add('threat');
-                
-                showNotification('Test broken! -10 points and -1 pipeline health', 'error');
-                
-                if (gameState.lives <= 0) {
-                    endGame(false);
-                }
-            }
-        }
-
-        function gameLoop() {
-            if (!gameState.gameActive) return;
-            
-            // Clear previous items
-            const cells = document.querySelectorAll('.game-cell');
-            cells.forEach(cell => {
-                cell.classList.remove('threat', 'critical', 'locked', 'success');
-                cell.innerHTML = '';
-            });
-            
-            // Add new issues and tests
-            const issueCount = Math.floor(Math.random() * 4) + 2; // 2-5 issues
-            const testCount = Math.floor(Math.random() * 3) + 2; // 2-4 tests
-            
-            // Add issues
-            for (let i = 0; i < issueCount; i++) {
-                let index;
-                do {
-                    index = Math.floor(Math.random() * gameState.cellCount);
-                } while (cells[index].classList.contains('threat') || 
-                         cells[index].classList.contains('critical') || 
-                         cells[index].classList.contains('locked'));
-                
-                const isCritical = Math.random() > 0.7;
-                cells[index].innerHTML = isCritical ? 
-                    '<i class="fas fa-exclamation-triangle"></i>' : 
-                    '<i class="fas fa-bug"></i>';
-                cells[index].classList.add(isCritical ? 'critical' : 'threat');
-            }
-            
-            // Add tests
-            for (let i = 0; i < testCount; i++) {
-                let index;
-                do {
-                    index = Math.floor(Math.random() * gameState.cellCount);
-                } while (cells[index].classList.contains('threat') || 
-                         cells[index].classList.contains('critical') || 
-                         cells[index].classList.contains('locked'));
-                
-                cells[index].innerHTML = '<i class="fas fa-check-circle"></i>';
-                cells[index].classList.add('locked');
-            }
-            
-            // Remove issues after 2 seconds if not clicked
-            setTimeout(() => {
-                cells.forEach(cell => {
-                    if (cell.classList.contains('threat') || cell.classList.contains('critical')) {
-                        // Issue not fixed in time - lose a life
-                        gameState.lives--;
-                        livesElement.textContent = gameState.lives;
-                        cell.classList.remove('threat', 'critical');
-                        cell.innerHTML = '';
-                        
-                        if (gameState.lives <= 0) {
-                            endGame(false);
-                        }
-                    }
-                });
-            }, 2000);
-        }
-
-        function endGame(isTimeUp) {
-            gameState.gameActive = false;
-            clearInterval(gameState.gameInterval);
-            clearInterval(gameState.timeInterval);
-
-            // Update final score displays
-            finalScoreElement.textContent = gameState.score;
-            issuesFixedElement.textContent = gameState.issuesFixed;
-
-            // Calculate performance rating
-            calculatePerformance(isTimeUp);
-
-            // Show game over screen
-            gameScreen.classList.add('hidden');
-            gameOver.classList.remove('hidden');
-        }
-
-        function calculatePerformance(isTimeUp) {
-            const efficiency = gameState.issuesFixed > 0 ? 
-                (gameState.score / (gameState.issuesFixed * 15)) * 100 : 0;
-            
-            let performanceRating, performanceMessage;
-            
-            if (isTimeUp) {
-                gameResultElement.textContent = "Pipeline Debugging Complete";
-                
-                if (gameState.score >= 150) {
-                    performanceRating = "DevOps Expert";
-                    performanceMessage = "Outstanding debugging skills! You maintained excellent pipeline health while fixing multiple issues efficiently.";
-                } else if (gameState.score >= 90) {
-                    performanceRating = "Senior DevOps";
-                    performanceMessage = "Solid debugging performance. You effectively identified and resolved issues while maintaining reasonable pipeline stability.";
-                } else if (gameState.score >= 50) {
-                    performanceRating = "Junior DevOps";
-                    performanceMessage = "Adequate debugging skills. You fixed some issues but need to improve accuracy and speed.";
-                } else {
-                    performanceRating = "Learning DevOps";
-                    performanceMessage = "Debugging skills need improvement. Focus on identifying issues faster while preserving tests.";
-                }
-            } else {
-                gameResultElement.textContent = "Pipeline Failed";
-                performanceRating = "Needs Practice";
-                performanceMessage = "Pipeline health critical. Review debugging strategies and test preservation techniques.";
-            }
-            
-            // Add detailed metrics
-            const detailedMetrics = `
-                <div class="mt-3 text-left">
-                    <p class="text-xs theme-text mb-1">Issues Fixed: ${gameState.issuesFixed}</p>
-                    <p class="text-xs theme-text mb-1">Tests Preserved: ${gameState.issuesFixed - gameState.testsBroken}</p>
-                    <p class="text-xs theme-text">Debugging Efficiency: ${efficiency.toFixed(1)}%</p>
-                </div>
-            `;
-            
-            performanceTextElement.innerHTML = `
-                <span class="font-bold gradient-text">${performanceRating}</span><br>
-                ${performanceMessage}
-                ${detailedMetrics}
-            `;
-        }
-
-        function resetGame() {
-            gameState.gameActive = false;
-            clearInterval(gameState.gameInterval);
-            clearInterval(gameState.timeInterval);
-            
-            startGame();
-        }
-
-        // Initialize animations on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add animation classes to cards
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-
         // Handle form submission
         const contactForm = document.querySelector('form');
         if (contactForm) {
@@ -2068,13 +1902,13 @@
                     });
                     
                     if (response.ok) {
-                        alert('Message sent successfully!');
+                        showNotification('Message sent successfully!', 'success');
                         contactForm.reset();
                     } else {
-                        alert('There was an error sending your message. Please try again.');
+                        showNotification('There was an error sending your message. Please try again.', 'error');
                     }
                 } catch (error) {
-                    alert('There was an error sending your message. Please try again.');
+                    showNotification('There was an error sending your message. Please try again.', 'error');
                 } finally {
                     // Reset button
                     submitButton.textContent = originalText;
@@ -2091,6 +1925,14 @@
                 htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
             }
         });
+
+        // Game functionality (simplified for focus)
+        const startGameBtn = document.getElementById('startGame');
+        if (startGameBtn) {
+            startGameBtn.addEventListener('click', () => {
+                showNotification('Game starting soon! This feature is under development.', 'info');
+            });
+        }
     </script>
 </body>
 </html>
