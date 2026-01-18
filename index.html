@@ -330,33 +330,34 @@
         }
 
         /* Modal Styles */
-        .modal-overlay {
+         .modal-overlay {
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
-            z-index: 100;
+            z-index: 1000;
             display: none;
-            align-items: center; /* Added for vertical centering */
-            justify-content: center; /* Added for horizontal centering */
-            padding: 20px; /* Added padding for mobile */
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
-        
+
         .modal-overlay.active {
-            display: flex; /* Changed from display: flex to keep centering */
+            display: flex;
             animation: fadeIn 0.3s ease;
         }
-        
+
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
             max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
+            width: 100%;
+            max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin: auto; /* Added for extra centering */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: modalFadeIn 0.3s ease;
+            margin: auto;
         }
 
         .download-option {
