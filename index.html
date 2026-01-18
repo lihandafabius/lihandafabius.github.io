@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabius Lihanda - DevOps & Data Science</title>
+    <title>Fabius Lihanda | DevOps & Data Science Engineer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,9 +64,6 @@
                         'slide-in-right': 'slideInRight 0.6s ease-out',
                         'float': 'float 3s ease-in-out infinite',
                         'theme-transition': 'themeTransition 0.3s ease',
-                        'modal-fade-in': 'modalFadeIn 0.3s ease',
-                        'ticket-glow': 'ticketGlow 2s ease-in-out infinite',
-                        'count-up': 'countUp 1s ease-out',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -92,18 +89,6 @@
                         themeTransition: {
                             '0%': { opacity: '0.9' },
                             '100%': { opacity: '1' },
-                        },
-                        modalFadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(-20px) scale(0.95)' },
-                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
-                        },
-                        ticketGlow: {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-                            '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.8)' },
-                        },
-                        countUp: {
-                            '0%': { transform: 'scale(0.5)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
                         }
                     }
                 }
@@ -195,6 +180,43 @@
             background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
         }
 
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .project-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-bar {
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
         /* Theme selector */
         .theme-selector {
             position: relative;
@@ -246,39 +268,8 @@
             border: 2px solid var(--border);
         }
 
-        /* Visitor Ticket Styles */
-        .visitor-ticket {
-            background: linear-gradient(135deg, var(--card-bg) 0%, var(--secondary) 100%);
-            border: 2px solid var(--accent);
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ticket-perforation {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
-            background: repeating-linear-gradient(
-                to right,
-                transparent,
-                transparent 10px,
-                var(--accent) 10px,
-                var(--accent) 20px
-            );
-        }
-
         /* Game Styles */
-        .bingo-card {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-        }
-
-        .bingo-cell {
+        .game-cell {
             aspect-ratio: 1;
             background: var(--card-bg);
             border: 2px solid var(--border);
@@ -286,33 +277,56 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-align: center;
-            padding: 4px;
-            user-select: none;
         }
 
-        .bingo-cell:hover:not(.marked) {
+        .game-cell:hover {
             transform: scale(1.05);
             border-color: var(--accent);
         }
 
-        .bingo-cell.marked {
-            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+        .game-cell.locked {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
             color: white;
-            transform: scale(0.98);
         }
 
-        .bingo-cell.flashing {
-            animation: pulse 1s infinite;
+        .game-cell.threat {
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            color: white;
+            animation: pulse 1.5s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        .game-cell.critical {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            animation: pulse 0.8s infinite;
+        }
+
+        .game-cell.success {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .game-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--card-bg);
+            color: var(--text);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .game-notification.show {
+            transform: translateX(0);
         }
 
         /* Modal Styles */
@@ -321,11 +335,8 @@
             inset: 0;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
-            z-index: 1000;
+            z-index: 100;
             display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
         }
 
         .modal-overlay.active {
@@ -338,16 +349,64 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             max-width: 500px;
-            width: 100%;
-            max-height: 85vh;
+            width: 90%;
+            max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: modalFadeIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .download-option {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .download-option:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .download-option:hover .theme-text {
+            color: white;
+        }
+
+        .download-option.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .download-option.active .theme-text {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .file-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Game animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .sparkle {
+            animation: sparkle 2s infinite;
         }
 
         /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -356,12 +415,53 @@
 
         ::-webkit-scrollbar-thumb {
             background: var(--accent);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent);
             opacity: 0.8;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Card styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         /* Badge styles */
@@ -384,37 +484,69 @@
             color: var(--text);
         }
 
-        /* Card hover effects */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
+        /* Experience timeline */
+        .timeline-item {
+            border-left: 2px solid var(--accent);
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 3rem;
         }
 
-        .card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--card-bg);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu {
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .mobile-menu.open {
-                transform: translateX(0);
-            }
+        /* Data visualization preview */
+        .chart-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(180deg, var(--secondary) 0%, transparent 100%);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
 
-            .bingo-card {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .chart-line {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: chartAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes chartAnimation {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        /* Skill category colors */
+        .skill-category-devops {
+            border-left-color: var(--accent-blue);
+        }
+
+        .skill-category-datascience {
+            border-left-color: var(--accent-purple);
+        }
+
+        .skill-category-security {
+            border-left-color: var(--accent-amber);
+        }
+
+        .skill-category-analysis {
+            border-left-color: var(--accent-teal);
         }
     </style>
 </head>
-<body class="font-sans theme-bg-primary theme-text antialiased">
+<body class="font-sans theme-bg-primary theme-text antialiased animate-theme-transition">
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 z-50 theme-bg-primary flex items-center justify-center">
         <div class="text-center">
@@ -445,20 +577,9 @@
                 <div class="theme-preview" style="background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);"></div>
                 Teal
             </div>
-        </div>
-    </div>
-
-    <!-- Visitor Counter -->
-    <div id="visitorCounter" class="fixed top-4 left-4 z-50 hidden md:block">
-        <div class="visitor-ticket p-4 animate-ticket-glow max-w-xs">
-            <div class="ticket-perforation"></div>
-            <div class="text-center">
-                <p class="text-sm theme-text mb-2">You're visitor</p>
-                <div id="visitorNumber" class="text-3xl font-bold gradient-text animate-count-up">#1662</div>
-                <p class="text-xs theme-text mt-2">Say hi before <span class="font-bold text-accent-blue">#1700</span>!</p>
-            </div>
-            <div class="mt-4 pt-4 border-t theme-border">
-                <p class="text-sm text-center theme-text">Welcome! Thanks for visiting 👋</p>
+            <div class="theme-option" data-theme="auto">
+                <div class="theme-preview" style="background: linear-gradient(135deg, #f8fafc 50%, #0a0a0a 50%);"></div>
+                Auto
             </div>
         </div>
     </div>
@@ -509,6 +630,11 @@
         </div>
     </div>
 
+    <!-- Game Notification -->
+    <div id="gameNotification" class="game-notification">
+        <div id="notificationContent"></div>
+    </div>
+
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div class="absolute inset-0 theme-bg-secondary"></div>
@@ -520,8 +646,8 @@
         <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
             <div class="animate-fade-in-up">
                 <div class="flex justify-center mb-6">
-                    <span class="badge badge-primary">
-                        <i class="fas fa-chart-line mr-2"></i> Data Science & DevOps
+                    <span class="badge badge-primary animate-pulse-slow">
+                        <i class="fas fa-chart-line mr-2"></i> Now focusing on Data Science & DevOps
                     </span>
                 </div>
                 
@@ -575,131 +701,6 @@
         </div>
     </section>
 
-    <!-- DevOps Game Section -->
-    <section id="game" class="py-20 theme-bg-primary">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-4 text-center">DevOps Buzzword Bingo</h2>
-            <p class="text-lg theme-text text-center mb-12 max-w-3xl mx-auto">
-                Test your DevOps vocabulary skills! Click buzzwords as fast as you can. Each word = 10 points.
-            </p>
-            
-            <div class="card overflow-hidden max-w-4xl mx-auto p-6">
-                <!-- Game Header -->
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h3 class="text-2xl font-bold gradient-text">DevOps Buzzword Bingo</h3>
-                        <p class="text-sm theme-text">Click the buzzwords as fast as you can!</p>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-3xl font-bold gradient-text mb-2" id="gameScore">0</div>
-                        <div class="text-sm theme-text" id="gameTime">Time: 0s</div>
-                    </div>
-                </div>
-
-                <!-- Bingo Card -->
-                <div class="bingo-card mb-8" id="bingoCard">
-                    <!-- Buzzwords will be generated here -->
-                </div>
-
-                <!-- Game Controls -->
-                <div class="flex flex-wrap justify-between items-center gap-4">
-                    <div>
-                        <button id="playAgainBtn" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-colors duration-300">
-                            Play Again
-                        </button>
-                        <button id="resetGameBtn" class="ml-4 border-2 theme-border theme-text px-6 py-2 rounded-lg font-medium hover:gradient-bg hover:text-white transition-colors duration-300">
-                            Reset
-                        </button>
-                    </div>
-                    <div class="text-sm theme-text">
-                        <i class="fas fa-lightbulb mr-2 theme-accent"></i>
-                        Tip: Words refresh every 2 seconds. Click fast to maximize your score!
-                    </div>
-                </div>
-
-                <!-- Game Over Modal -->
-                <div id="gameOverModal" class="modal-overlay">
-                    <div class="modal-content">
-                        <div class="p-8 text-center">
-                            <h3 class="text-3xl font-bold mb-6 gradient-text">Game Over!</h3>
-                            <div class="text-5xl font-bold mb-4" id="finalScoreDisplay">0</div>
-                            <p class="text-lg theme-text mb-2">points</p>
-                            <div class="inline-block bg-gradient-to-r from-accent-blue to-accent-purple text-white px-6 py-2 rounded-full text-xl font-bold mb-8" id="gameTitle">
-                                Infrastructure Engineer!
-                            </div>
-                            
-                            <div class="card p-6 mb-8">
-                                <h4 class="text-xl font-bold mb-4">Performance Summary</h4>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="text-center">
-                                        <p class="text-sm theme-text">Words Clicked</p>
-                                        <p class="text-2xl font-bold gradient-text" id="wordsClicked">0</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-sm theme-text">Accuracy</p>
-                                        <p class="text-2xl font-bold gradient-text" id="accuracyRate">100%</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-center gap-4">
-                                <button id="closeGameModal" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-colors">
-                                    Close
-                                </button>
-                                <button id="playAgainModal" class="border-2 theme-border theme-text px-8 py-3 rounded-lg font-medium hover:gradient-bg hover:text-white transition-colors">
-                                    Play Again
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visitor Leaderboard -->
-                <div class="mt-12 card p-6">
-                    <h4 class="text-xl font-bold mb-6 text-center">Top Visitors This Month</h4>
-                    <div class="space-y-4" id="visitorLeaderboard">
-                        <div class="flex items-center justify-between p-4 theme-bg-secondary rounded-lg">
-                            <div class="flex items-center">
-                                <span class="text-2xl mr-4">⭐️ #1</span>
-                                <div>
-                                    <p class="font-semibold">DevOps_Master</p>
-                                    <p class="text-sm theme-text">San Francisco, US</p>
-                                </div>
-                            </div>
-                            <span class="badge badge-primary">23 visits</span>
-                        </div>
-                        <div class="flex items-center justify-between p-4 theme-bg-secondary rounded-lg">
-                            <div class="flex items-center">
-                                <span class="text-2xl mr-4">⭐️ #2</span>
-                                <div>
-                                    <p class="font-semibold">CloudArchitect</p>
-                                    <p class="text-sm theme-text">London, UK</p>
-                                </div>
-                            </div>
-                            <span class="badge badge-primary">19 visits</span>
-                        </div>
-                        <div class="flex items-center justify-between p-4 theme-bg-secondary rounded-lg">
-                            <div class="flex items-center">
-                                <span class="text-2xl mr-4">⭐️ #3</span>
-                                <div>
-                                    <p class="font-semibold">K8s_Ninja</p>
-                                    <p class="text-sm theme-text">Toronto, CA</p>
-                                </div>
-                            </div>
-                            <span class="badge badge-primary">17 visits</span>
-                        </div>
-                    </div>
-                    <div class="mt-6 text-center">
-                        <p class="text-sm theme-text">
-                            <i class="fas fa-link mr-2 theme-accent"></i>
-                            Connect with me on LinkedIn to join the leaderboard!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- About Section -->
     <section id="about" class="py-20 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
@@ -727,9 +728,9 @@
                         <a href="#contact" class="gradient-bg text-white px-7 py-3.5 rounded-lg font-medium hover:opacity-90 transition-all">
                             <i class="fas fa-paper-plane mr-2"></i>Hire Me
                         </a>
-                        <a href="assets/CV.pdf" download class="border-2 theme-border theme-text px-7 py-3.5 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all">
+                        <button id="downloadCV" class="border-2 theme-border theme-text px-7 py-3.5 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all">
                             <i class="fas fa-download mr-2"></i>Download CV
-                        </a>
+                        </button>
                     </div>
                 </div>
                 
@@ -765,6 +766,174 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DevOps & Data Science Game Section -->
+    <section id="game" class="py-20 theme-bg-primary">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-4 text-center">DevOps Pipeline Challenge</h2>
+            <p class="text-lg theme-text text-center mb-12 max-w-3xl mx-auto">
+                Test your DevOps skills! Fix the broken CI/CD pipeline by identifying issues and implementing solutions.
+            </p>
+            
+            <div class="card overflow-hidden max-w-4xl mx-auto">
+                <!-- Game Intro Screen -->
+                <div id="gameIntro" class="p-8 text-center">
+                    <div class="mb-6">
+                        <i class="fas fa-code-branch text-5xl gradient-text mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">CI/CD Pipeline Debugging</h3>
+                        <p class="theme-text">
+                            A production pipeline has broken! Your task is to identify and fix issues before deployment deadline.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="theme-bg-secondary p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-bug text-red-500"></i>
+                                </div>
+                                <div class="text-left">
+                                    <p class="font-medium">Pipeline Issues</p>
+                                    <p class="text-sm theme-text">Find and fix bugs</p>
+                                </div>
+                            </div>
+                            <p class="text-sm theme-text text-left">Click on red cells to identify and fix pipeline issues.</p>
+                        </div>
+                        <div class="theme-bg-secondary p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                </div>
+                                <div class="text-left">
+                                    <p class="font-medium">Tests</p>
+                                    <p class="text-sm theme-text">Run unit tests</p>
+                                </div>
+                            </div>
+                            <p class="text-sm theme-text text-left">Green cells represent successful tests - preserve them!</p>
+                        </div>
+                        <div class="theme-bg-secondary p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-bolt text-blue-500"></i>
+                                </div>
+                                <div class="text-left">
+                                    <p class="font-medium">Deploy</p>
+                                    <p class="text-sm theme-text">Critical stages</p>
+                                </div>
+                            </div>
+                            <p class="text-sm theme-text text-left">Blue cells are critical deployment stages - handle with care!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="theme-bg-secondary p-4 rounded-lg mb-6">
+                        <h4 class="font-bold mb-2">Game Mechanics</h4>
+                        <ul class="text-sm theme-text text-left grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <li class="flex items-center"><i class="fas fa-clock gradient-text mr-2"></i> 45-second time limit</li>
+                            <li class="flex items-center"><i class="fas fa-heart gradient-text mr-2"></i> 3 deployment failures allowed</li>
+                            <li class="flex items-center"><i class="fas fa-plus-circle gradient-text mr-2"></i> +15 points per bug fixed</li>
+                            <li class="flex items-center"><i class="fas fa-minus-circle gradient-text mr-2"></i> -10 points per test broken</li>
+                        </ul>
+                    </div>
+                    
+                    <button id="startGame" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-colors duration-300 shadow-md">
+                        Start Pipeline Debugging
+                    </button>
+                </div>
+                
+                <!-- Game Screen -->
+                <div id="gameScreen" class="hidden p-6">
+                    <!-- Game Stats -->
+                    <div class="flex justify-between mb-6 theme-bg-secondary p-4 rounded-lg">
+                        <div class="text-center flex-1">
+                            <p class="text-sm theme-text">Deployment Score</p>
+                            <p id="score" class="text-2xl font-bold gradient-text">0</p>
+                        </div>
+                        <div class="text-center flex-1 border-l border-r theme-border">
+                            <p class="text-sm theme-text">Pipeline Health</p>
+                            <p id="lives" class="text-2xl font-bold gradient-text">3</p>
+                        </div>
+                        <div class="text-center flex-1">
+                            <p class="text-sm theme-text">Time Remaining</p>
+                            <p id="time" class="text-2xl font-bold gradient-text">45s</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pipeline Visualization -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-lg font-semibold">Pipeline Stages</h4>
+                            <div class="text-sm theme-text">
+                                <span class="inline-flex items-center mr-3"><span class="w-3 h-3 bg-red-500 rounded-full mr-1"></span> Issue</span>
+                                <span class="inline-flex items-center mr-3"><span class="w-3 h-3 bg-green-500 rounded-full mr-1"></span> Test</span>
+                                <span class="inline-flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-1"></span> Deploy</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Game Board -->
+                        <div class="grid grid-cols-4 md:grid-cols-8 gap-3 mb-6 theme-bg-primary p-4 rounded-lg border theme-border min-h-[200px]">
+                            <!-- Game cells will be generated by JavaScript -->
+                            <div class="flex items-center justify-center theme-text">
+                                <p>Initializing pipeline...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Controls -->
+                    <div class="text-center theme-bg-secondary p-4 rounded-lg">
+                        <button id="resetGame" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-colors duration-300 mr-4 shadow">
+                            Restart Pipeline
+                        </button>
+                        <button id="endGame" class="border-2 theme-border theme-text px-6 py-2 rounded-lg font-medium hover:gradient-bg hover:text-white transition-colors duration-300 shadow">
+                            Abort Deployment
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Game Over Screen -->
+                <div id="gameOver" class="hidden p-8 text-center">
+                    <div class="mb-6">
+                        <i class="fas fa-chart-line text-5xl gradient-text mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2" id="gameResult">Deployment Complete</h3>
+                        <p class="theme-text">Your pipeline debugging performance:</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto">
+                        <div class="theme-bg-secondary p-4 rounded-lg">
+                            <p class="text-sm theme-text">Final Score</p>
+                            <p id="finalScore" class="text-2xl font-bold gradient-text">0</p>
+                        </div>
+                        <div class="theme-bg-secondary p-4 rounded-lg">
+                            <p class="text-sm theme-text">Issues Fixed</p>
+                            <p id="issuesFixed" class="text-2xl font-bold gradient-text">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-assessment theme-bg-secondary p-4 rounded-lg max-w-md mx-auto mb-6">
+                        <h4 class="font-bold mb-2">Performance Assessment</h4>
+                        <p id="performanceText" class="text-sm theme-text">Calculating your DevOps skills rating...</p>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4">
+                        <button id="playAgain" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-colors duration-300 shadow">
+                            Run New Pipeline
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center animate-fade-in-up">
+                <div class="card p-6 max-w-2xl mx-auto">
+                    <h4 class="text-xl font-bold mb-3">Real-World DevOps Skills</h4>
+                    <p class="theme-text">
+                        This simulation demonstrates real DevOps challenges: identifying pipeline issues, 
+                        managing deployment stages, and maintaining system stability. In production environments, 
+                        DevOps engineers use tools like Jenkins, GitLab CI, and monitoring systems to ensure 
+                        smooth deployments.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1037,7 +1206,7 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- DevOps Skills -->
-                <div class="card p-6 animate-fade-in-up">
+                <div class="card p-6 animate-fade-in-up skill-category-devops">
                     <h3 class="text-xl font-semibold mb-6 flex items-center">
                         <i class="fas fa-cloud mr-3 theme-accent"></i>
                         DevOps & Cloud
@@ -1083,7 +1252,7 @@
                 </div>
 
                 <!-- Data Science Skills -->
-                <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="card p-6 animate-fade-in-up skill-category-datascience" style="animation-delay: 0.1s;">
                     <h3 class="text-xl font-semibold mb-6 flex items-center">
                         <i class="fas fa-chart-line mr-3 theme-accent"></i>
                         Data Science & Analysis
@@ -1299,13 +1468,113 @@
         </div>
     </footer>
 
+    <!-- CV Download Modal -->
+    <div id="cvModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Download My CV</h3>
+                <button id="closeCvModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- File Preview -->
+            <div class="text-center mb-6">
+                <div class="file-icon gradient-text mb-3">
+                    <i class="fas fa-file-pdf text-6xl"></i>
+                </div>
+                <h4 class="text-xl font-semibold mb-2">Fabius Lihanda - CV.pdf</h4>
+                <p class="theme-text mb-3">Professional CV showcasing DevOps, Data Science, and Cybersecurity expertise</p>
+                <div class="theme-text text-sm mb-2">
+                    <i class="fas fa-hdd mr-2"></i> ~2.1 MB • Updated: December 2024
+                </div>
+            </div>
+
+            <!-- Download Options -->
+            <div class="space-y-4 mb-8">
+                <h4 class="font-semibold mb-3">Choose your option:</h4>
+                
+                <div class="download-option" data-option="view">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
+                            <i class="fas fa-eye text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="font-semibold mb-1">View Online</h5>
+                            <p class="text-sm theme-text">Preview the CV in your browser before downloading</p>
+                        </div>
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </div>
+                </div>
+
+                <div class="download-option" data-option="download">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
+                            <i class="fas fa-download text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="font-semibold mb-1">Download Now</h5>
+                            <p class="text-sm theme-text">Direct download to your device</p>
+                        </div>
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </div>
+                </div>
+
+                <div class="download-option" data-option="linkedin">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="font-semibold mb-1">View LinkedIn Profile</h5>
+                            <p class="text-sm theme-text">Check my updated professional profile</p>
+                        </div>
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Details -->
+            <div class="theme-bg-secondary rounded-lg p-4 mb-6">
+                <h5 class="font-semibold mb-2">File Details:</h5>
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <span class="theme-text">Format:</span>
+                        <span class="font-medium ml-2">PDF</span>
+                    </div>
+                    <div>
+                        <span class="theme-text">Pages:</span>
+                        <span class="font-medium ml-2">3</span>
+                    </div>
+                    <div>
+                        <span class="theme-text">Last Updated:</span>
+                        <span class="font-medium ml-2">Dec 2024</span>
+                    </div>
+                    <div>
+                        <span class="theme-text">Language:</span>
+                        <span class="font-medium ml-2">English</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button id="cancelDownload" class="flex-1 theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors">
+                    Cancel
+                </button>
+                <button id="confirmAction" class="flex-1 gradient-bg text-white py-3 rounded-lg font-medium hover:opacity-90 transition-colors">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Back to Top Button -->
     <button id="backToTop" class="fixed bottom-6 right-6 z-40 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all hidden">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <script>
-        // ========== THEME MANAGEMENT ==========
+        // Theme Management
         const themeToggle = document.getElementById('themeToggle');
         const themeDropdown = document.getElementById('themeDropdown');
         const themeOptions = document.querySelectorAll('.theme-option');
@@ -1332,7 +1601,14 @@
         themeOptions.forEach(option => {
             option.addEventListener('click', () => {
                 const theme = option.dataset.theme;
-                htmlElement.setAttribute('data-theme', theme);
+                
+                if (theme === 'auto') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    htmlElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                } else {
+                    htmlElement.setAttribute('data-theme', theme);
+                }
+                
                 localStorage.setItem('portfolio-theme', theme);
                 updateActiveTheme(theme);
                 themeDropdown.classList.remove('show');
@@ -1349,170 +1625,7 @@
             });
         }
 
-        // ========== VISITOR COUNTER ==========
-        const visitorNumber = document.getElementById('visitorNumber');
-        const visitorCounter = document.getElementById('visitorCounter');
-        
-        // Generate random visitor number (in real app, this would come from backend)
-        function generateVisitorNumber() {
-            // Start from 1662 as shown in the image
-            const baseNumber = 1662;
-            // Add random number between 1-50 for demo
-            const randomIncrement = Math.floor(Math.random() * 50) + 1;
-            return `#${baseNumber + randomIncrement}`;
-        }
-
-        function updateVisitorCounter() {
-            visitorNumber.textContent = generateVisitorNumber();
-            // Show counter after delay
-            setTimeout(() => {
-                visitorCounter.style.display = 'block';
-            }, 1000);
-        }
-
-        // ========== DEVOPS BUZZWORD BINGO GAME ==========
-        const bingoCard = document.getElementById('bingoCard');
-        const gameScore = document.getElementById('gameScore');
-        const gameTime = document.getElementById('gameTime');
-        const playAgainBtn = document.getElementById('playAgainBtn');
-        const resetGameBtn = document.getElementById('resetGameBtn');
-        const gameOverModal = document.getElementById('gameOverModal');
-        const closeGameModal = document.getElementById('closeGameModal');
-        const playAgainModal = document.getElementById('playAgainModal');
-        const finalScoreDisplay = document.getElementById('finalScoreDisplay');
-        const wordsClicked = document.getElementById('wordsClicked');
-        const accuracyRate = document.getElementById('accuracyRate');
-        const gameTitle = document.getElementById('gameTitle');
-
-        // DevOps buzzwords
-        const devopsBuzzwords = [
-            'CI/CD', 'Kubernetes', 'Docker', 'Terraform', 'AWS',
-            'Microservices', 'Infrastructure', 'Automation', 'Monitoring', 'Security',
-            'DevSecOps', 'GitOps', 'SRE', 'IaC', 'Cloud',
-            'Scalability', 'Resilience', 'Observability', 'Orchestration', 'Containerization',
-            'Pipeline', 'Deployment', 'Continuous', 'Integration', 'Delivery'
-        ];
-
-        let score = 0;
-        let timeElapsed = 0;
-        let gameTimer = null;
-        let isGameActive = false;
-        let wordsClickedCount = 0;
-        let totalWords = 0;
-        let markedCells = new Set();
-
-        // Initialize game
-        function initGame() {
-            score = 0;
-            timeElapsed = 0;
-            wordsClickedCount = 0;
-            markedCells.clear();
-            gameScore.textContent = '0';
-            gameTime.textContent = 'Time: 0s';
-            isGameActive = true;
-            
-            // Clear and generate bingo card
-            bingoCard.innerHTML = '';
-            const selectedWords = [...devopsBuzzwords]
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 15); // 3x5 grid needs 15 words
-            
-            selectedWords.forEach(word => {
-                const cell = document.createElement('div');
-                cell.className = 'bingo-cell';
-                cell.textContent = word;
-                cell.addEventListener('click', () => handleCellClick(cell, word));
-                bingoCard.appendChild(cell);
-            });
-
-            totalWords = selectedWords.length;
-            startTimer();
-        }
-
-        // Handle cell click
-        function handleCellClick(cell, word) {
-            if (!isGameActive || markedCells.has(word)) return;
-            
-            markedCells.add(word);
-            cell.classList.add('marked');
-            cell.classList.add('flashing');
-            wordsClickedCount++;
-            
-            // Add points
-            score += 10;
-            gameScore.textContent = score;
-            
-            // Remove flashing effect after animation
-            setTimeout(() => {
-                cell.classList.remove('flashing');
-            }, 1000);
-            
-            // Check if all words are marked
-            if (markedCells.size === totalWords) {
-                endGame();
-            }
-        }
-
-        // Game timer
-        function startTimer() {
-            if (gameTimer) clearInterval(gameTimer);
-            gameTimer = setInterval(() => {
-                timeElapsed++;
-                gameTime.textContent = `Time: ${timeElapsed}s`;
-                
-                // Game lasts 30 seconds
-                if (timeElapsed >= 30) {
-                    endGame();
-                }
-            }, 1000);
-        }
-
-        // End game
-        function endGame() {
-            isGameActive = false;
-            clearInterval(gameTimer);
-            
-            // Calculate accuracy
-            const accuracy = totalWords > 0 ? Math.round((wordsClickedCount / totalWords) * 100) : 100;
-            
-            // Determine game title based on score
-            let title = '';
-            if (score >= 100) title = 'Senior DevOps Engineer!';
-            else if (score >= 70) title = 'Infrastructure Engineer!';
-            else if (score >= 40) title = 'DevOps Specialist!';
-            else title = 'DevOps Enthusiast!';
-            
-            // Update modal
-            finalScoreDisplay.textContent = score;
-            wordsClicked.textContent = wordsClickedCount;
-            accuracyRate.textContent = `${accuracy}%`;
-            gameTitle.textContent = title;
-            
-            // Show modal
-            gameOverModal.classList.add('active');
-        }
-
-        // Game controls
-        playAgainBtn.addEventListener('click', initGame);
-        resetGameBtn.addEventListener('click', initGame);
-        
-        closeGameModal.addEventListener('click', () => {
-            gameOverModal.classList.remove('active');
-        });
-        
-        playAgainModal.addEventListener('click', () => {
-            gameOverModal.classList.remove('active');
-            initGame();
-        });
-
-        // Close modal when clicking outside
-        gameOverModal.addEventListener('click', (e) => {
-            if (e.target === gameOverModal) {
-                gameOverModal.classList.remove('active');
-            }
-        });
-
-        // ========== MOBILE MENU ==========
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeMobileMenu = document.getElementById('closeMobileMenu');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1532,7 +1645,21 @@
             });
         });
 
-        // ========== SMOOTH SCROLLING ==========
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1548,30 +1675,14 @@
             });
         });
 
-        // ========== BACK TO TOP BUTTON ==========
-        const backToTopButton = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('hidden');
-            } else {
-                backToTopButton.classList.add('hidden');
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // ========== LOADING SCREEN ==========
+        // Loading screen
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
-                updateVisitorCounter();
-                initGame();
             }, 1000);
         });
 
-        // ========== TYPING ANIMATION ==========
+        // Typing animation
         const typingElement = document.querySelector('.typing-animation');
         if (typingElement) {
             const text = typingElement.textContent;
@@ -1588,7 +1699,352 @@
             setTimeout(typeWriter, 1500);
         }
 
-        // ========== FORM SUBMISSION ==========
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe elements
+        document.querySelectorAll('.card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // CV Download Modal
+        const cvModal = document.getElementById('cvModal');
+        const downloadBtn = document.getElementById('downloadCV');
+        const closeCvModal = document.getElementById('closeCvModal');
+        const cancelDownload = document.getElementById('cancelDownload');
+        const confirmAction = document.getElementById('confirmAction');
+        const downloadOptions = document.querySelectorAll('.download-option');
+
+        let selectedOption = 'download';
+
+        downloadBtn.addEventListener('click', () => {
+            cvModal.classList.add('active');
+        });
+
+        closeCvModal.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+        });
+
+        cancelDownload.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+        });
+
+        downloadOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                downloadOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                selectedOption = option.dataset.option;
+            });
+        });
+
+        confirmAction.addEventListener('click', () => {
+            cvModal.classList.remove('active');
+            
+            switch(selectedOption) {
+                case 'view':
+                    window.open('assets/CV.pdf', '_blank');
+                    break;
+                case 'download':
+                    const link = document.createElement('a');
+                    link.href = 'assets/CV.pdf';
+                    link.download = 'Fabius_Lihanda_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    break;
+                case 'linkedin':
+                    window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank');
+                    break;
+            }
+        });
+
+        // Close modal when clicking outside
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                cvModal.classList.remove('active');
+            }
+        });
+
+        // Game functionality
+        const gameIntro = document.getElementById('gameIntro');
+        const gameScreen = document.getElementById('gameScreen');
+        const gameOver = document.getElementById('gameOver');
+        const startGameBtn = document.getElementById('startGame');
+        const resetGameBtn = document.getElementById('resetGame');
+        const endGameBtn = document.getElementById('endGame');
+        const playAgainBtn = document.getElementById('playAgain');
+        const gameBoard = gameScreen.querySelector('.grid');
+        const scoreElement = document.getElementById('score');
+        const livesElement = document.getElementById('lives');
+        const timeElement = document.getElementById('time');
+        const finalScoreElement = document.getElementById('finalScore');
+        const issuesFixedElement = document.getElementById('issuesFixed');
+        const gameResultElement = document.getElementById('gameResult');
+        const performanceTextElement = document.getElementById('performanceText');
+        const gameNotification = document.getElementById('gameNotification');
+        const notificationContent = document.getElementById('notificationContent');
+
+        let gameState = {
+            score: 0,
+            lives: 3,
+            timeLeft: 45,
+            issuesFixed: 0,
+            testsBroken: 0,
+            gameActive: false,
+            gameInterval: null,
+            timeInterval: null,
+            cellCount: 16,
+            selectedOption: null
+        };
+
+        // Show notification function
+        function showNotification(message, type = 'info') {
+            notificationContent.textContent = message;
+            gameNotification.classList.add('show');
+            
+            setTimeout(() => {
+                gameNotification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Start game
+        startGameBtn.addEventListener('click', startGame);
+        resetGameBtn.addEventListener('click', resetGame);
+        endGameBtn.addEventListener('click', () => endGame(false));
+        playAgainBtn.addEventListener('click', startGame);
+
+        function startGame() {
+            // Reset game state
+            gameState = {
+                score: 0,
+                lives: 3,
+                timeLeft: 45,
+                issuesFixed: 0,
+                testsBroken: 0,
+                gameActive: true,
+                cellCount: 16
+            };
+
+            // Update UI
+            scoreElement.textContent = gameState.score;
+            livesElement.textContent = gameState.lives;
+            timeElement.textContent = `${gameState.timeLeft}s`;
+
+            // Show game screen
+            gameIntro.classList.add('hidden');
+            gameOver.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+
+            // Create game board
+            createBoard();
+
+            // Start game loop
+            gameState.gameInterval = setInterval(gameLoop, 1500);
+            
+            // Start timer
+            gameState.timeInterval = setInterval(() => {
+                gameState.timeLeft--;
+                timeElement.textContent = `${gameState.timeLeft}s`;
+                
+                if (gameState.timeLeft <= 0) {
+                    endGame(true);
+                }
+            }, 1000);
+
+            showNotification('Pipeline debugging started! Click on red issues to fix them.');
+        }
+
+        function createBoard() {
+            gameBoard.innerHTML = '';
+            for (let i = 0; i < gameState.cellCount; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'game-cell';
+                cell.dataset.index = i;
+                cell.addEventListener('click', handleCellClick);
+                gameBoard.appendChild(cell);
+            }
+        }
+
+        function handleCellClick(e) {
+            if (!gameState.gameActive) return;
+            
+            const cell = e.currentTarget;
+            
+            if (cell.classList.contains('threat') || cell.classList.contains('critical')) {
+                // Fixed an issue
+                gameState.score += 15;
+                gameState.issuesFixed++;
+                scoreElement.textContent = gameState.score;
+                
+                cell.innerHTML = '<i class="fas fa-check"></i>';
+                cell.classList.remove('threat', 'critical');
+                cell.classList.add('success');
+                
+                showNotification('Issue fixed! +15 points');
+            } else if (cell.classList.contains('locked')) {
+                // Broke a test
+                gameState.score -= 10;
+                gameState.testsBroken++;
+                gameState.lives--;
+                livesElement.textContent = gameState.lives;
+                
+                cell.innerHTML = '<i class="fas fa-times"></i>';
+                cell.classList.remove('locked');
+                cell.classList.add('threat');
+                
+                showNotification('Test broken! -10 points and -1 pipeline health', 'error');
+                
+                if (gameState.lives <= 0) {
+                    endGame(false);
+                }
+            }
+        }
+
+        function gameLoop() {
+            if (!gameState.gameActive) return;
+            
+            // Clear previous items
+            const cells = document.querySelectorAll('.game-cell');
+            cells.forEach(cell => {
+                cell.classList.remove('threat', 'critical', 'locked', 'success');
+                cell.innerHTML = '';
+            });
+            
+            // Add new issues and tests
+            const issueCount = Math.floor(Math.random() * 4) + 2; // 2-5 issues
+            const testCount = Math.floor(Math.random() * 3) + 2; // 2-4 tests
+            
+            // Add issues
+            for (let i = 0; i < issueCount; i++) {
+                let index;
+                do {
+                    index = Math.floor(Math.random() * gameState.cellCount);
+                } while (cells[index].classList.contains('threat') || 
+                         cells[index].classList.contains('critical') || 
+                         cells[index].classList.contains('locked'));
+                
+                const isCritical = Math.random() > 0.7;
+                cells[index].innerHTML = isCritical ? 
+                    '<i class="fas fa-exclamation-triangle"></i>' : 
+                    '<i class="fas fa-bug"></i>';
+                cells[index].classList.add(isCritical ? 'critical' : 'threat');
+            }
+            
+            // Add tests
+            for (let i = 0; i < testCount; i++) {
+                let index;
+                do {
+                    index = Math.floor(Math.random() * gameState.cellCount);
+                } while (cells[index].classList.contains('threat') || 
+                         cells[index].classList.contains('critical') || 
+                         cells[index].classList.contains('locked'));
+                
+                cells[index].innerHTML = '<i class="fas fa-check-circle"></i>';
+                cells[index].classList.add('locked');
+            }
+            
+            // Remove issues after 2 seconds if not clicked
+            setTimeout(() => {
+                cells.forEach(cell => {
+                    if (cell.classList.contains('threat') || cell.classList.contains('critical')) {
+                        // Issue not fixed in time - lose a life
+                        gameState.lives--;
+                        livesElement.textContent = gameState.lives;
+                        cell.classList.remove('threat', 'critical');
+                        cell.innerHTML = '';
+                        
+                        if (gameState.lives <= 0) {
+                            endGame(false);
+                        }
+                    }
+                });
+            }, 2000);
+        }
+
+        function endGame(isTimeUp) {
+            gameState.gameActive = false;
+            clearInterval(gameState.gameInterval);
+            clearInterval(gameState.timeInterval);
+
+            // Update final score displays
+            finalScoreElement.textContent = gameState.score;
+            issuesFixedElement.textContent = gameState.issuesFixed;
+
+            // Calculate performance rating
+            calculatePerformance(isTimeUp);
+
+            // Show game over screen
+            gameScreen.classList.add('hidden');
+            gameOver.classList.remove('hidden');
+        }
+
+        function calculatePerformance(isTimeUp) {
+            const efficiency = gameState.issuesFixed > 0 ? 
+                (gameState.score / (gameState.issuesFixed * 15)) * 100 : 0;
+            
+            let performanceRating, performanceMessage;
+            
+            if (isTimeUp) {
+                gameResultElement.textContent = "Pipeline Debugging Complete";
+                
+                if (gameState.score >= 150) {
+                    performanceRating = "DevOps Expert";
+                    performanceMessage = "Outstanding debugging skills! You maintained excellent pipeline health while fixing multiple issues efficiently.";
+                } else if (gameState.score >= 90) {
+                    performanceRating = "Senior DevOps";
+                    performanceMessage = "Solid debugging performance. You effectively identified and resolved issues while maintaining reasonable pipeline stability.";
+                } else if (gameState.score >= 50) {
+                    performanceRating = "Junior DevOps";
+                    performanceMessage = "Adequate debugging skills. You fixed some issues but need to improve accuracy and speed.";
+                } else {
+                    performanceRating = "Learning DevOps";
+                    performanceMessage = "Debugging skills need improvement. Focus on identifying issues faster while preserving tests.";
+                }
+            } else {
+                gameResultElement.textContent = "Pipeline Failed";
+                performanceRating = "Needs Practice";
+                performanceMessage = "Pipeline health critical. Review debugging strategies and test preservation techniques.";
+            }
+            
+            // Add detailed metrics
+            const detailedMetrics = `
+                <div class="mt-3 text-left">
+                    <p class="text-xs theme-text mb-1">Issues Fixed: ${gameState.issuesFixed}</p>
+                    <p class="text-xs theme-text mb-1">Tests Preserved: ${gameState.issuesFixed - gameState.testsBroken}</p>
+                    <p class="text-xs theme-text">Debugging Efficiency: ${efficiency.toFixed(1)}%</p>
+                </div>
+            `;
+            
+            performanceTextElement.innerHTML = `
+                <span class="font-bold gradient-text">${performanceRating}</span><br>
+                ${performanceMessage}
+                ${detailedMetrics}
+            `;
+        }
+
+        function resetGame() {
+            gameState.gameActive = false;
+            clearInterval(gameState.gameInterval);
+            clearInterval(gameState.timeInterval);
+            
+            startGame();
+        }
+
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add animation classes to cards
+            document.querySelectorAll('.card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Handle form submission
         const contactForm = document.querySelector('form');
         if (contactForm) {
             contactForm.addEventListener('submit', async (e) => {
@@ -1627,21 +2083,13 @@
             });
         }
 
-        // ========== INITIALIZE EVERYTHING ==========
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add intersection observer for animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in-up');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            // Observe elements
-            document.querySelectorAll('.card, .timeline-item').forEach(el => {
-                observer.observe(el);
-            });
+        // Auto theme detection for 'auto' theme
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        prefersDarkScheme.addEventListener('change', (e) => {
+            const currentTheme = localStorage.getItem('portfolio-theme');
+            if (currentTheme === 'auto') {
+                htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
         });
     </script>
 </body>
