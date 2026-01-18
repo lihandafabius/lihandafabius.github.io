@@ -269,68 +269,7 @@
             border: 2px solid var(--border);
         }
 
-
-        /* Game Styles */
-        .game-cell {
-            aspect-ratio: 1;
-            background: var(--card-bg);
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .game-cell:hover {
-            transform: scale(1.05);
-            border-color: var(--accent);
-        }
-
-        .game-cell.locked {
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            color: white;
-        }
-
-        .game-cell.threat {
-            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
-            color: white;
-            animation: pulse 1.5s infinite;
-        }
-
-        .game-cell.critical {
-            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
-            color: white;
-            animation: pulse 0.8s infinite;
-        }
-
-        .game-cell.success {
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .game-notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: var(--card-bg);
-            color: var(--text);
-            padding: 15px 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
-        }
-
-        .game-notification.show {
-            transform: translateX(0);
-        }
-
+ 
         /* Modal Styles */
          .modal-overlay {
             position: fixed;
@@ -394,21 +333,6 @@
         .file-icon {
             font-size: 4rem;
             margin-bottom: 1rem;
-        }
-
-        /* Game animations */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .sparkle {
-            animation: sparkle 2s infinite;
         }
 
         /* Custom scrollbar */
@@ -604,7 +528,6 @@
                     <a href="#experience" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Experience</a>
                     <a href="#projects" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Projects</a>
                     <a href="#skills" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Skills</a>
-                    <a href="#game" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">DevOps Game</a>
                     <a href="#contact" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Contact</a>
                 </div>
                 
@@ -633,7 +556,6 @@
             <a href="#experience" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Experience</a>
             <a href="#projects" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Projects</a>
             <a href="#skills" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Skills</a>
-            <a href="#game" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">DevOps Game</a>
             <a href="#contact" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Contact</a>
         </div>
     </div>
@@ -779,173 +701,6 @@
         </div>
     </section>
 
-    <!-- DevOps & Data Science Game Section -->
-    <section id="game" class="py-20 theme-bg-primary">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-4 text-center">DevOps Pipeline Challenge</h2>
-            <p class="text-lg theme-text text-center mb-12 max-w-3xl mx-auto">
-                Test your DevOps skills! Fix the broken CI/CD pipeline by identifying issues and implementing solutions.
-            </p>
-            
-            <div class="card overflow-hidden max-w-4xl mx-auto">
-                <!-- Game Intro Screen -->
-                <div id="gameIntro" class="p-8 text-center">
-                    <div class="mb-6">
-                        <i class="fas fa-code-branch text-5xl gradient-text mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2">CI/CD Pipeline Debugging</h3>
-                        <p class="theme-text">
-                            A production pipeline has broken! Your task is to identify and fix issues before deployment deadline.
-                        </p>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="theme-bg-secondary p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center mr-3">
-                                    <i class="fas fa-bug text-red-500"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-medium">Pipeline Issues</p>
-                                    <p class="text-sm theme-text">Find and fix bugs</p>
-                                </div>
-                            </div>
-                            <p class="text-sm theme-text text-left">Click on red cells to identify and fix pipeline issues.</p>
-                        </div>
-                        <div class="theme-bg-secondary p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center mr-3">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-medium">Tests</p>
-                                    <p class="text-sm theme-text">Run unit tests</p>
-                                </div>
-                            </div>
-                            <p class="text-sm theme-text text-left">Green cells represent successful tests - preserve them!</p>
-                        </div>
-                        <div class="theme-bg-secondary p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center mr-3">
-                                    <i class="fas fa-bolt text-blue-500"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="font-medium">Deploy</p>
-                                    <p class="text-sm theme-text">Critical stages</p>
-                                </div>
-                            </div>
-                            <p class="text-sm theme-text text-left">Blue cells are critical deployment stages - handle with care!</p>
-                        </div>
-                    </div>
-                    
-                    <div class="theme-bg-secondary p-4 rounded-lg mb-6">
-                        <h4 class="font-bold mb-2">Game Mechanics</h4>
-                        <ul class="text-sm theme-text text-left grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <li class="flex items-center"><i class="fas fa-clock gradient-text mr-2"></i> 45-second time limit</li>
-                            <li class="flex items-center"><i class="fas fa-heart gradient-text mr-2"></i> 3 deployment failures allowed</li>
-                            <li class="flex items-center"><i class="fas fa-plus-circle gradient-text mr-2"></i> +15 points per bug fixed</li>
-                            <li class="flex items-center"><i class="fas fa-minus-circle gradient-text mr-2"></i> -10 points per test broken</li>
-                        </ul>
-                    </div>
-                    
-                    <button id="startGame" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-colors duration-300 shadow-md">
-                        Start Pipeline Debugging
-                    </button>
-                </div>
-                
-                <!-- Game Screen -->
-                <div id="gameScreen" class="hidden p-6">
-                    <!-- Game Stats -->
-                    <div class="flex justify-between mb-6 theme-bg-secondary p-4 rounded-lg">
-                        <div class="text-center flex-1">
-                            <p class="text-sm theme-text">Deployment Score</p>
-                            <p id="score" class="text-2xl font-bold gradient-text">0</p>
-                        </div>
-                        <div class="text-center flex-1 border-l border-r theme-border">
-                            <p class="text-sm theme-text">Pipeline Health</p>
-                            <p id="lives" class="text-2xl font-bold gradient-text">3</p>
-                        </div>
-                        <div class="text-center flex-1">
-                            <p class="text-sm theme-text">Time Remaining</p>
-                            <p id="time" class="text-2xl font-bold gradient-text">45s</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Pipeline Visualization -->
-                    <div class="mb-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="text-lg font-semibold">Pipeline Stages</h4>
-                            <div class="text-sm theme-text">
-                                <span class="inline-flex items-center mr-3"><span class="w-3 h-3 bg-red-500 rounded-full mr-1"></span> Issue</span>
-                                <span class="inline-flex items-center mr-3"><span class="w-3 h-3 bg-green-500 rounded-full mr-1"></span> Test</span>
-                                <span class="inline-flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-1"></span> Deploy</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Game Board -->
-                        <div class="grid grid-cols-4 md:grid-cols-8 gap-3 mb-6 theme-bg-primary p-4 rounded-lg border theme-border min-h-[200px]">
-                            <!-- Game cells will be generated by JavaScript -->
-                            <div class="flex items-center justify-center theme-text">
-                                <p>Initializing pipeline...</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Game Controls -->
-                    <div class="text-center theme-bg-secondary p-4 rounded-lg">
-                        <button id="resetGame" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-colors duration-300 mr-4 shadow">
-                            Restart Pipeline
-                        </button>
-                        <button id="endGame" class="border-2 theme-border theme-text px-6 py-2 rounded-lg font-medium hover:gradient-bg hover:text-white transition-colors duration-300 shadow">
-                            Abort Deployment
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Game Over Screen -->
-                <div id="gameOver" class="hidden p-8 text-center">
-                    <div class="mb-6">
-                        <i class="fas fa-chart-line text-5xl gradient-text mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-2" id="gameResult">Deployment Complete</h3>
-                        <p class="theme-text">Your pipeline debugging performance:</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-6 max-w-md mx-auto">
-                        <div class="theme-bg-secondary p-4 rounded-lg">
-                            <p class="text-sm theme-text">Final Score</p>
-                            <p id="finalScore" class="text-2xl font-bold gradient-text">0</p>
-                        </div>
-                        <div class="theme-bg-secondary p-4 rounded-lg">
-                            <p class="text-sm theme-text">Issues Fixed</p>
-                            <p id="issuesFixed" class="text-2xl font-bold gradient-text">0</p>
-                        </div>
-                    </div>
-                    
-                    <div class="performance-assessment theme-bg-secondary p-4 rounded-lg max-w-md mx-auto mb-6">
-                        <h4 class="font-bold mb-2">Performance Assessment</h4>
-                        <p id="performanceText" class="text-sm theme-text">Calculating your DevOps skills rating...</p>
-                    </div>
-                    
-                    <div class="flex justify-center space-x-4">
-                        <button id="playAgain" class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-colors duration-300 shadow">
-                            Run New Pipeline
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-center animate-fade-in-up">
-                <div class="card p-6 max-w-2xl mx-auto">
-                    <h4 class="text-xl font-bold mb-3">Real-World DevOps Skills</h4>
-                    <p class="theme-text">
-                        This simulation demonstrates real DevOps challenges: identifying pipeline issues, 
-                        managing deployment stages, and maintaining system stability. In production environments, 
-                        DevOps engineers use tools like Jenkins, GitLab CI, and monitoring systems to ensure 
-                        smooth deployments.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Expertise Section -->
     <section id="expertise" class="py-20 theme-bg-primary">
@@ -2099,6 +1854,227 @@
                 htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
             }
         });
+        
+        // Visitor Ticketing System
+        const ticketModal = document.getElementById('ticketModal');
+        const closeTicketModal = document.getElementById('closeTicketModal');
+        const ticketNumberElement = document.getElementById('ticketNumber');
+        const visitDateElement = document.getElementById('visitDate');
+        const visitTimeElement = document.getElementById('visitTime');
+        const visitorCountElement = document.getElementById('visitorCount');
+        
+        // Generate unique ticket number
+        function generateTicketNumber() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 1000);
+            return `T${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
+        }
+        
+        // Format date and time
+        function getFormattedDateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            const time = now.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            return { date, time };
+        }
+        
+        // Show ticket modal
+        function showTicketModal() {
+            // Generate ticket
+            const ticketNumber = generateTicketNumber();
+            const { date, time } = getFormattedDateTime();
+            
+            // Update elements
+            ticketNumberElement.textContent = ticketNumber;
+            visitDateElement.textContent = date;
+            visitTimeElement.textContent = time;
+            
+            // Show modal
+            setTimeout(() => {
+                ticketModal.classList.add('active');
+            }, 1500); // Show after 1.5 seconds
+            
+            // Update visitor count
+            updateVisitorCount();
+            
+            // Log visit to localStorage
+            logVisit(ticketNumber);
+        }
+        
+        // Update visitor count
+        function updateVisitorCount() {
+            let count = localStorage.getItem('portfolioVisitorCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('portfolioVisitorCount', count);
+            visitorCountElement.textContent = count.toLocaleString();
+        }
+        
+        // Log visit to localStorage
+        function logVisit(ticketNumber) {
+            const visitLog = JSON.parse(localStorage.getItem('portfolioVisitLog') || '[]');
+            const visit = {
+                ticketNumber,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer
+            };
+            
+            visitLog.push(visit);
+            
+            // Keep only last 100 visits
+            if (visitLog.length > 100) {
+                visitLog.shift();
+            }
+            
+            localStorage.setItem('portfolioVisitLog', JSON.stringify(visitLog));
+        }
+        
+        // Download ticket as text file
+        function downloadTicket() {
+            const ticketContent = `
+                ====================================
+                VISITOR TICKET - FABIUS LIHANDA PORTFOLIO
+                ====================================
+                
+                Ticket Number: ${ticketNumberElement.textContent}
+                Visit Date: ${visitDateElement.textContent}
+                Visit Time: ${visitTimeElement.textContent}
+                
+                Thank you for visiting my portfolio!
+                
+                Portfolio: https://yourportfolio.com
+                LinkedIn: https://linkedin.com/in/fabius-lihanda
+                Email: fabiuslihandaachevi@gmail.com
+                
+                Message:
+                "Thank you for visiting my portfolio! I appreciate your 
+                interest in my DevOps and Data Science work. Feel free 
+                to explore my projects and get in touch if you'd like 
+                to collaborate."
+                
+                ====================================
+                Generated: ${new Date().toLocaleString()}
+            `;
+            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Portfolio_Ticket_${ticketNumberElement.textContent}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Close ticket modal
+        closeTicketModal.addEventListener('click', () => {
+            ticketModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        ticketModal.addEventListener('click', (e) => {
+            if (e.target === ticketModal) {
+                ticketModal.classList.remove('active');
+            }
+        });
+        
+        // Initialize visitor count on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const count = localStorage.getItem('portfolioVisitorCount') || 1;
+            visitorCountElement.textContent = count;
+            
+            // Show ticket modal if it's the first visit today
+            const lastVisit = localStorage.getItem('portfolioLastVisit');
+            const today = new Date().toDateString();
+            
+            if (lastVisit !== today) {
+                showTicketModal();
+                localStorage.setItem('portfolioLastVisit', today);
+            }
+        });
     </script>
+    <!-- Visitor Ticket Modal -->
+<div id="ticketModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold">Welcome Visitor!</h3>
+            <button id="closeTicketModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="text-center mb-6">
+            <div class="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-ticket-alt text-3xl text-white"></i>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Welcome Ticket Generated!</h4>
+            <p class="theme-text mb-3">Thank you for visiting my portfolio!</p>
+        </div>
+
+        <div class="theme-bg-secondary rounded-lg p-6 mb-6">
+            <div class="text-center mb-4">
+                <div class="text-2xl font-bold gradient-text mb-2">Ticket #<span id="ticketNumber">00000</span></div>
+                <p class="text-sm theme-text">Your visitor ticket has been logged</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="text-center">
+                    <div class="text-sm theme-text">Visit Date</div>
+                    <div class="font-medium" id="visitDate">Loading...</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-sm theme-text">Visit Time</div>
+                    <div class="font-medium" id="visitTime">Loading...</div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="text-sm theme-text mb-2">Visitor Message:</div>
+                <p class="italic theme-text p-3 theme-bg-primary rounded-lg">
+                    "Thank you for visiting my portfolio! I appreciate your interest in my DevOps and Data Science work. 
+                    Feel free to explore my projects and get in touch if you'd like to collaborate."
+                </p>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h5 class="font-semibold mb-3">What would you like to do next?</h5>
+            <div class="space-y-3">
+                <button class="w-full theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors flex items-center justify-center" onclick="window.location.href='#projects'">
+                    <i class="fas fa-project-diagram mr-2"></i> View Projects
+                </button>
+                <button class="w-full theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors flex items-center justify-center" onclick="window.location.href='#contact'">
+                    <i class="fas fa-envelope mr-2"></i> Contact Me
+                </button>
+                <button class="w-full border-2 theme-border theme-text py-3 rounded-lg font-medium hover:gradient-bg hover:text-white transition-colors flex items-center justify-center" onclick="downloadTicket()">
+                    <i class="fas fa-download mr-2"></i> Download Ticket
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center theme-text text-sm">
+            <i class="fas fa-clock mr-1"></i> This visit has been logged in my analytics
+        </div>
+    </div>
+</div>
+
+<!-- Visitor Counter -->
+<div class="fixed bottom-4 left-4 z-40">
+    <div class="theme-bg-secondary theme-border border rounded-lg px-3 py-2 shadow-lg">
+        <div class="flex items-center">
+            <i class="fas fa-users gradient-text mr-2"></i>
+            <span class="text-sm font-medium">Visitors: <span id="visitorCount">1</span></span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
