@@ -337,13 +337,16 @@
             backdrop-filter: blur(5px);
             z-index: 100;
             display: none;
+            align-items: center; /* Added for vertical centering */
+            justify-content: center; /* Added for horizontal centering */
+            padding: 20px; /* Added padding for mobile */
         }
-
+        
         .modal-overlay.active {
-            display: flex;
+            display: flex; /* Changed from display: flex to keep centering */
             animation: fadeIn 0.3s ease;
         }
-
+        
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -353,6 +356,7 @@
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin: auto; /* Added for extra centering */
         }
 
         .download-option {
