@@ -217,8 +217,7 @@
             width: 100%;
         }
 
-        
-         /* Theme selector */
+        /* Theme selector */
         .theme-selector {
             position: relative;
             display: inline-flex;
@@ -269,9 +268,14 @@
             border: 2px solid var(--border);
         }
 
- 
+        /* Fixed: AUTO theme preview */
+        .theme-option[data-theme="auto"] .theme-preview {
+            background: linear-gradient(135deg, #f8fafc 50%, #0a0a0a 50%);
+            position: relative;
+        }
+
         /* Modal Styles */
-         .modal-overlay {
+        .modal-overlay {
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.7);
@@ -299,6 +303,11 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             animation: modalFadeIn 0.3s ease;
             margin: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .download-option {
@@ -475,6 +484,104 @@
         .skill-category-analysis {
             border-left-color: var(--accent-teal);
         }
+
+        /* AWS Console Styles */
+        .aws-console-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .aws-console-header {
+            background: var(--secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            font-weight: 600;
+        }
+
+        .aws-console-content {
+            padding: 16px;
+        }
+
+        .aws-status-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .aws-status-healthy {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+        }
+
+        .aws-status-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+        }
+
+        .aws-status-critical {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+
+        .aws-metric-card {
+            background: var(--secondary);
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .visitor-badge {
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .leaderboard-item:hover {
+            background-color: var(--secondary);
+        }
+
+        .leaderboard-rank {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .leaderboard-rank-1 {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .leaderboard-rank-2 {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+
+        .leaderboard-rank-3 {
+            background: linear-gradient(135deg, #92400e 0%, #78350f 100%);
+        }
     </style>
 </head>
 <body class="font-sans theme-bg-primary theme-text antialiased animate-theme-transition">
@@ -509,12 +616,11 @@
                 Teal
             </div>
             <div class="theme-option" data-theme="auto">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #f8fafc 50%, #0a0a0a 50%);"></div>
+                <div class="theme-preview"></div>
                 Auto
             </div>
         </div>
     </div>
-
 
     <!-- Navigation -->
     <nav class="fixed w-full z-40 theme-bg-primary/80 backdrop-blur-md border-b theme-border">
@@ -558,11 +664,6 @@
             <a href="#skills" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Skills</a>
             <a href="#contact" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Contact</a>
         </div>
-    </div>
-
-    <!-- Game Notification -->
-    <div id="gameNotification" class="game-notification">
-        <div id="notificationContent"></div>
     </div>
 
     <!-- Hero Section -->
@@ -628,6 +729,176 @@
             <a href="#about" class="theme-text hover:theme-accent transition-colors">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </a>
+        </div>
+    </section>
+
+    <!-- AWS Console Section with Visitor System -->
+    <section id="console" class="py-12 theme-bg-primary">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-heartbeat text-red-500 mr-2"></i>
+                            <span>Service Health</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm theme-text">All DevOps services operational</span>
+                            <span class="aws-status-indicator aws-status-healthy">
+                                <i class="fas fa-check-circle mr-1"></i> Healthy
+                            </span>
+                        </div>
+                        <div class="text-xs theme-text">Last updated: <span id="healthUpdateTime">2 min ago</span></div>
+                    </div>
+                </div>
+
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-server mr-2"></i>
+                            <span>Service Instance Details</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <div class="text-xs theme-text">Instance ID</div>
+                                <div class="font-mono text-xs">i-0fabius-devops-2025</div>
+                            </div>
+                            <div>
+                                <div class="text-xs theme-text">Instance Type</div>
+                                <div class="font-mono text-xs">devops.data.science</div>
+                            </div>
+                            <div>
+                                <div class="text-xs theme-text">Launch Time</div>
+                                <div class="font-mono text-xs">2023-01-15</div>
+                            </div>
+                            <div>
+                                <div class="text-xs theme-text">Status</div>
+                                <div class="font-mono text-xs aws-status-healthy">Running</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            <span>CloudWatch Metrics</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="aws-metric-card">
+                                <div class="text-2xl font-bold gradient-text">99.9%</div>
+                                <div class="text-xs theme-text">System Uptime</div>
+                            </div>
+                            <div class="aws-metric-card">
+                                <div class="text-2xl font-bold gradient-text" id="totalVisitors">1,533</div>
+                                <div class="text-xs theme-text">Total Visitors</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visitor System -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="aws-console-card md:col-span-2">
+                    <div class="aws-console-header">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>Console Actions</span>
+                            </div>
+                            <div class="visitor-badge" id="visitorBadge">
+                                You're visitor #<span id="currentVisitorNumber">1533</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="text-center mb-6">
+                            <div class="text-3xl mb-2">👋 Welcome! Thanks for visiting 🎉</div>
+                            <div class="text-xl font-bold gradient-text mb-4">#<span id="dynamicVisitorNumber">1533</span></div>
+                            <p class="theme-text mb-6">
+                                Your visit has been logged in my analytics dashboard. Connect with me on LinkedIn to join the visitor leaderboard!
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-3 justify-center mb-6">
+                                <button onclick="window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank')" 
+                                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                                    <i class="fab fa-linkedin mr-2"></i> Connect on LinkedIn
+                                </button>
+                                <button onclick="downloadVisitorTicket()" 
+                                        class="px-4 py-2 theme-border border rounded-lg hover:gradient-bg hover:text-white transition-colors flex items-center">
+                                    <i class="fas fa-download mr-2"></i> Download Visitor Ticket
+                                </button>
+                            </div>
+
+                            <div class="text-sm theme-text mb-4">
+                                <i class="fas fa-bullseye mr-1"></i> Next milestone: <span id="nextMilestone">1550</span> visitors
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>Top Visitors This Month</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div id="visitorLeaderboard">
+                            <div class="leaderboard-item">
+                                <div class="leaderboard-rank leaderboard-rank-1">1</div>
+                                <div class="flex-1">
+                                    <div class="font-medium">DevOps_Master</div>
+                                    <div class="text-xs theme-text">San Francisco, US • 23 visits</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="leaderboard-rank leaderboard-rank-2">2</div>
+                                <div class="flex-1">
+                                    <div class="font-medium">CloudArchitect</div>
+                                    <div class="text-xs theme-text">London, UK • 19 visits</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="leaderboard-rank leaderboard-rank-3">3</div>
+                                <div class="flex-1">
+                                    <div class="font-medium">K8s_Ninja</div>
+                                    <div class="text-xs theme-text">Toronto, CA • 17 visits</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="leaderboard-rank">4</div>
+                                <div class="flex-1">
+                                    <div class="font-medium">TerraformGuru</div>
+                                    <div class="text-xs theme-text">Berlin, DE • 15 visits</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="leaderboard-rank">5</div>
+                                <div class="flex-1">
+                                    <div class="font-medium">AWSExpert</div>
+                                    <div class="text-xs theme-text">Sydney, AU • 12 visits</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button onclick="window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank')" 
+                                    class="text-sm gradient-text hover:underline flex items-center justify-center w-full">
+                                <i class="fab fa-linkedin mr-1"></i> Connect to join leaderboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -700,7 +971,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Expertise Section -->
     <section id="expertise" class="py-20 theme-bg-primary">
@@ -1337,7 +1607,7 @@
     </button>
 
     <script>
-        // Theme Management
+        // Theme Management - FIXED AUTO THEME DETECTION
         const themeToggle = document.getElementById('themeToggle');
         const themeDropdown = document.getElementById('themeDropdown');
         const themeOptions = document.querySelectorAll('.theme-option');
@@ -1347,6 +1617,11 @@
         const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
         htmlElement.setAttribute('data-theme', savedTheme);
         updateActiveTheme(savedTheme);
+
+        // Apply auto theme immediately if selected
+        if (savedTheme === 'auto') {
+            applyAutoTheme();
+        }
 
         // Theme toggle
         themeToggle.addEventListener('click', () => {
@@ -1366,8 +1641,7 @@
                 const theme = option.dataset.theme;
                 
                 if (theme === 'auto') {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    htmlElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                    applyAutoTheme();
                 } else {
                     htmlElement.setAttribute('data-theme', theme);
                 }
@@ -1378,6 +1652,12 @@
             });
         });
 
+        // Apply auto theme based on system preference
+        function applyAutoTheme() {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            htmlElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        }
+
         // Update active theme in dropdown
         function updateActiveTheme(theme) {
             themeOptions.forEach(option => {
@@ -1387,6 +1667,15 @@
                 }
             });
         }
+
+        // Listen for system theme changes when auto theme is selected
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        prefersDarkScheme.addEventListener('change', (e) => {
+            const currentTheme = localStorage.getItem('portfolio-theme');
+            if (currentTheme === 'auto') {
+                htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
 
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1442,6 +1731,8 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
+                // Initialize visitor system after page loads
+                initializeVisitorSystem();
             }, 1000);
         });
 
@@ -1534,279 +1825,6 @@
             }
         });
 
-        // Game functionality
-        const gameIntro = document.getElementById('gameIntro');
-        const gameScreen = document.getElementById('gameScreen');
-        const gameOver = document.getElementById('gameOver');
-        const startGameBtn = document.getElementById('startGame');
-        const resetGameBtn = document.getElementById('resetGame');
-        const endGameBtn = document.getElementById('endGame');
-        const playAgainBtn = document.getElementById('playAgain');
-        const gameBoard = gameScreen.querySelector('.grid');
-        const scoreElement = document.getElementById('score');
-        const livesElement = document.getElementById('lives');
-        const timeElement = document.getElementById('time');
-        const finalScoreElement = document.getElementById('finalScore');
-        const issuesFixedElement = document.getElementById('issuesFixed');
-        const gameResultElement = document.getElementById('gameResult');
-        const performanceTextElement = document.getElementById('performanceText');
-        const gameNotification = document.getElementById('gameNotification');
-        const notificationContent = document.getElementById('notificationContent');
-
-        let gameState = {
-            score: 0,
-            lives: 3,
-            timeLeft: 45,
-            issuesFixed: 0,
-            testsBroken: 0,
-            gameActive: false,
-            gameInterval: null,
-            timeInterval: null,
-            cellCount: 16,
-            selectedOption: null
-        };
-
-        // Show notification function
-        function showNotification(message, type = 'info') {
-            notificationContent.textContent = message;
-            gameNotification.classList.add('show');
-            
-            setTimeout(() => {
-                gameNotification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Start game
-        startGameBtn.addEventListener('click', startGame);
-        resetGameBtn.addEventListener('click', resetGame);
-        endGameBtn.addEventListener('click', () => endGame(false));
-        playAgainBtn.addEventListener('click', startGame);
-
-        function startGame() {
-            // Reset game state
-            gameState = {
-                score: 0,
-                lives: 3,
-                timeLeft: 45,
-                issuesFixed: 0,
-                testsBroken: 0,
-                gameActive: true,
-                cellCount: 16
-            };
-
-            // Update UI
-            scoreElement.textContent = gameState.score;
-            livesElement.textContent = gameState.lives;
-            timeElement.textContent = `${gameState.timeLeft}s`;
-
-            // Show game screen
-            gameIntro.classList.add('hidden');
-            gameOver.classList.add('hidden');
-            gameScreen.classList.remove('hidden');
-
-            // Create game board
-            createBoard();
-
-            // Start game loop
-            gameState.gameInterval = setInterval(gameLoop, 1500);
-            
-            // Start timer
-            gameState.timeInterval = setInterval(() => {
-                gameState.timeLeft--;
-                timeElement.textContent = `${gameState.timeLeft}s`;
-                
-                if (gameState.timeLeft <= 0) {
-                    endGame(true);
-                }
-            }, 1000);
-
-            showNotification('Pipeline debugging started! Click on red issues to fix them.');
-        }
-
-        function createBoard() {
-            gameBoard.innerHTML = '';
-            for (let i = 0; i < gameState.cellCount; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'game-cell';
-                cell.dataset.index = i;
-                cell.addEventListener('click', handleCellClick);
-                gameBoard.appendChild(cell);
-            }
-        }
-
-        function handleCellClick(e) {
-            if (!gameState.gameActive) return;
-            
-            const cell = e.currentTarget;
-            
-            if (cell.classList.contains('threat') || cell.classList.contains('critical')) {
-                // Fixed an issue
-                gameState.score += 15;
-                gameState.issuesFixed++;
-                scoreElement.textContent = gameState.score;
-                
-                cell.innerHTML = '<i class="fas fa-check"></i>';
-                cell.classList.remove('threat', 'critical');
-                cell.classList.add('success');
-                
-                showNotification('Issue fixed! +15 points');
-            } else if (cell.classList.contains('locked')) {
-                // Broke a test
-                gameState.score -= 10;
-                gameState.testsBroken++;
-                gameState.lives--;
-                livesElement.textContent = gameState.lives;
-                
-                cell.innerHTML = '<i class="fas fa-times"></i>';
-                cell.classList.remove('locked');
-                cell.classList.add('threat');
-                
-                showNotification('Test broken! -10 points and -1 pipeline health', 'error');
-                
-                if (gameState.lives <= 0) {
-                    endGame(false);
-                }
-            }
-        }
-
-        function gameLoop() {
-            if (!gameState.gameActive) return;
-            
-            // Clear previous items
-            const cells = document.querySelectorAll('.game-cell');
-            cells.forEach(cell => {
-                cell.classList.remove('threat', 'critical', 'locked', 'success');
-                cell.innerHTML = '';
-            });
-            
-            // Add new issues and tests
-            const issueCount = Math.floor(Math.random() * 4) + 2; // 2-5 issues
-            const testCount = Math.floor(Math.random() * 3) + 2; // 2-4 tests
-            
-            // Add issues
-            for (let i = 0; i < issueCount; i++) {
-                let index;
-                do {
-                    index = Math.floor(Math.random() * gameState.cellCount);
-                } while (cells[index].classList.contains('threat') || 
-                         cells[index].classList.contains('critical') || 
-                         cells[index].classList.contains('locked'));
-                
-                const isCritical = Math.random() > 0.7;
-                cells[index].innerHTML = isCritical ? 
-                    '<i class="fas fa-exclamation-triangle"></i>' : 
-                    '<i class="fas fa-bug"></i>';
-                cells[index].classList.add(isCritical ? 'critical' : 'threat');
-            }
-            
-            // Add tests
-            for (let i = 0; i < testCount; i++) {
-                let index;
-                do {
-                    index = Math.floor(Math.random() * gameState.cellCount);
-                } while (cells[index].classList.contains('threat') || 
-                         cells[index].classList.contains('critical') || 
-                         cells[index].classList.contains('locked'));
-                
-                cells[index].innerHTML = '<i class="fas fa-check-circle"></i>';
-                cells[index].classList.add('locked');
-            }
-            
-            // Remove issues after 2 seconds if not clicked
-            setTimeout(() => {
-                cells.forEach(cell => {
-                    if (cell.classList.contains('threat') || cell.classList.contains('critical')) {
-                        // Issue not fixed in time - lose a life
-                        gameState.lives--;
-                        livesElement.textContent = gameState.lives;
-                        cell.classList.remove('threat', 'critical');
-                        cell.innerHTML = '';
-                        
-                        if (gameState.lives <= 0) {
-                            endGame(false);
-                        }
-                    }
-                });
-            }, 2000);
-        }
-
-        function endGame(isTimeUp) {
-            gameState.gameActive = false;
-            clearInterval(gameState.gameInterval);
-            clearInterval(gameState.timeInterval);
-
-            // Update final score displays
-            finalScoreElement.textContent = gameState.score;
-            issuesFixedElement.textContent = gameState.issuesFixed;
-
-            // Calculate performance rating
-            calculatePerformance(isTimeUp);
-
-            // Show game over screen
-            gameScreen.classList.add('hidden');
-            gameOver.classList.remove('hidden');
-        }
-
-        function calculatePerformance(isTimeUp) {
-            const efficiency = gameState.issuesFixed > 0 ? 
-                (gameState.score / (gameState.issuesFixed * 15)) * 100 : 0;
-            
-            let performanceRating, performanceMessage;
-            
-            if (isTimeUp) {
-                gameResultElement.textContent = "Pipeline Debugging Complete";
-                
-                if (gameState.score >= 150) {
-                    performanceRating = "DevOps Expert";
-                    performanceMessage = "Outstanding debugging skills! You maintained excellent pipeline health while fixing multiple issues efficiently.";
-                } else if (gameState.score >= 90) {
-                    performanceRating = "Senior DevOps";
-                    performanceMessage = "Solid debugging performance. You effectively identified and resolved issues while maintaining reasonable pipeline stability.";
-                } else if (gameState.score >= 50) {
-                    performanceRating = "Junior DevOps";
-                    performanceMessage = "Adequate debugging skills. You fixed some issues but need to improve accuracy and speed.";
-                } else {
-                    performanceRating = "Learning DevOps";
-                    performanceMessage = "Debugging skills need improvement. Focus on identifying issues faster while preserving tests.";
-                }
-            } else {
-                gameResultElement.textContent = "Pipeline Failed";
-                performanceRating = "Needs Practice";
-                performanceMessage = "Pipeline health critical. Review debugging strategies and test preservation techniques.";
-            }
-            
-            // Add detailed metrics
-            const detailedMetrics = `
-                <div class="mt-3 text-left">
-                    <p class="text-xs theme-text mb-1">Issues Fixed: ${gameState.issuesFixed}</p>
-                    <p class="text-xs theme-text mb-1">Tests Preserved: ${gameState.issuesFixed - gameState.testsBroken}</p>
-                    <p class="text-xs theme-text">Debugging Efficiency: ${efficiency.toFixed(1)}%</p>
-                </div>
-            `;
-            
-            performanceTextElement.innerHTML = `
-                <span class="font-bold gradient-text">${performanceRating}</span><br>
-                ${performanceMessage}
-                ${detailedMetrics}
-            `;
-        }
-
-        function resetGame() {
-            gameState.gameActive = false;
-            clearInterval(gameState.gameInterval);
-            clearInterval(gameState.timeInterval);
-            
-            startGame();
-        }
-
-        // Initialize animations on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add animation classes to cards
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-
         // Handle form submission
         const contactForm = document.querySelector('form');
         if (contactForm) {
@@ -1846,235 +1864,202 @@
             });
         }
 
-        // Auto theme detection for 'auto' theme
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        prefersDarkScheme.addEventListener('change', (e) => {
-            const currentTheme = localStorage.getItem('portfolio-theme');
-            if (currentTheme === 'auto') {
-                htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        // Visitor Ticketing System - AWS Console Style
+        function initializeVisitorSystem() {
+            // Get or initialize visitor data
+            let visitorData = JSON.parse(localStorage.getItem('portfolioVisitors')) || {
+                totalVisits: 1533,
+                currentVisitorNumber: 1533,
+                lastVisit: null,
+                visitorHistory: []
+            };
+
+            // Check if this is a new visit today
+            const today = new Date().toDateString();
+            const lastVisitDate = visitorData.lastVisit ? new Date(visitorData.lastVisit).toDateString() : null;
+            
+            if (lastVisitDate !== today) {
+                // New visit - increment counters
+                visitorData.totalVisits++;
+                visitorData.currentVisitorNumber = visitorData.totalVisits;
+                visitorData.lastVisit = new Date().toISOString();
+                
+                // Add to history (keep last 100)
+                visitorData.visitorHistory.unshift({
+                    date: visitorData.lastVisit,
+                    visitorNumber: visitorData.currentVisitorNumber
+                });
+                
+                if (visitorData.visitorHistory.length > 100) {
+                    visitorData.visitorHistory.pop();
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('portfolioVisitors', JSON.stringify(visitorData));
+                
+                // Update UI immediately for new visitors
+                updateVisitorUI(visitorData);
+                
+                // Show subtle notification
+                showVisitorNotification(visitorData.currentVisitorNumber);
+            } else {
+                // Return visitor - update UI with existing data
+                updateVisitorUI(visitorData);
             }
-        });
-        
-        // Visitor Ticketing System
-        const ticketModal = document.getElementById('ticketModal');
-        const closeTicketModal = document.getElementById('closeTicketModal');
-        const ticketNumberElement = document.getElementById('ticketNumber');
-        const visitDateElement = document.getElementById('visitDate');
-        const visitTimeElement = document.getElementById('visitTime');
-        const visitorCountElement = document.getElementById('visitorCount');
-        
-        // Generate unique ticket number
-        function generateTicketNumber() {
-            const timestamp = Date.now();
-            const random = Math.floor(Math.random() * 1000);
-            return `T${timestamp.toString().slice(-6)}${random.toString().padStart(3, '0')}`;
+
+            // Update health check time
+            updateHealthCheckTime();
         }
-        
-        // Format date and time
-        function getFormattedDateTime() {
-            const now = new Date();
-            const date = now.toLocaleDateString('en-US', { 
+
+        function updateVisitorUI(data) {
+            // Update all visitor number displays
+            document.getElementById('totalVisitors').textContent = data.totalVisits.toLocaleString();
+            document.getElementById('currentVisitorNumber').textContent = data.currentVisitorNumber;
+            document.getElementById('dynamicVisitorNumber').textContent = data.currentVisitorNumber;
+            
+            // Calculate next milestone
+            const nextMilestone = Math.ceil(data.totalVisits / 50) * 50;
+            document.getElementById('nextMilestone').textContent = nextMilestone;
+            
+            // Update leaderboard with recent visitors
+            updateLeaderboard(data);
+        }
+
+        function updateHealthCheckTime() {
+            const times = ['2 min ago', '5 min ago', '10 min ago', '15 min ago'];
+            const randomTime = times[Math.floor(Math.random() * times.length)];
+            document.getElementById('healthUpdateTime').textContent = randomTime;
+            
+            // Update periodically
+            setInterval(() => {
+                const newTime = times[Math.floor(Math.random() * times.length)];
+                document.getElementById('healthUpdateTime').textContent = newTime;
+            }, 30000); // Every 30 seconds
+        }
+
+        function updateLeaderboard(data) {
+            // In a real app, you'd fetch this from a backend
+            // For now, we'll simulate with localStorage data
+            const leaderboard = document.getElementById('visitorLeaderboard');
+            
+            // Create simulated leaderboard data
+            const leaderboardData = [
+                { name: 'DevOps_Master', location: 'San Francisco, US', visits: 23, rank: 1 },
+                { name: 'CloudArchitect', location: 'London, UK', visits: 19, rank: 2 },
+                { name: 'K8s_Ninja', location: 'Toronto, CA', visits: 17, rank: 3 },
+                { name: 'TerraformGuru', location: 'Berlin, DE', visits: 15, rank: 4 },
+                { name: 'AWSExpert', location: 'Sydney, AU', visits: 12, rank: 5 }
+            ];
+            
+            // If we have real visitor data, add the current visitor
+            if (data.visitorHistory.length > 0) {
+                // Check if current visitor would make top 5
+                const currentVisits = data.visitorHistory.filter(v => 
+                    new Date(v.date).toDateString() === new Date().toDateString()
+                ).length;
+                
+                if (currentVisits > 5) { // Arbitrary threshold for demo
+                    leaderboardData.push({
+                        name: 'You!',
+                        location: 'Current Visitor',
+                        visits: currentVisits,
+                        rank: 6
+                    });
+                }
+            }
+            
+            // Update leaderboard HTML
+            leaderboard.innerHTML = leaderboardData.map(visitor => `
+                <div class="leaderboard-item">
+                    <div class="leaderboard-rank ${visitor.rank <= 3 ? `leaderboard-rank-${visitor.rank}` : ''}">
+                        ${visitor.rank}
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-medium">${visitor.name}</div>
+                        <div class="text-xs theme-text">${visitor.location} • ${visitor.visits} visits</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showVisitorNotification(visitorNumber) {
+            // Create a subtle notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50';
+            notification.innerHTML = `
+                <div class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
+                    <i class="fas fa-user-check mr-2"></i>
+                    <span>Welcome visitor #${visitorNumber}! Your visit has been logged.</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        function downloadVisitorTicket() {
+            const visitorData = JSON.parse(localStorage.getItem('portfolioVisitors')) || { currentVisitorNumber: 1533 };
+            const ticketNumber = visitorData.currentVisitorNumber;
+            const date = new Date().toLocaleDateString('en-US', { 
                 weekday: 'long', 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric' 
             });
-            const time = now.toLocaleTimeString('en-US', { 
+            const time = new Date().toLocaleTimeString('en-US', { 
                 hour: '2-digit', 
                 minute: '2-digit' 
             });
-            return { date, time };
-        }
-        
-        // Show ticket modal
-        function showTicketModal() {
-            // Generate ticket
-            const ticketNumber = generateTicketNumber();
-            const { date, time } = getFormattedDateTime();
             
-            // Update elements
-            ticketNumberElement.textContent = ticketNumber;
-            visitDateElement.textContent = date;
-            visitTimeElement.textContent = time;
-            
-            // Show modal
-            setTimeout(() => {
-                ticketModal.classList.add('active');
-            }, 1500); // Show after 1.5 seconds
-            
-            // Update visitor count
-            updateVisitorCount();
-            
-            // Log visit to localStorage
-            logVisit(ticketNumber);
-        }
-        
-        // Update visitor count
-        function updateVisitorCount() {
-            let count = localStorage.getItem('portfolioVisitorCount') || 0;
-            count = parseInt(count) + 1;
-            localStorage.setItem('portfolioVisitorCount', count);
-            visitorCountElement.textContent = count.toLocaleString();
-        }
-        
-        // Log visit to localStorage
-        function logVisit(ticketNumber) {
-            const visitLog = JSON.parse(localStorage.getItem('portfolioVisitLog') || '[]');
-            const visit = {
-                ticketNumber,
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                referrer: document.referrer
-            };
-            
-            visitLog.push(visit);
-            
-            // Keep only last 100 visits
-            if (visitLog.length > 100) {
-                visitLog.shift();
-            }
-            
-            localStorage.setItem('portfolioVisitLog', JSON.stringify(visitLog));
-        }
-        
-        // Download ticket as text file
-        function downloadTicket() {
             const ticketContent = `
-                ====================================
-                VISITOR TICKET - FABIUS LIHANDA PORTFOLIO
-                ====================================
-                
-                Ticket Number: ${ticketNumberElement.textContent}
-                Visit Date: ${visitDateElement.textContent}
-                Visit Time: ${visitTimeElement.textContent}
-                
-                Thank you for visiting my portfolio!
-                
-                Portfolio: https://yourportfolio.com
-                LinkedIn: https://linkedin.com/in/fabius-lihanda
-                Email: fabiuslihandaachevi@gmail.com
-                
-                Message:
-                "Thank you for visiting my portfolio! I appreciate your 
-                interest in my DevOps and Data Science work. Feel free 
-                to explore my projects and get in touch if you'd like 
-                to collaborate."
-                
-                ====================================
-                Generated: ${new Date().toLocaleString()}
+====================================
+VISITOR TICKET - FABIUS LIHANDA PORTFOLIO
+====================================
+
+Ticket Number: #${ticketNumber}
+Visit Date: ${date}
+Visit Time: ${time}
+
+Thank you for visiting my portfolio!
+
+Portfolio: https://your-portfolio-url.com
+LinkedIn: https://linkedin.com/in/fabius-lihanda
+Email: fabiuslihandaachevi@gmail.com
+
+Message:
+"Thank you for visiting my DevOps & Data Science portfolio! 
+I appreciate your interest in my work. Feel free to explore 
+my projects and get in touch if you'd like to collaborate."
+
+====================================
+Generated: ${new Date().toLocaleString()}
             `;
             
             const blob = new Blob([ticketContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Portfolio_Ticket_${ticketNumberElement.textContent}.txt`;
+            a.download = `Portfolio_Visitor_Ticket_#${ticketNumber}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            
+            // Show download confirmation
+            alert(`Visitor ticket #${ticketNumber} downloaded!`);
         }
-        
-        // Close ticket modal
-        closeTicketModal.addEventListener('click', () => {
-            ticketModal.classList.remove('active');
-        });
-        
-        // Close modal when clicking outside
-        ticketModal.addEventListener('click', (e) => {
-            if (e.target === ticketModal) {
-                ticketModal.classList.remove('active');
-            }
-        });
-        
-        // Initialize visitor count on load
+
+        // Initialize animations on load
         document.addEventListener('DOMContentLoaded', () => {
-            const count = localStorage.getItem('portfolioVisitorCount') || 1;
-            visitorCountElement.textContent = count;
-            
-            // Show ticket modal if it's the first visit today
-            const lastVisit = localStorage.getItem('portfolioLastVisit');
-            const today = new Date().toDateString();
-            
-            if (lastVisit !== today) {
-                showTicketModal();
-                localStorage.setItem('portfolioLastVisit', today);
-            }
+            // Add animation classes to cards
+            document.querySelectorAll('.card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
         });
     </script>
-    <!-- Visitor Ticket Modal -->
-<div id="ticketModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="flex justify-between items-center mb-6">
-            <h3 class="text-2xl font-bold">Welcome Visitor!</h3>
-            <button id="closeTicketModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <div class="text-center mb-6">
-            <div class="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-ticket-alt text-3xl text-white"></i>
-            </div>
-            <h4 class="text-xl font-semibold mb-2">Welcome Ticket Generated!</h4>
-            <p class="theme-text mb-3">Thank you for visiting my portfolio!</p>
-        </div>
-
-        <div class="theme-bg-secondary rounded-lg p-6 mb-6">
-            <div class="text-center mb-4">
-                <div class="text-2xl font-bold gradient-text mb-2">Ticket #<span id="ticketNumber">00000</span></div>
-                <p class="text-sm theme-text">Your visitor ticket has been logged</p>
-            </div>
-            
-            <div class="grid grid-cols-2 gap-4 mb-4">
-                <div class="text-center">
-                    <div class="text-sm theme-text">Visit Date</div>
-                    <div class="font-medium" id="visitDate">Loading...</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-sm theme-text">Visit Time</div>
-                    <div class="font-medium" id="visitTime">Loading...</div>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <div class="text-sm theme-text mb-2">Visitor Message:</div>
-                <p class="italic theme-text p-3 theme-bg-primary rounded-lg">
-                    "Thank you for visiting my portfolio! I appreciate your interest in my DevOps and Data Science work. 
-                    Feel free to explore my projects and get in touch if you'd like to collaborate."
-                </p>
-            </div>
-        </div>
-
-        <div class="mb-6">
-            <h5 class="font-semibold mb-3">What would you like to do next?</h5>
-            <div class="space-y-3">
-                <button class="w-full theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors flex items-center justify-center" onclick="window.location.href='#projects'">
-                    <i class="fas fa-project-diagram mr-2"></i> View Projects
-                </button>
-                <button class="w-full theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors flex items-center justify-center" onclick="window.location.href='#contact'">
-                    <i class="fas fa-envelope mr-2"></i> Contact Me
-                </button>
-                <button class="w-full border-2 theme-border theme-text py-3 rounded-lg font-medium hover:gradient-bg hover:text-white transition-colors flex items-center justify-center" onclick="downloadTicket()">
-                    <i class="fas fa-download mr-2"></i> Download Ticket
-                </button>
-            </div>
-        </div>
-
-        <div class="text-center theme-text text-sm">
-            <i class="fas fa-clock mr-1"></i> This visit has been logged in my analytics
-        </div>
-    </div>
-</div>
-
-<!-- Visitor Counter -->
-<div class="fixed bottom-4 left-4 z-40">
-    <div class="theme-bg-secondary theme-border border rounded-lg px-3 py-2 shadow-lg">
-        <div class="flex items-center">
-            <i class="fas fa-users gradient-text mr-2"></i>
-            <span class="text-sm font-medium">Visitors: <span id="visitorCount">1</span></span>
-        </div>
-    </div>
-</div>
 </body>
 </html>
