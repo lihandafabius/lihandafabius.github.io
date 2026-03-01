@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" data-theme="dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,32 +27,17 @@
     
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            light: '#f8fafc',
-                            dark: '#0a0a0a',
-                        },
-                        secondary: {
-                            light: '#e2e8f0',
-                            dark: '#1a1a1a',
-                        },
+                        primary: '#f8fafc',
+                        secondary: '#e2e8f0',
                         accent: {
                             blue: '#3b82f6',
                             purple: '#8b5cf6',
                             teal: '#14b8a6',
                             amber: '#f59e0b',
                         },
-                        text: {
-                            light: '#1e293b',
-                            dark: '#f8fafc',
-                        },
-                        light: {
-                            light: '#475569',
-                            dark: '#cbd5e1',
-                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -63,7 +48,6 @@
                         'slide-in-left': 'slideInLeft 0.6s ease-out',
                         'slide-in-right': 'slideInRight 0.6s ease-out',
                         'float': 'float 3s ease-in-out infinite',
-                        'theme-transition': 'themeTransition 0.3s ease',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -86,10 +70,6 @@
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-10px)' },
                         },
-                        themeTransition: {
-                            '0%': { opacity: '0.9' },
-                            '100%': { opacity: '1' },
-                        }
                     }
                 }
             }
@@ -97,7 +77,7 @@
     </script>
     
     <style>
-        /* Theme variables */
+        /* Light theme colors */
         :root {
             --primary: #f8fafc;
             --secondary: #e2e8f0;
@@ -108,41 +88,10 @@
             --border: #e2e8f0;
         }
 
-        [data-theme="dark"] {
-            --primary: #0a0a0a;
-            --secondary: #1a1a1a;
-            --background: #0a0a0a;
-            --text: #f8fafc;
-            --accent: #8b5cf6;
-            --card-bg: #1a1a1a;
-            --border: #2d2d2d;
-        }
-
-        [data-theme="blue"] {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --background: #0f172a;
-            --text: #f1f5f9;
-            --accent: #3b82f6;
-            --card-bg: #1e293b;
-            --border: #334155;
-        }
-
-        [data-theme="teal"] {
-            --primary: #134e4a;
-            --secondary: #0f766e;
-            --background: #134e4a;
-            --text: #f0fdfa;
-            --accent: #14b8a6;
-            --card-bg: #0f766e;
-            --border: #0d9488;
-        }
-
         /* Apply theme variables */
         body {
             background-color: var(--background);
             color: var(--text);
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .theme-bg-primary {
@@ -191,7 +140,7 @@
 
         .project-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .skill-bar {
@@ -217,68 +166,11 @@
             width: 100%;
         }
 
-        /* Theme selector */
-        .theme-selector {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .theme-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px;
-            min-width: 150px;
-            display: none;
-            z-index: 50;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .theme-dropdown.show {
-            display: block;
-        }
-
-        .theme-option {
-            display: flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .theme-option:hover {
-            background-color: var(--border);
-        }
-
-        .theme-option.active {
-            background-color: var(--accent);
-            color: white;
-        }
-
-        .theme-preview {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid var(--border);
-        }
-
-        /* Fixed: AUTO theme preview */
-        .theme-option[data-theme="auto"] .theme-preview {
-            background: linear-gradient(135deg, #f8fafc 50%, #0a0a0a 50%);
-            position: relative;
-        }
-
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
             z-index: 1000;
             display: none;
@@ -300,7 +192,7 @@
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             animation: modalFadeIn 0.3s ease;
             margin: auto;
         }
@@ -401,7 +293,7 @@
 
         .card:hover {
             border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         /* Badge styles */
@@ -466,23 +358,6 @@
         @keyframes chartAnimation {
             0%, 100% { transform: translateX(-100%); }
             50% { transform: translateX(100%); }
-        }
-
-        /* Skill category colors */
-        .skill-category-devops {
-            border-left-color: var(--accent-blue);
-        }
-
-        .skill-category-datascience {
-            border-left-color: var(--accent-purple);
-        }
-
-        .skill-category-security {
-            border-left-color: var(--accent-amber);
-        }
-
-        .skill-category-analysis {
-            border-left-color: var(--accent-teal);
         }
 
         /* AWS Console Styles */
@@ -683,41 +558,12 @@
         }
     </style>
 </head>
-<body class="font-sans theme-bg-primary theme-text antialiased animate-theme-transition">
+<body class="font-sans theme-bg-primary theme-text antialiased">
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 z-50 theme-bg-primary flex items-center justify-center">
         <div class="text-center">
             <div class="w-16 h-16 border-4 theme-border border-t-transparent rounded-full animate-spin mb-4"></div>
             <p class="text-lg font-medium">Loading Portfolio</p>
-        </div>
-    </div>
-
-    <!-- Theme Selector -->
-    <div class="theme-selector fixed top-4 right-4 z-50">
-        <button id="themeToggle" class="w-10 h-10 rounded-full theme-bg-card theme-border border flex items-center justify-center hover:border-accent transition-colors">
-            <i class="fas fa-palette theme-accent"></i>
-        </button>
-        <div id="themeDropdown" class="theme-dropdown">
-            <div class="theme-option" data-theme="light">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);"></div>
-                Light
-            </div>
-            <div class="theme-option active" data-theme="dark">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);"></div>
-                Dark
-            </div>
-            <div class="theme-option" data-theme="blue">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);"></div>
-                Blue
-            </div>
-            <div class="theme-option" data-theme="teal">
-                <div class="theme-preview" style="background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);"></div>
-                Teal
-            </div>
-            <div class="theme-option" data-theme="auto">
-                <div class="theme-preview"></div>
-                Auto
-            </div>
         </div>
     </div>
 
@@ -1110,7 +956,7 @@
         </div>
     </section>
 
-    <!-- Resume Section (Replaces Professional Journey) -->
+    <!-- Resume Section -->
     <section id="resume" class="py-20 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Resume</h2>
@@ -1415,7 +1261,7 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- DevOps Skills -->
-                <div class="card p-6 animate-fade-in-up skill-category-devops">
+                <div class="card p-6 animate-fade-in-up">
                     <h3 class="text-xl font-semibold mb-6 flex items-center">
                         <i class="fas fa-cloud mr-3 theme-accent"></i>
                         DevOps & Cloud
@@ -1461,7 +1307,7 @@
                 </div>
 
                 <!-- Data Science Skills -->
-                <div class="card p-6 animate-fade-in-up skill-category-datascience" style="animation-delay: 0.1s;">
+                <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
                     <h3 class="text-xl font-semibold mb-6 flex items-center">
                         <i class="fas fa-chart-line mr-3 theme-accent"></i>
                         Data Science & Analysis
@@ -1783,76 +1629,6 @@
     </button>
 
     <script>
-        // Theme Management - FIXED AUTO THEME DETECTION
-        const themeToggle = document.getElementById('themeToggle');
-        const themeDropdown = document.getElementById('themeDropdown');
-        const themeOptions = document.querySelectorAll('.theme-option');
-        const htmlElement = document.documentElement;
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        updateActiveTheme(savedTheme);
-
-        // Apply auto theme immediately if selected
-        if (savedTheme === 'auto') {
-            applyAutoTheme();
-        }
-
-        // Theme toggle
-        themeToggle.addEventListener('click', () => {
-            themeDropdown.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
-                themeDropdown.classList.remove('show');
-            }
-        });
-
-        // Theme selection
-        themeOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const theme = option.dataset.theme;
-                
-                if (theme === 'auto') {
-                    applyAutoTheme();
-                } else {
-                    htmlElement.setAttribute('data-theme', theme);
-                }
-                
-                localStorage.setItem('portfolio-theme', theme);
-                updateActiveTheme(theme);
-                themeDropdown.classList.remove('show');
-            });
-        });
-
-        // Apply auto theme based on system preference
-        function applyAutoTheme() {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            htmlElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-        }
-
-        // Update active theme in dropdown
-        function updateActiveTheme(theme) {
-            themeOptions.forEach(option => {
-                option.classList.remove('active');
-                if (option.dataset.theme === theme) {
-                    option.classList.add('active');
-                }
-            });
-        }
-
-        // Listen for system theme changes when auto theme is selected
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        prefersDarkScheme.addEventListener('change', (e) => {
-            const currentTheme = localStorage.getItem('portfolio-theme');
-            if (currentTheme === 'auto') {
-                htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-            }
-        });
-
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeMobileMenu = document.getElementById('closeMobileMenu');
@@ -2220,86 +1996,173 @@
                 weekday: 'long', 
                 year: 'numeric', 
                 month: 'long', 
+                day: 'numeric' month: 'long', 
                 day: 'numeric' 
             });
+            const time = new Date().toLocale 
+            });
             const time = new Date().toLocaleTimeString('en-US', { 
-                hour: '2-digit', 
+                hour: '2-digitTimeString('en-US', { 
+                hour: '', 
+                minute: '2-digit',
+                second: '2-digit'
+2-digit', 
                 minute: '2-digit',
                 second: '2-digit'
             });
             
             const ticketContent = `
 ============================================
-    VISITOR TICKET - FABIUS LIHANDA PORTFOLIO
+    VIS            });
+            
+            const ticketContent = `
 ============================================
+   ITOR TICKET - FABIUS LIHANDA PORTF VISITOR TICKET - FABIUS LIHANDAOLIO
+================================ PORTFOLIO
+============================================
+
+Ticket Number: #${ticketNumber}
+Visit Date: ${date}
+Visit Time============
 
 Ticket Number: #${ticketNumber}
 Visit Date: ${date}
 Visit Time: ${time}
 Visitor IP: [Your IP Address]
 
+: ${time}
+Visitor IP: [Your IP Address]
+
 Thank you for visiting my portfolio!
 
-PORTFOLIO DETAILS:
+PORTFOLIO DETAILThank you for visiting my portfolio!
+
+PORTFOLS:
+• NameIO DETAILS:
 • Name: Fabius Lihanda
+• Title:: Fabius Lihanda
 • Title: DevOps & Data Science Engineer
 • Location: Nairobi, Kenya
-• Experience: 2+ Years
-• Specializations: AWS, Docker, Kubernetes, Python, Data Analysis
+• Experience: 2+ DevOps & Data Science Engineer
+• Location: Nairobi, Kenya
+• Experience: 2+ Years Years
+• Specializations: AWS, Docker, Kubernetes, Python, Data
+• Specializations: AWS, Docker, Kubernetes Analysis
 
 CONTACT INFORMATION:
-• Portfolio: https://your-portfolio-url.com
-• LinkedIn: https://linkedin.com/in/fabius-lihanda
+• Portfolio: https, Python, Data Analysis
+
+CONTACT INFORMATION:
+• Portfolio://your-portfolio-url.com: https://your-portfolio-url.com
+•
+• LinkedIn: https://linkedin.com/in/fab LinkedIn: https://linkedin.com/in/fabius-lihanda
+• Email: fabiuslihandaachevi@gmail.com
+• Phone: +254 796 ius-lihanda
 • Email: fabiuslihandaachevi@gmail.com
 • Phone: +254 796 829 666
 
 PERSONAL MESSAGE:
-"Thank you for visiting my DevOps & Data Science portfolio! 
-I appreciate your interest in my work and expertise in cloud 
-infrastructure, automation, and data-driven solutions. 
+"Thank you for visiting my DevOps & Data Science829 666
 
-Feel free to explore my projects, read my technical articles, 
-and get in touch if you'd like to discuss potential collaborations, 
+PERSONAL MESSAGE:
+"Thank you for visiting my DevOps & Data Science portfolio! portfolio! 
+I appreciate your interest in my work 
+I appreciate your interest in my work and expertise and expertise in cloud 
+infrastructure, automation, and data in cloud 
+infrastructure, automation, and data-driven solutions-driven solutions. 
+
+Feel free to explore my projects, read. 
+
+Feel free to explore my projects my technical articles, 
+and get in touch if you, read my technical articles, 
+and get in touch if'd like to discuss potential collaborations, 
 consulting opportunities, or just connect professionally."
 
-PORTFOLIO HIGHLIGHTS:
+PORTFOLIO you'd like to discuss potential collaborations, 
+consulting opportunities, or just connect professionally."
+
+PORTFOLIO HIGHLIGHTS HIGHLIGHTS:
+• 10+ Completed Projects
+• 5+:
 • 10+ Completed Projects
 • 5+ Professional Certifications
-• 99.9% System Uptime Track Record
+• 99.9% System Professional Certifications
+• 99.9% Uptime Track Record
+• Open Source Contributions
+• Technical Blog with System Uptime Track Record
 • Open Source Contributions
 • Technical Blog with 1000+ Readers
 
 VISITOR NOTES:
+This ticket 1000+ Readers
+
+VISITOR NOTES:
 This ticket confirms your visit to my professional portfolio.
+You are visitor #${ticketNumber} to explore my confirms your visit to my professional portfolio.
 You are visitor #${ticketNumber} to explore my work.
+
+============================================
+Generated: ${new Date().toLocale work.
 
 ============================================
 Generated: ${new Date().toLocaleString()}
             `;
             
+            const blob = new Blob([tString()}
+            `;
+            
             const blob = new Blob([ticketContent], { type: 'text/plain' });
+icketContent], { type: 'text/plain            const' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `Fabius_Lihanda_Visitor_Ticket_#${ticketNumber}.txt`;
+            url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.h a.href = url;
+            a.download = `Fabius_Lihanda_Visitor_Ticket_#${ref = url;
+            a.download = `Fabius_Lihanda_Visitor_Ticket_#${ticketticketNumber}.txt`;
+            document.body.appendChildNumber}.txt`;
             document.body.appendChild(a);
+            a(a);
             a.click();
             document.body.removeChild(a);
+            URL.revokeObject.click();
+            document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            
+            // Show download confirmation
+            showURL(url);
             
             // Show download confirmation
             showDownloadConfirmation(ticketNumber);
         }
 
+       DownloadConfirmation(ticketNumber);
+        }
+
         function showDownloadConfirmation(ticketNumber) {
+            const function showDownloadConfirmation(ticketNumber) {
             const confirmation = document.createElement('div');
-            confirmation.className = 'fixed top-4 right-4 z-50 animate-fade-in-up';
+            confirmation.className = confirmation = document.createElement('div');
+            confirmation.class 'fixed top-4 rightName = 'fixed top-4 right-4-4 z-50 animate-fade-in-up z-50 animate-fade-in-up';
             confirmation.innerHTML = `
-                <div class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl flex items-center">
-                    <i class="fas fa-download mr-3 text-2xl"></i>
+                <div class="bg-green-500 text-white px-6 py-';
+            confirmation.innerHTML = `
+                <div class="bg-green-500 text-white px-64 rounded-lg shadow-xl flex items-center">
+                    <i py-4 rounded-lg shadow-xl flex items-center">
+                    class="fas fa <i class="fas fa-download mr--download mr-3 text-2xl"></i>
                     <div>
-                        <div class="font-semibold">Ticket #${ticketNumber} Downloaded!</div>
-                        <div class="text-sm opacity-90">Check your downloads folder</div>
+3 text-2xl"></i>
+                    <div>
+                        <div class="font-semibold">                        <div class="font-semibold">Ticket #Ticket #${ticketNumber} Downloaded!</div${ticketNumber} Downloaded!</div>
+                       >
+                        <div class="text-sm opacity- <div class="text-sm opacity-90">90">Check your downloads folder</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(confirmation);
+            
+            // Remove after 3Check your downloads folder</div>
                     </div>
                 </div>
             `;
@@ -2308,19 +2171,39 @@ Generated: ${new Date().toLocaleString()}
             
             // Remove after 3 seconds
             setTimeout(() => {
+                confirmation.style.opacity = ' seconds
+            setTimeout(() => {
                 confirmation.style.opacity = '0';
+                confirmation.style.transition = 'opacity 0.0';
                 confirmation.style.transition = 'opacity 0.5s';
                 setTimeout(() => {
                     confirmation.remove();
-                }, 500);
+5s';
+                setTimeout(() => {
+                    confirmation.remove();
+                },                }, 500);
             }, 3000);
         }
 
-        // Initialize animations on load
+        // Initialize 500);
+            }, 3000);
+        }
+
+        // Initialize animations on animations on load
         document.addEventListener('DOMContentLoaded', () => {
             // Add animation classes to cards
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
+            document.querySelector load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add animation classes to cards
+            document.querySelectorAll('.card').forEach((card, index)All('.card').forEach((card, index) => {
+ => {
+                card.style.                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
+animationDelay = `${index * 0.1}s`;
             });
         });
     </script>
