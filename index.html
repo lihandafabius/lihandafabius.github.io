@@ -677,6 +677,142 @@
         </div>
     </section>
 
+    <!-- AWS Console Section with Visitor System -->
+    <section id="console" class="py-12 theme-bg-primary">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-heartbeat text-red-500 mr-2"></i>
+                            <span>Service Health</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm theme-text">All DevOps services operational</span>
+                            <span class="aws-status-indicator aws-status-healthy">
+                                <i class="fas fa-check-circle mr-1"></i> Healthy
+                            </span>
+                        </div>
+                        <div class="text-xs theme-text">Last updated: <span id="healthUpdateTime">2 min ago</span></div>
+                    </div>
+                </div>
+
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-server mr-2"></i>
+                            <span>Service Instance Details</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <div class="text-xs theme-text">Instance ID</div>
+                                <div class="font-mono text-xs">i-0fabius-devops-2025</div>
+                            </div>
+                            <div>
+                                <div class="text-xs theme-text">Instance Type</div>
+                                <div class="font-mono text-xs">devops.data.science</div>
+                            </div>
+                            <div>
+                                <div class="text-xs theme-text">Launch Time</div>
+                                <div class="font-mono text-xs">2023-01-15</div>
+                            </div>
+                            <div>
+                                <div class="text-xs theme-text">Status</div>
+                                <div class="font-mono text-xs aws-status-healthy">Running</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            <span>CloudWatch Metrics</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="aws-metric-card">
+                                <div class="text-2xl font-bold gradient-text">99.9%</div>
+                                <div class="text-xs theme-text">System Uptime</div>
+                            </div>
+                            <div class="aws-metric-card">
+                                <div class="text-2xl font-bold gradient-text" id="totalVisitors">1</div>
+                                <div class="text-xs theme-text">Total Visitors</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visitor System -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="aws-console-card md:col-span-2">
+                    <div class="aws-console-header">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>Console Actions</span>
+                            </div>
+                            <div class="visitor-badge" id="visitorBadge">
+                                You're visitor #<span id="currentVisitorNumber">1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div class="text-center mb-6">
+                            <div class="text-3xl mb-2">👋 Welcome! Thanks for visiting 🎉</div>
+                            <div class="text-xl font-bold gradient-text mb-4">#<span id="dynamicVisitorNumber">1</span></div>
+                            <p class="theme-text mb-6">
+                                Your visit has been logged in my analytics dashboard. Connect with me on LinkedIn to join the visitor leaderboard!
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-3 justify-center mb-6">
+                                <button onclick="window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank')" 
+                                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                                    <i class="fab fa-linkedin mr-2"></i> Connect on LinkedIn
+                                </button>
+                                <button onclick="downloadVisitorTicket()" 
+                                        class="px-4 py-2 theme-border border rounded-lg hover:gradient-bg hover:text-white transition-colors flex items-center">
+                                    <i class="fas fa-download mr-2"></i> Download Visitor Ticket
+                                </button>
+                            </div>
+
+                            <div class="text-sm theme-text mb-4">
+                                <i class="fas fa-bullseye mr-1"></i> Next milestone: <span id="nextMilestone">50</span> visitors
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aws-console-card">
+                    <div class="aws-console-header">
+                        <div class="flex items-center">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span>Top Visitors This Month</span>
+                        </div>
+                    </div>
+                    <div class="aws-console-content">
+                        <div id="visitorLeaderboard">
+                            <!-- Leaderboard will be populated by JavaScript -->
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button onclick="window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank')" 
+                                    class="text-sm gradient-text hover:underline flex items-center justify-center w-full">
+                                <i class="fab fa-linkedin mr-1"></i> Connect to join leaderboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="py-20 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
@@ -1623,27 +1759,52 @@
                 case 'download':
                     const link = document.createElement('a');
                     link.href = 'assets/CV.pdf';
-                    link.download = 'Fabius_Lihanda_CV.pdf';
+                    = 'assets/CV.pdf';
+                    link.download = 'Fabius_Lihanda_CV link.download = 'Fabius_Lihanda_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                   .pdf';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                     break;
                 case 'linkedin':
-                    window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank');
+ document.body.removeChild(link);
+                    break;
+                case 'linkedin':
+                    window                    window.open('https://www.linkedin.com/in.open('https://www.linkedin.com/in/fab/fabius-lihanda', '_blank');
+                    break;
+            }
+       ius-lihanda', '_blank');
                     break;
             }
         });
 
         // Close modal when clicking outside
+        });
+
+        // Close modal when clicking outside
         cvModal.addEventListener('click', (e) => {
+            cvModal.addEventListener('click', (e) => {
             if (e.target === cvModal) {
-                cvModal.classList.remove('active');
+                cv if (e.target === cvModal) {
+                cvModalModal.classList.remove('active');
+            }
+       .classList.remove('active');
             }
         });
 
         // Handle form submission
-        const contactForm = document.querySelector('form');
+        const contact });
+
+        // Handle form submission
+        const contactForm =Form = document.querySelector('form');
+        if (contactForm document.querySelector('form');
         if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitButton) {
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
@@ -1651,58 +1812,587 @@
                 const originalText = submitButton.textContent;
                 
                 // Show loading state
-                submitButton.textContent = 'Sending...';
+                submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                // Show loading state
+               .textContent = ' submitButton.textContent = 'Sending...';
+                submitButton.disSending...';
                 submitButton.disabled = true;
                 
                 try {
-                    const formData = new FormData(contactForm);
+                    const formDataabled = true;
+                
+                try {
+                    const formData = new FormData = new FormData(contactForm);
+                    const response = await fetch(contact(contactForm);
                     const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+Form.action, {
                         method: 'POST',
                         body: formData,
                         headers: {
                             'Accept': 'application/json'
                         }
+                            'Accept': 'application/json'
+                        }
                     });
                     
                     if (response.ok) {
-                        alert('Message sent successfully!');
+                    });
+                    
+                    if (response.ok) {
+                        alert                        alert('Message sent successfully!');
+                        contactForm.reset();
+                   ('Message sent successfully!');
                         contactForm.reset();
                     } else {
-                        alert('There was an error sending your message. Please try again.');
+                        alert('There was an error sending your message. Please try } else {
+                        alert('There was again.');
                     }
                 } catch (error) {
-                    alert('There was an error sending your message. Please try again.');
+                    alert(' an error sending your message. Please try again.');
+                    }
+                } catch (error) {
+                    alert('There was an error sending your message.There was an error sending your message. Please try again.');
+                } finally {
+                    // Reset button Please try again.');
                 } finally {
                     // Reset button
                     submitButton.textContent = originalText;
-                    submitButton.disabled = false;
+                   
+                    submitButton.textContent = originalText;
+                    submit submitButton.disabled = false;
+                }
+            });
+Button.disabled = false;
                 }
             });
         }
 
         }
 
-        // Initialize 500);
+        // Visitor System Functions
+        function initializeVisitorSystem()        // Visitor System Functions
+        function initializeVisitor {
+            // Get or initialize visitor data
+            let visitorData = JSON.parse(localStorage.getItem('portfolioSystem() {
+            // Get or initialize visitor data
+            let visitorData = JSON.parse(localStorage.getItem('portfolioVisitors')) || {
+                totalVisits:Visitors')) || {
+                totalVisits: 1,
+                currentVisitorNumber: 1,
+                1,
+                currentVisitorNumber: 1,
+                lastVisit lastVisit: null,
+                visitorHistory: []
+            };
+
+            //: null,
+                visitorHistory: []
+            };
+
+            // Check if this is a new visit (using session storage for per-s Check if this is a new visit (using session storage for per-session tracking)
+            const sessionVisited = sessionStorage.getItem('portfolioSessionVisited');
+            
+            if (!ession tracking)
+            const sessionVisited = sessionStorage.getItem('portfolioSessionVisited');
+            
+            if (!sessionVisited) {
+                // New session visit - increment counters
+                visitorsessionVisited) {
+                // New session visit - increment counters
+                visitorData.totalVisits++;
+               Data.totalVisits++;
+                visitorData.currentVisitorNumber = visitorData visitorData.currentVisitorNumber = visitorData.totalVisits;
+                visitorData.lastVisit =.totalVisits;
+                visitorData.lastVisit = new Date().toISOString();
+                
+                // Add to history new Date().toISOString();
+                
+                // Add to history ( (keep last 100)
+                visitorData.visitorHistory.unshift({
+                    date: visitorData.lastVisit,
+                    visitorNumber: visitorData.currentVisitorNumber,
+                   keep last 100)
+                visitorData.visitorHistory.unshift({
+                    date: visitorData.lastVisit,
+                    visitorNumber: visitorData.currentVisitorNumber,
+                    location: "Unknown",
+                    device: navigator location: "Unknown",
+                    device: navigator.userAgent
+                });
+                
+                if (visitorData.userAgent
+                });
+                
+                if (visitorData.visitorHistory.length > 100.visitorHistory.length >) {
+                    visitorData.visitorHistory.pop 100) {
+                    visitorData.visitorHistory.pop();
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('portfolioVisitors();
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('portfolioVisitors', JSON', JSON.stringify(visitorData));
+                
+               .stringify(visitorData));
+                
+                // Mark this session as visited
+                sessionStorage.setItem // Mark this session as visited
+                sessionStorage('portfolioSessionVisited', 'true');
+                
+                // Update.setItem('portfolioSessionVisited', 'true');
+                
+                // Update UI UI immediately for new visitors
+                updateVisitor immediately for new visitors
+                updateVisitorUI(visitorData);
+                
+                // Show welcome notificationUI(visitorData);
+                
+                // Show welcome notification
+               
+                showVisitorNotification(visitorData.currentVisitorNumber showVisitorNotification(visitorData.currentVisitorNumber);
+            } else {
+                // Return visitor in);
+            } else {
+                // Return visitor in same session same session - update UI with - update UI with existing data
+                updateVisitorUI(visitorData);
+ existing data
+                updateVisitorUI(visitorData);
+            }
+
+            // Update health check time
+                       }
+
+            // Update health check time
+            updateHealthCheckTime();
+            
+            // Update leaderboard
+            updateLeaderboard(visitorData);
+        updateHealthCheckTime();
+            
+            // Update leaderboard
+            updateLeaderboard(visitorData);
+        }
+
+        function update }
+
+        function updateVisitorUI(data) {
+            // UpdateVisitorUI(data) {
+            all visitor number displays
+            document.getElementById('totalVisitors').textContent = data.totalVisits.toLocale // Update all visitor number displays
+            document.getElementById('totalVisitors').textContent = data.totalVisits.toLocaleString();
+String();
+            document.getElementById('currentVisitorNumber').            document.getElementById('currentVisitorNumber').textContent = data.currentVisitorNumber;
+            document.getElementById('textContent = data.currentVisitorNumber;
+            documentdynamicVisitorNumber').textContent = data.getElementById('dynamicVisitor.currentVisitorNumber;
+            
+            // Calculate next milestone
+            const nextNumber').textContent = data.currentVisitorNumber;
+            
+            // Calculate next milestone
+            const nextMilestone = Math.ceil(data.totalVisitsMilestone = Math.ceil(data.totalVisits / 50) * 50;
+            document.getElementById(' / 50) * 50;
+            documentnextMilestone').textContent = nextMilestone;
+        }
+
+       .getElementById('nextMilestone').textContent = nextMilestone;
+        function updateHealthCheckTime() {
+            const times = [' }
+
+        function updateHealthCheckTime() {
+            const times = ['2 min ago', '52 min ago', '5 min ago', '10 min ago', '15 min ago'];
+            min ago', '10 min ago', '15 min ago'];
+            const randomTime = times[Math.floor(Math.random() * times.length)];
+            const randomTime = times[Math.floor(Math.random() * times.length)];
+            document.getElementById document.getElementById('healthUpdateTime').textContent = randomTime;
+            
+            // Update periodically('healthUpdateTime').textContent = randomTime;
+            
+            // Update periodically
+            setInterval(() => {
+                const newTime = times[Math.floor(Math.random() *
+            setInterval(() => {
+                const newTime = times[Math.floor(Math.random() * times.length)];
+                document.getElementById('healthUpdateTime times.length)];
+                document.getElementById('healthUpdateTime').text').textContent = newTime;
+            }, 30000Content = newTime;
+            }, 30000); // Every 30 seconds
+        }
+
+        function); // Every 30 seconds
+        }
+
+        function updateLeaderboard(data) {
+            const leaderboard = document.getElementById(' updateLeaderboard(data) {
+            const leaderboardvisitorLeaderboard');
+            
+            // Create leader = document.getElementById('visitorLeaderboard');
+            
+            // Create leaderboard data from visitor history
+            const visitorGroups = {};
+board data from visitor history
+            const visitorGroups = {};
+            data            data.visitorHistory.forEach(visitor => {
+                //.visitorHistory.forEach(visitor => {
+                // Simulate different locations based on visitor number
+                const locations = [' Simulate different locations based on visitor number
+                const locations = ['San Francisco, US', 'London, UK', 'Toronto, CA', 'Berlin,San Francisco, US', 'London, DE', 'Sydney, AU', ' UK', 'Toronto, CA', 'Berlin, DE', 'Sydney, AU', 'Nairobi, KENairobi, KE'];
+                const location = locations[visitor.'];
+                const location = locations[visitor.visitorNumber % locations.length];
+                
+                ifvisitorNumber % locations.length];
+                
+ (!visitorGroups[location]) {
+                    visitor                if (!visitorGroups[location]) {
+                    visitorGroupsGroups[location] = {
+                        name: location.split(',')[0[location] = {
+                        name: location.split(',')[0] +] + '_' + ['DevOps', 'Cloud', 'Data '_' + ['DevOps', 'Cloud', 'Data', 'Security', 'AI'][visitor.visitorNumber % 5],
+                        location:', 'Security', 'AI'][visitor.visitorNumber % 5],
+                        location: location location,
+                        visits: 0
+                    };
+                }
+                visitor,
+                        visits: 0
+                    };
+                }
+                visitorGroups[location].visitsGroups[location].visits++;
+            });
+            
+            // Convert to array and++;
+            });
+            
+            // Convert to array and sort by visits
+            const sortedVisitors = Object.values(visitorGroups)
+                .sort((a, b) => b.visits - a.visits)
+                .slice( sort by visits
+            const sortedVisitors = Object.values(visitorGroups)
+                .sort((a, b) => b.visits - a.visits)
+                .slice(0, 5);
+            
+            // Update leaderboard HTML
+            let leaderboardHTML = '';
+0, 5);
+            
+            // Update leaderboard HTML
+            let leaderboardHTML = '';
+            
+            sortedVisitors.forEach((visitor, index)            
+            sortedVisitors.forEach((visitor, => {
+                const rank = index + 1 index) => {
+                const rank = index + 1;
+                leaderboardHTML += `
+                    <div;
+                leaderboardHTML += `
+                    <div class="leaderboard-item">
+                        <div class class="leaderboard-item">
+                        <div class="leaderboard-rank ${rank="leaderboard-rank ${rank <= 3 ? `leaderboard-rank-${rank}` <= 3 ? `leaderboard-rank-${rank}` : ''}">
+                            ${rank}
+                        </div>
+                        <div class="flex : ''}">
+                            ${rank}
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-medium">${visitor-1">
+                            <div class="font-medium">${visitor.name}</div>
+                            <div class="text-xs theme-text">${visitor.location.name}</div>
+                            <div class="text-xs theme-text">${vis} • ${visitor.visitsitor.location} • ${visitor.visits} ${visitor.visits === 1} ${visitor.visits === 1 ? 'visit' : 'visits'}</div>
+                        </div>
+                    </div>
+                ` ? 'visit' : 'visits'}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            leaderboard.innerHTML = leaderboardHTML;
+        }
+
+        function show;
+            });
+            
+            leaderboard.innerHTML = leaderboardHTML;
+        }
+
+        function showVisitorNotification(visitorNumber) {
+            // Create a subtle notification
+            const notificationVisitorNotification(visitorNumber) {
+            // Create a subtle notification
+            const notification = document = document.createElement('div');
+            notification.className = '.createElement('div');
+            notification.className = 'fixed topfixed top-4 left-1/2 transform -translate-4 left-1/2 transform-x-1/2 z-50 -translate-x-1/2 z-50 animate-f animate-fade-in-up';
+ade-in-up';
+            notification.innerHTML = `
+                <div class="bg-gradient-to-r from-blue-500 to-pur            notification.innerHTML = `
+                <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-4 roundedple-600 text-white px-6 py-4 rounded-lg shadow-lg shadow-xl flex items-center">
+                    <i-xl flex items-center">
+                    <i class=" class="fas fa-user-check mr-3 text-2fas fa-user-check mr-3 text-2xl"></i>
+                    <div>
+                        <div classxl"></i>
+                    <div>
+                        <div class="font="font-semibold">Welcome visitor #${visitorNumber}!</div-semibold">Welcome visitor #${visitorNumber}!</div>
+                        <div class="text-sm opacity-90">>
+                        <div class="text-sm opacity-90">Your visit has been logged in the analytics dashboard.</Your visit has been logged in the analytics dashboard.</div>
+                    </div>
+                </div>
+            `;
+            
+div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after            document.body.appendChild(notification);
+            
+            // 5 seconds
+            setTimeout(() => Remove after 5 seconds
+            setTimeout {
+                notification.style.opacity = '0';
+                notification(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s';
+                setTimeout(() => {
+                    notification.remove();
+.style.transition = 'opacity 0.5s';
+                setTimeout(() => {
+                }, 500);
+            },                     notification.remove();
+                }, 500);
+            }, 5000);
+        }
+
+        function downloadVisitorTicket() {
+            const5000);
+        }
+
+        function downloadVisitorTicket() {
+            const visitorData = JSON.parse(l visitorData = JSONocalStorage.getItem('portfolioVisitors')) || { currentVisitor.parse(localStorage.getItem('portfolioVisitors')) || {Number: 1 };
+            const ticketNumber = visitorData.currentVisitorNumber;
+            const date = currentVisitorNumber: 1 };
+            const ticketNumber = visitorData.currentVisitorNumber;
+            const date = new Date().toLocaleDateString('en-US new Date().toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year', { 
+                weekday: 'long', 
+                year: ': 'numeric', 
+                month: 'long', 
+                daynumeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            const time: 'numeric' 
+            });
+            const time = new Date().toLocaleTimeString('en = new Date().toLocaleTimeString-US', { 
+                hour: '2-digit', 
+                minute: '('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const ticketContent = `
+============================================
+    VISITOR TICKET - FAB2-digit',
+                second: '2-digit'
+            });
+            
+            const ticketContent = `
+============================================
+    VISITOR TICKET - FABIUS LIHANDA PORTFOLIOIUS LIHANDA PORTFOLIO
+============================================
+
+Ticket Number: #${
+============================================
+
+Ticket Number: #${ticketNumber}
+Visit Date: ${ticketNumber}
+Visit Date: ${date}
+Visit Time: ${time}
+Visitor IPdate}
+Visit Time: ${time}
+Visitor IP: [Your IP Address]
+
+Thank you for visiting my portfolio!
+
+PORT: [Your IP Address]
+
+FOLIO DETAILS:
+• Name: Fabius LThank you for visiting my portfolio!
+
+PORTFOLIO DETAILS:
+• Name: Fabihanda
+• Title: DevOps & Data Science Engineer
+ius Lihanda
+• Title: DevOps & Data Science• Location: Nairobi, Kenya
+• Experience: Engineer
+• Location: Nairobi, Kenya
+• 2+ Years
+• Specializations: AWS Experience: 2+ Years
+• Specializations: AWS, Docker, Docker, Kubernetes, Python, Kubernetes, Python, Data Analysis
+
+CONTACT INFORMATION:
+, Data Analysis
+
+CONTACT INFORMATION:
+• Portfolio: https://your-portfolio-url.com
+• LinkedIn: https://linkedin.com/in/fab• Portfolio: https://your-portfolio-url.com
+• LinkedIn: https://linkedin.com/in/fius-lihanda
+• Email: fabiuslihabius-lihanda
+• Email: fabiuslihandaacheandaachevi@gmail.com
+• Phone: +254 vi@gmail.com
+• Phone796 829 666
+
+PERSONAL MESSAGE:
+"Thank: +254 796 829 666
+
+PERSONAL MESSAGE:
+"Thank you for visiting my DevOps & Data Science portfolio! you for visiting my DevOps & Data Science portfolio! 
+I 
+I appreciate your interest in my work and expertise in cloud appreciate your interest in my work and expertise in cloud 
+infrastructure, automation, and data-driven solutions 
+infrastructure, automation, and data-driven solutions. 
+
+Feel free to explore my projects, read my technical. 
+
+Feel free to explore my projects, read my technical articles, 
+and get in touch if articles, 
+and get in touch if you'd like to you'd like to discuss potential collaborations, 
+consulting opportunities, or just connect professionally."
+
+PORTF discuss potential collaborations, 
+consulting opportunities, or just connect professionally."
+
+PORTFOLIOOLIO HIGHLIGHTS:
+• 10+ Completed Projects
+• 5+ Professional Certifications
+• 99.9% System Uptime HIGHLIGHTS:
+• 10+ Completed Projects
+• 5+ Professional Certifications
+• 99.9% System U Track Record
+• Open Source Contributions
+• Technical Blog with 1000+ Readers
+
+VISITOR NOTES:
+ptime Track Record
+• Open Source Contributions
+• Technical Blog with 1000+ Readers
+
+VISITORThis ticket NOTES:
+ confirms your visit to my professional portfolio.
+You are visitor #This ticket confirms your visit to my professional portfolio.
+You are visitor #${ticketNumber} to explore my work.
+
+============================================
+${ticketNumber} to explore my work.
+
+========================================Generated: ${new Date().toLocale====
+Generated: ${new Date().toLocaleString()String()}
+            `;
+}
+            `;
+            
+            const blob = new Blob([ticketContent            
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const url = URL.create], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElementObjectURL(blob);
+            const a = document.createElement('a('a');
+            a.href = url;
+            a.download');
+            a.href = url;
+            a.download = `Fabius_Lihanda_Visitor_Ticket_#${ticket = `Fabius_Lihanda_Visitor_Ticket_#${ticketNumber}.Number}.txt`;
+            document.body.appendChild(a);
+            a.click();
+txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+                       document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Show download confirmation
+            showDownloadConfirmation(ticketNumber URL.revokeObjectURL(url);
+            
+            // Show download confirmation
+            showDownloadConfirmation(ticketNumber);
+);
+        }
+
+        function show        }
+
+        function showDownloadConfDownloadConfirmation(ticketNumber) {
+            const confirmation =irmation(ticketNumber) {
+            const document.createElement('div');
+            confirmation.className = 'fixed top-4 right-4 confirmation = document.createElement('div');
+            confirmation.className = 'fixed top-4 right-4 z- z-50 animate-fade-in-up';
+            confirmation.innerHTML = `
+50 animate-fade-in-up';
+            confirmation.innerHTML = `
+                               <div class="bg-green-500 text-white px-6 py- <div class="bg-green-500 text-white px-6 py4 rounded-lg shadow-4 rounded-lg shadow-xl flex items-center">
+                    <i class="fas fa-download mr--xl flex items-center">
+                    <i class="fas fa-download3 text-2xl"></i>
+                    <div>
+                        <div class="font-semibold">Ticket #${ticketNumber} Downloaded!</div mr-3 text-2xl"></i>
+                    <div>
+                        <div class="font-semibold">Ticket #${ticketNumber} Downloaded!</div>
+                        <div class="text-sm opacity-90">Check your downloads folder</div>
+                        <div class="text-sm opacity-90">Check your downloads folder</div>
+                   >
+                    </div>
+                </div </div>
+            `;
+            
+           >
+                </div>
+            `;
+ document.body.appendChild(confirmation);
+            
+            //            
+            document.body.appendChild(confirmation);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                Remove after 3 seconds
+            setTimeout(() => {
+                confirmation.style.opacity = '0';
+                confirmation.style.transition = confirmation.style.opacity = '0';
+                confirmation.style.transition = ' 'opacity 0.5s';
+                setTimeout(()opacity 0.5s';
+                setTimeout(() => {
+                    confirmation.remove();
+                }, 500 => {
+                    confirmation.remove();
+                }, 500);
             }, 3000);
         }
 
-        // Initialize animations on animations on load
+        // Initialize animations on);
+            }, 3000);
+        }
+
+        // Initialize load
         document.addEventListener('DOMContentLoaded', () => {
+            animations on load
+        document.addEventListener('DOMContentLoaded', () => // Add animation classes to {
             // Add animation classes to cards
-            document.querySelector load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add animation classes to cards
-            document.querySelectorAll('.card').forEach((card, index)All('.card').forEach((card, index) => {
- => {
-                card.style.                card.style.animationDelay = `${index * 0.1}s`;
+            document.querySelectorAll('.card').forEach((card, cards
+            document.querySelectorAll('.card').forEach(( index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
             });
         });
-    </script>
-</body>
-</html>
-animationDelay = `${index * 0.1}s`;
+card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
             });
         });
-    </script>
+    </    </script>
+</bodyscript>
 </body>
 </html>
