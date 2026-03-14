@@ -508,6 +508,118 @@
             justify-content: center;
             margin-right: 12px;
         }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            padding: 0 40px;
+            margin: 0 -12px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 2rem;
+        }
+
+        .carousel-slide {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            min-width: 300px;
+        }
+
+        @media (max-width: 1024px) {
+            .carousel-slide {
+                flex: 0 0 calc(50% - 1rem);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .carousel-container {
+                padding: 0 30px;
+            }
+            .carousel-slide {
+                flex: 0 0 calc(100% - 0rem);
+            }
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .carousel-button.prev {
+            left: 0;
+        }
+
+        .carousel-button.next {
+            right: 0;
+        }
+
+        .carousel-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .carousel-button:disabled:hover {
+            background: var(--card-bg);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .carousel-dot:hover {
+            background: var(--accent);
+        }
+
+        /* Hide scrollbar for carousel */
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-track {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="font-sans theme-bg-primary theme-text antialiased">
@@ -975,97 +1087,239 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section with Dynamic Carousel -->
     <section id="projects" class="py-20 theme-bg-primary">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
+            <h2 class="text-4xl font-bold mb-4 text-center">Featured Projects</h2>
+            <p class="text-center theme-text mb-12 max-w-2xl mx-auto">Explore my latest work in DevOps, Data Science, and Cloud Architecture</p>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- MkulimaAid -->
-                <div class="card project-hover animate-fade-in-up">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="badge badge-primary">Data Science</span>
-                            <span class="text-sm theme-text">Featured</span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">MkulimaAid</h3>
-                        <p class="theme-text mb-4">
-                            AI-powered crop disease detection platform using CNN models and interactive dashboards.
-                        </p>
-                        <div class="mb-6">
-                            <div class="chart-preview">
-                                <div class="chart-line"></div>
+            <div class="carousel-container">
+                <!-- Previous Button -->
+                <button class="carousel-button prev" id="prevBtn" aria-label="Previous projects">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <!-- Carousel Track -->
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Project 1 -->
+                    <div class="carousel-slide">
+                        <div class="card project-hover h-full flex flex-col">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge badge-primary">Data Science</span>
+                                    <span class="text-sm theme-text">⭐ Featured</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">MkulimaAid</h3>
+                                <p class="theme-text mb-4 flex-grow">
+                                    AI-powered crop disease detection platform using CNN models and interactive dashboards. Helps farmers identify plant diseases instantly.
+                                </p>
+                                <div class="mb-6">
+                                    <div class="chart-preview">
+                                        <div class="chart-line"></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-secondary">Flask</span>
+                                    <span class="badge badge-secondary">TensorFlow</span>
+                                    <span class="badge badge-secondary">CNN</span>
+                                    <span class="badge badge-secondary">Plotly</span>
+                                </div>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <a href="https://mkulimaaid.onrender.com/" target="_blank" class="inline-flex items-center theme-accent hover:underline">
+                                        Live Demo <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                                    </a>
+                                    <span class="text-sm theme-text">Dec 2024</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="badge badge-secondary">Flask</span>
-                            <span class="badge badge-secondary">TensorFlow</span>
-                            <span class="badge badge-secondary">CNN</span>
-                            <span class="badge badge-secondary">Plotly</span>
-                        </div>
-                        <a href="https://mkulimaaid.onrender.com/" target="_blank" class="inline-flex items-center theme-accent hover:underline">
-                            Live Demo <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                        </a>
                     </div>
-                </div>
 
-                <!-- AWS Flask Deployment -->
-                <div class="card project-hover animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="badge badge-primary">DevOps</span>
-                            <span class="text-sm theme-text">Tutorial</span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Production Flask on AWS</h3>
-                        <p class="theme-text mb-4">
-                            Complete guide to deploying scalable Flask applications on AWS with high availability.
-                        </p>
-                        <div class="mb-6">
-                            <div class="h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
-                                <i class="fab fa-aws text-4xl text-blue-500"></i>
-                                <i class="fab fa-docker text-4xl text-blue-400 ml-4"></i>
+                    <!-- Project 2 -->
+                    <div class="carousel-slide">
+                        <div class="card project-hover h-full flex flex-col">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge badge-primary">DevOps</span>
+                                    <span class="text-sm theme-text">📝 Tutorial</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Production Flask on AWS</h3>
+                                <p class="theme-text mb-4 flex-grow">
+                                    Complete guide to deploying scalable Flask applications on AWS with high availability, auto-scaling, and security best practices.
+                                </p>
+                                <div class="mb-6">
+                                    <div class="h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
+                                        <i class="fab fa-aws text-4xl text-blue-500"></i>
+                                        <i class="fab fa-docker text-4xl text-blue-400 ml-4"></i>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-secondary">AWS</span>
+                                    <span class="badge badge-secondary">Docker</span>
+                                    <span class="badge badge-secondary">CI/CD</span>
+                                    <span class="badge badge-secondary">Security</span>
+                                </div>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <a href="https://medium.com/@fabiuslihandaachevi/how-i-deployed-a-production-ready-flask-application-on-aws-with-high-availability-3aeb643f3f9b" target="_blank" class="inline-flex items-center theme-accent hover:underline">
+                                        Read Article <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </a>
+                                    <span class="text-sm theme-text">Nov 2024</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="badge badge-secondary">AWS</span>
-                            <span class="badge badge-secondary">Docker</span>
-                            <span class="badge badge-secondary">CI/CD</span>
-                            <span class="badge badge-secondary">Security</span>
-                        </div>
-                        <a href="https://medium.com/@fabiuslihandaachevi/how-i-deployed-a-production-ready-flask-application-on-aws-with-high-availability-3aeb643f3f9b" target="_blank" class="inline-flex items-center theme-accent hover:underline">
-                            Read Article <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
                     </div>
-                </div>
 
-                <!-- Git Best Practices -->
-                <div class="card project-hover animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="badge badge-primary">DevOps</span>
-                            <span class="text-sm theme-text">Guide</span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Git Best Practices</h3>
-                        <p class="theme-text mb-4">
-                            Essential Git workflows and collaboration techniques for DevOps professionals.
-                        </p>
-                        <div class="mb-6">
-                            <div class="h-32 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
-                                <i class="fab fa-git-alt text-4xl text-green-500"></i>
-                                <i class="fab fa-github text-4xl text-gray-800 ml-4"></i>
+                    <!-- Project 3 -->
+                    <div class="carousel-slide">
+                        <div class="card project-hover h-full flex flex-col">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge badge-primary">DevOps</span>
+                                    <span class="text-sm theme-text">📚 Guide</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Git Best Practices</h3>
+                                <p class="theme-text mb-4 flex-grow">
+                                    Essential Git workflows and collaboration techniques for DevOps professionals. Master branching strategies and team collaboration.
+                                </p>
+                                <div class="mb-6">
+                                    <div class="h-32 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
+                                        <i class="fab fa-git-alt text-4xl text-green-500"></i>
+                                        <i class="fab fa-github text-4xl text-gray-800 ml-4"></i>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-secondary">Git</span>
+                                    <span class="badge badge-secondary">Workflow</span>
+                                    <span class="badge badge-secondary">Best Practices</span>
+                                    <span class="badge badge-secondary">Collaboration</span>
+                                </div>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <a href="https://medium.com/@fabiuslihandaachevi/git-best-practices-every-devops-engineer-should-know-c2266b0895cd" target="_blank" class="inline-flex items-center theme-accent hover:underline">
+                                        Read Guide <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </a>
+                                    <span class="text-sm theme-text">Oct 2024</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="badge badge-secondary">Git</span>
-                            <span class="badge badge-secondary">Workflow</span>
-                            <span class="badge badge-secondary">Best Practices</span>
-                            <span class="badge badge-secondary">Collaboration</span>
+                    </div>
+
+                    <!-- Project 4 (Example of additional project) -->
+                    <div class="carousel-slide">
+                        <div class="card project-hover h-full flex flex-col">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge badge-primary">Data Science</span>
+                                    <span class="text-sm theme-text">📊 Analysis</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">E-commerce Analytics</h3>
+                                <p class="theme-text mb-4 flex-grow">
+                                    Customer behavior analysis and sales prediction using machine learning. Interactive dashboards for business intelligence.
+                                </p>
+                                <div class="mb-6">
+                                    <div class="h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-chart-pie text-4xl text-purple-500"></i>
+                                        <i class="fas fa-database text-4xl text-pink-500 ml-4"></i>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-secondary">Python</span>
+                                    <span class="badge badge-secondary">Pandas</span>
+                                    <span class="badge badge-secondary">Scikit-learn</span>
+                                    <span class="badge badge-secondary">Tableau</span>
+                                </div>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <a href="#" class="inline-flex items-center theme-accent hover:underline">
+                                        View Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                    </a>
+                                    <span class="text-sm theme-text">Sep 2024</span>
+                                </div>
+                            </div>
                         </div>
-                        <a href="https://medium.com/@fabiuslihandaachevi/git-best-practices-every-devops-engineer-should-know-c2266b0895cd" target="_blank" class="inline-flex items-center theme-accent hover:underline">
-                            Read Guide <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                        </a>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="carousel-slide">
+                        <div class="card project-hover h-full flex flex-col">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge badge-primary">DevOps</span>
+                                    <span class="text-sm theme-text">🔧 Tool</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Kubernetes Monitor</h3>
+                                <p class="theme-text mb-4 flex-grow">
+                                    Custom Kubernetes monitoring solution with real-time metrics, alerting, and visualization using Prometheus and Grafana.
+                                </p>
+                                <div class="mb-6">
+                                    <div class="h-32 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-chart-line text-4xl text-blue-500"></i>
+                                        <i class="fas fa-bell text-4xl text-cyan-500 ml-4"></i>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-secondary">K8s</span>
+                                    <span class="badge badge-secondary">Prometheus</span>
+                                    <span class="badge badge-secondary">Grafana</span>
+                                    <span class="badge badge-secondary">AlertManager</span>
+                                </div>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <a href="#" class="inline-flex items-center theme-accent hover:underline">
+                                        GitHub <i class="fab fa-github ml-2"></i>
+                                    </a>
+                                    <span class="text-sm theme-text">Aug 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="carousel-slide">
+                        <div class="card project-hover h-full flex flex-col">
+                            <div class="p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="badge badge-primary">Security</span>
+                                    <span class="text-sm theme-text">🛡️ Research</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Cloud Security Framework</h3>
+                                <p class="theme-text mb-4 flex-grow">
+                                    Comprehensive security framework for cloud-native applications with automated compliance checking and threat detection.
+                                </p>
+                                <div class="mb-6">
+                                    <div class="h-32 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-shield-alt text-4xl text-red-500"></i>
+                                        <i class="fas fa-cloud text-4xl text-orange-500 ml-4"></i>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-secondary">AWS</span>
+                                    <span class="badge badge-secondary">Security Hub</span>
+                                    <span class="badge badge-secondary">GuardDuty</span>
+                                    <span class="badge badge-secondary">Compliance</span>
+                                </div>
+                                <div class="flex items-center justify-between mt-auto">
+                                    <a href="#" class="inline-flex items-center theme-accent hover:underline">
+                                        Whitepaper <i class="fas fa-file-pdf ml-2"></i>
+                                    </a>
+                                    <span class="text-sm theme-text">Jul 2024</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Next Button -->
+                <button class="carousel-button next" id="nextBtn" aria-label="Next projects">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Carousel Dots -->
+            <div class="carousel-dots" id="carouselDots"></div>
+
+            <!-- View All Projects Button -->
+            <div class="text-center mt-10">
+                <a href="#" class="inline-flex items-center gap-2 gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-105">
+                    <i class="fas fa-folder-open"></i>
+                    View All Projects
+                </a>
             </div>
         </div>
     </section>
@@ -1532,6 +1786,103 @@
         document.querySelectorAll('.card, .timeline-item').forEach(el => {
             observer.observe(el);
         });
+
+        // Carousel Functionality
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('carouselDots');
+        
+        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+        let currentIndex = 0;
+        let slidesPerView = getSlidesPerView();
+
+        // Get number of slides based on screen width
+        function getSlidesPerView() {
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
+        }
+
+        // Calculate total pages
+        function getTotalPages() {
+            return Math.ceil(slides.length / slidesPerView);
+        }
+
+        // Update carousel position
+        function updateCarousel() {
+            const slideWidth = slides[0].offsetWidth + 32; // Including gap
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            
+            // Update buttons
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= slides.length - slidesPerView;
+            
+            // Update dots
+            updateDots();
+        }
+
+        // Create dots
+        function createDots() {
+            const totalPages = getTotalPages();
+            dotsContainer.innerHTML = '';
+            
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentIndex = i * slidesPerView;
+                    updateCarousel();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update dots
+        function updateDots() {
+            const dots = document.querySelectorAll('.carousel-dot');
+            const currentPage = Math.floor(currentIndex / slidesPerView);
+            
+            dots.forEach((dot, index) => {
+                if (index === currentPage) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Next button click
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - slidesPerView) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        // Previous button click
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const newSlidesPerView = getSlidesPerView();
+            if (newSlidesPerView !== slidesPerView) {
+                slidesPerView = newSlidesPerView;
+                currentIndex = 0; // Reset to first slide
+                createDots();
+                updateCarousel();
+            }
+        });
+
+        // Initialize carousel
+        createDots();
+        updateCarousel();
 
         // CV Download Modal
         const cvModal = document.getElementById('cvModal');
