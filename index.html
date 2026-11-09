@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabius Lihanda | DevOps & Data Science Engineer</title>
-    
+    <meta name="description" content="Fabius Lihanda is a Data Scientist and DevOps Engineer building reliable, data-driven applications and automating cloud workflows with AWS, Kubernetes, Terraform, Jenkins and Python.">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
+    <!-- Tech logos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CSKV5PDER0"></script>
     <script>
@@ -24,7 +28,7 @@
         gtag('js', new Date());
         gtag('config', 'G-CSKV5PDER0');
     </script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -75,9 +79,8 @@
             }
         }
     </script>
-    
+
     <style>
-        /* Light theme colors */
         :root {
             --primary: #f8fafc;
             --secondary: #e2e8f0;
@@ -88,35 +91,13 @@
             --border: #e2e8f0;
         }
 
-        /* Apply theme variables */
-        body {
-            background-color: var(--background);
-            color: var(--text);
-        }
-
-        .theme-bg-primary {
-            background-color: var(--primary);
-        }
-
-        .theme-bg-secondary {
-            background-color: var(--secondary);
-        }
-
-        .theme-bg-card {
-            background-color: var(--card-bg);
-        }
-
-        .theme-text {
-            color: var(--text);
-        }
-
-        .theme-border {
-            border-color: var(--border);
-        }
-
-        .theme-accent {
-            color: var(--accent);
-        }
+        body { background-color: var(--background); color: var(--text); }
+        .theme-bg-primary { background-color: var(--primary); }
+        .theme-bg-secondary { background-color: var(--secondary); }
+        .theme-bg-card { background-color: var(--card-bg); }
+        .theme-text { color: var(--text); }
+        .theme-border { border-color: var(--border); }
+        .theme-accent { color: var(--accent); }
 
         .gradient-text {
             background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
@@ -124,33 +105,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        .gradient-bg { background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%); }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
-        }
+        .project-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .project-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
 
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-        }
+        .skill-bar { transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        .project-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .project-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .skill-bar {
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
+        .nav-link { position: relative; }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -161,12 +123,9 @@
             background: var(--accent);
             transition: width 0.3s ease;
         }
+        .nav-link:hover::after { width: 100%; }
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Modal Styles */
+        /* Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -178,16 +137,12 @@
             justify-content: center;
             padding: 1rem;
         }
-
-        .modal-overlay.active {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 16px;
+            padding: 24px;
             max-width: 500px;
             width: 100%;
             max-height: 85vh;
@@ -196,12 +151,11 @@
             animation: modalFadeIn 0.3s ease;
             margin: auto;
         }
-
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes modalFadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .download-option {
             background: var(--secondary);
             border: 1px solid var(--border);
@@ -210,93 +164,33 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
+        .download-option:hover { background: var(--accent); color: white; transform: translateX(5px); }
+        .download-option:hover .theme-text { color: white; }
+        .download-option.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .download-option.active .theme-text { color: rgba(255,255,255,0.9); }
+        .file-icon { font-size: 4rem; margin-bottom: 1rem; }
 
-        .download-option:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateX(5px);
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+        ::selection { background: var(--accent); color: white; }
 
-        .download-option:hover .theme-text {
-            color: white;
-        }
-
-        .download-option.active {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .download-option.active .theme-text {
-            color: rgba(255,255,255,0.9);
-        }
-
-        .file-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-            opacity: 0.8;
-        }
-
-        /* Selection color */
-        ::selection {
-            background: var(--accent);
-            color: white;
-        }
-
-        /* Responsive improvements */
         @media (max-width: 768px) {
-            .mobile-menu {
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            }
-            
-            .mobile-menu.open {
-                transform: translateX(0);
-            }
+            .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+            .mobile-menu.open { transform: translateX(0); }
         }
 
-        /* Loading animation */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
-        .animate-pulse-slow {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        /* Card styles */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
+        .card:hover { border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
 
-        .card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Badge styles */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -305,62 +199,11 @@
             font-size: 0.875rem;
             font-weight: 500;
         }
+        .badge-primary { background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%); color: white; }
+        .badge-teal { background: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%); color: white; }
+        .badge-secondary { background-color: var(--secondary); color: var(--text); }
 
-        .badge-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
-            color: white;
-        }
-
-        .badge-secondary {
-            background-color: var(--secondary);
-            color: var(--text);
-        }
-
-        /* Experience timeline */
-        .timeline-item {
-            border-left: 2px solid var(--accent);
-            padding-left: 2rem;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -0.5rem;
-            top: 0;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            background: var(--accent);
-            border: 3px solid var(--card-bg);
-        }
-
-        /* Data visualization preview */
-        .chart-preview {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(180deg, var(--secondary) 0%, transparent 100%);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-line {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 80%;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            animation: chartAnimation 3s ease-in-out infinite;
-        }
-
-        @keyframes chartAnimation {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-
-        /* Resume Styles */
+        /* Resume */
         .resume-section {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -368,51 +211,27 @@
             padding: 24px;
             margin-bottom: 24px;
         }
-
         .resume-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 20px;
         }
-
-        .resume-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .resume-subtitle {
-            color: var(--text);
-            opacity: 0.8;
-            font-size: 1rem;
-        }
-
+        .resume-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+        .resume-subtitle { color: var(--text); opacity: 0.8; font-size: 1rem; }
         .resume-date {
             background: var(--secondary);
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 500;
+            white-space: nowrap;
         }
-
-        .resume-content {
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .resume-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 16px 0;
-        }
-
-        .resume-list li {
-            margin-bottom: 8px;
-            padding-left: 24px;
-            position: relative;
-        }
-
+        .resume-content { color: var(--text); line-height: 1.6; }
+        .resume-list { list-style-type: none; padding: 0; margin: 16px 0; }
+        .resume-list li { margin-bottom: 8px; padding-left: 24px; position: relative; }
         .resume-list li:before {
             content: "•";
             color: var(--accent);
@@ -421,17 +240,16 @@
             left: 0;
             top: -4px;
         }
-
         .cert-badge {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             background: var(--secondary);
             padding: 8px 16px;
             border-radius: 8px;
-            margin: 4px;
+            margin: 4px 0;
             font-size: 0.875rem;
+            width: 100%;
         }
-
         .skill-tag {
             display: inline-block;
             background: var(--secondary);
@@ -441,13 +259,7 @@
             font-size: 0.875rem;
             border: 1px solid var(--border);
         }
-
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
+        .contact-info-item { display: flex; align-items: center; margin-bottom: 12px; }
         .contact-icon {
             width: 40px;
             height: 40px;
@@ -457,150 +269,146 @@
             align-items: center;
             justify-content: center;
             margin-right: 12px;
+            flex-shrink: 0;
         }
 
-        /* Carousel Styles */
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            padding: 0 40px;
-            margin: 0 -12px;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            gap: 2rem;
-        }
-
-        .carousel-slide {
-            flex: 0 0 calc(33.333% - 1.33rem);
-            min-width: 300px;
-        }
-
-        @media (max-width: 1024px) {
-            .carousel-slide {
-                flex: 0 0 calc(50% - 1rem);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .carousel-container {
-                padding: 0 30px;
-            }
-            .carousel-slide {
-                flex: 0 0 calc(100% - 0rem);
-            }
-        }
-
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--card-bg);
+        /* Project filter */
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
             border: 1px solid var(--border);
-            color: var(--text);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .carousel-button:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .carousel-button.prev {
-            left: 0;
-        }
-
-        .carousel-button.next {
-            right: 0;
-        }
-
-        .carousel-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .carousel-button:disabled:hover {
             background: var(--card-bg);
             color: var(--text);
-            border-color: var(--border);
-        }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
+            transition: all 0.25s ease;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            color: white;
+            border-color: transparent;
+        }
+        .filter-btn .count {
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        .project-item.hidden-project { display: none; }
+        .project-item { animation: fadeIn 0.4s ease; }
 
-        .carousel-dot.active {
-            background: var(--accent);
-            transform: scale(1.3);
+        /* ---------- Skills ---------- */
+        .skill-tab {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 18px; border-radius: 999px; font-size: .875rem; font-weight: 500;
+            border: 1px solid var(--border); background: var(--card-bg); color: var(--text);
+            cursor: pointer; transition: all .25s ease;
         }
+        .skill-tab:hover { border-color: var(--accent); color: var(--accent); }
+        .skill-tab.active { background: linear-gradient(135deg, var(--accent), #8b5cf6); color: #fff; border-color: transparent; box-shadow: 0 8px 20px rgba(59,130,246,.25); }
+        .skill-tab .n { font-size: .7rem; opacity: .8; background: rgba(0,0,0,.08); padding: 1px 7px; border-radius: 999px; }
+        .skill-tab.active .n { background: rgba(255,255,255,.25); }
+        .skill-tile {
+            display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+            border: 1px solid var(--border); border-radius: 12px; background: var(--primary);
+            transition: all .25s ease; animation: tileIn .4s ease both;
+        }
+        .skill-tile:hover { transform: translateY(-3px); border-color: var(--accent); background: #fff; box-shadow: 0 10px 24px rgba(15,23,42,.08); }
+        .skill-ico {
+            width: 42px; height: 42px; border-radius: 10px; background: #fff; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+        }
+        .skill-name { font-weight: 600; font-size: .9rem; line-height: 1.2; }
+        .skill-ctx { font-size: .75rem; opacity: .7; line-height: 1.3; margin-top: 2px; }
+        @keyframes tileIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-        .carousel-dot:hover {
-            background: var(--accent);
+        /* ---------- Certifications ---------- */
+        .cert-tile {
+            display: flex; align-items: center; gap: 12px; padding: 10px 12px; margin-bottom: 8px;
+            border: 1px solid var(--border); border-radius: 10px; background: var(--primary);
+            transition: all .25s ease;
         }
+        .cert-tile:hover { border-color: var(--accent); background: #fff; transform: translateX(3px); }
+        .cert-ico {
+            width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; color: #fff;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .cert-name { font-size: .85rem; font-weight: 600; line-height: 1.25; }
+        .cert-issuer { font-size: .72rem; opacity: .65; margin-top: 2px; }
+        .credly-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+        .credly-strip a { display: block; transition: transform .25s ease; }
+        .credly-strip a:hover { transform: translateY(-4px) scale(1.05); }
+        .credly-strip img { width: 56px; height: 56px; object-fit: contain; }
 
-        /* Hide scrollbar for carousel */
-        .carousel-track::-webkit-scrollbar {
-            display: none;
+        /* ---------- Blog carousel ---------- */
+        .blog-track {
+            display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+            scroll-behavior: smooth; padding: 6px 2px 18px; scrollbar-width: none; -ms-overflow-style: none;
         }
+        .blog-track::-webkit-scrollbar { display: none; }
+        .blog-card {
+            flex: 0 0 min(340px, 86%); scroll-snap-align: start; display: flex; flex-direction: column;
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+            transition: all .3s ease; text-decoration: none; color: inherit;
+        }
+        .blog-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 18px 36px rgba(15,23,42,.1); }
+        .blog-thumb {
+            height: 150px; display: flex; align-items: center; justify-content: center; position: relative;
+            background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(139,92,246,.18)); overflow: hidden;
+        }
+        .blog-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .blog-thumb i { font-size: 2.6rem; color: var(--accent); opacity: .55; }
+        .blog-skeleton { animation: pulse 1.6s ease-in-out infinite; }
+        .blog-skeleton .bar { height: 12px; border-radius: 6px; background: var(--secondary); margin-bottom: 10px; }
+        .blog-nav {
+            width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--card-bg);
+            display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all .25s ease;
+        }
+        .blog-nav:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .dots { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+        .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); border: 0; padding: 0; cursor: pointer; transition: all .25s ease; }
+        .dot.active { background: var(--accent); transform: scale(1.35); }
 
-        .carousel-track {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* ---------- Form status ---------- */
+        #formStatus { font-size: .875rem; margin-top: 14px; display: none; }
+        #formStatus.show { display: block; }
+        #formStatus.ok { color: #059669; }
+        #formStatus.err { color: #dc2626; }
+        #formStatus a { text-decoration: underline; }
     </style>
 </head>
 <body class="font-sans theme-bg-primary theme-text antialiased">
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 z-50 theme-bg-primary flex items-center justify-center">
         <div class="text-center">
-            <div class="w-16 h-16 border-4 theme-border border-t-transparent rounded-full animate-spin mb-4"></div>
+            <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
             <p class="text-lg font-medium">Loading Portfolio</p>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-40 theme-bg-primary/80 backdrop-blur-md border-b theme-border">
+    <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md border-b theme-border">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#" class="text-2xl font-bold gradient-text">FL</a>
-                
+
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">About</a>
                     <a href="#expertise" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Expertise</a>
                     <a href="#resume" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Resume</a>
                     <a href="#projects" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Projects</a>
                     <a href="#skills" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Skills</a>
+                    <a href="#blog" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Blog</a>
                     <a href="#contact" class="nav-link text-sm font-medium theme-text hover:theme-accent transition-colors">Contact</a>
                 </div>
-                
+
                 <div class="flex items-center space-x-4">
                     <a href="#contact" class="gradient-bg text-white px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-all">
                         Get In Touch
                     </a>
-                    <button id="mobileMenuBtn" class="md:hidden theme-text">
+                    <button id="mobileMenuBtn" class="md:hidden theme-text" aria-label="Open menu">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -609,18 +417,19 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-30 md:hidden theme-bg-primary">
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-50 md:hidden theme-bg-primary" style="transform: translateX(100%);">
         <div class="flex justify-end p-6">
-            <button id="closeMobileMenu" class="theme-text">
+            <button id="closeMobileMenu" class="theme-text" aria-label="Close menu">
                 <i class="fas fa-times text-2xl"></i>
             </button>
         </div>
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <div class="flex flex-col items-center justify-center space-y-8 mt-10">
             <a href="#about" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">About</a>
             <a href="#expertise" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Expertise</a>
             <a href="#resume" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Resume</a>
             <a href="#projects" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Projects</a>
             <a href="#skills" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Skills</a>
+            <a href="#blog" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Blog</a>
             <a href="#contact" class="text-2xl font-medium theme-text hover:theme-accent transition-colors">Contact</a>
         </div>
     </div>
@@ -628,92 +437,92 @@
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div class="absolute inset-0 theme-bg-secondary"></div>
-        
-        <!-- Animated background elements -->
+
         <div class="absolute top-1/4 left-1/4 w-64 h-64 gradient-bg rounded-full animate-float opacity-10"></div>
         <div class="absolute bottom-1/3 right-1/4 w-48 h-48 gradient-bg rounded-full animate-float opacity-10" style="animation-delay: 1s;"></div>
-        
+
         <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
             <div class="animate-fade-in-up">
                 <div class="flex justify-center mb-6">
                     <span class="badge badge-primary animate-pulse-slow">
-                        <i class="fas fa-chart-line mr-2"></i> Now focusing on Data Science & DevOps
+                        <i class="fas fa-circle-check mr-2"></i> Open to DevOps &amp; Data Opportunities
                     </span>
                 </div>
-                
+
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                     Fabius <span class="gradient-text">Lihanda</span>
                 </h1>
-                <div class="text-xl md:text-2xl theme-text mb-8 max-w-3xl mx-auto">
-                    <span class="typing-animation">DevOps Engineer & Data Science Specialist</span>
+                <div class="text-xl md:text-2xl theme-text mb-8 max-w-3xl mx-auto min-h-[2rem]">
+                    <span class="typing-animation">Data Scientist & DevOps Engineer</span>
                 </div>
                 <p class="text-lg theme-text mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Building scalable infrastructure and data-driven solutions with expertise in cloud automation, 
-                    data analysis, and security. Currently expanding into machine learning and advanced analytics.
+                    I build reliable, data-driven applications and automate the cloud infrastructure and delivery pipelines behind them,
+                    working across machine learning, AWS, Kubernetes, Terraform and CI/CD.
                 </p>
-                
+
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="#projects" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-105">
                         View My Work
                     </a>
                     <a href="#contact" class="border-2 theme-border theme-text px-8 py-3 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all transform hover:scale-105">
-                        Request Services
+                        Contact Me
                     </a>
                 </div>
             </div>
-            
+
             <div class="mt-20 animate-fade-in-up" style="animation-delay: 0.3s;">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 theme-text">
                     <div class="text-center">
                         <div class="text-2xl font-bold gradient-text">10+</div>
-                        <div class="text-sm">Projects Completed</div>
+                        <div class="text-sm">DevOps Projects</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold gradient-text">2+</div>
-                        <div class="text-sm">Years Experience</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold gradient-text">5+</div>
+                        <div class="text-2xl font-bold gradient-text">6</div>
                         <div class="text-sm">Certifications</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-2xl font-bold gradient-text">100%</div>
-                        <div class="text-sm">Client Satisfaction</div>
+                        <div class="text-2xl font-bold gradient-text">50+</div>
+                        <div class="text-sm">Farmers Helped by MkulimaAid</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold gradient-text">~150 hrs</div>
+                        <div class="text-sm">Monthly Savings Targeted</div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="theme-text hover:theme-accent transition-colors">
+            <a href="#about" class="theme-text hover:theme-accent transition-colors" aria-label="Scroll to about">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 theme-bg-secondary">
+    <section id="about" class="py-16 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="animate-slide-in-left">
                     <h2 class="text-4xl font-bold mb-8">About Me</h2>
                     <div class="space-y-5">
                         <p>
-                            I'm a DevOps Engineer and Data Science enthusiast with a strong foundation in cybersecurity. 
-                            My journey has evolved from securing systems to building scalable infrastructure and extracting 
-                            insights from data.
+                            I'm a Data Scientist and DevOps Engineer focused on building reliable, data-driven applications
+                            and automating technology workflows. My background combines cybersecurity, cloud engineering
+                            and applied machine learning.
                         </p>
                         <p>
-                            Currently, I'm focusing on bridging the gap between infrastructure automation and data analysis. 
-                            I work on creating robust data pipelines, implementing machine learning workflows, and ensuring 
-                            data security throughout the process.
+                            I'm currently a Data Science Intern at The Openwork Partnership, building forecasting models,
+                            OCR and LLM-powered web applications, and an end-to-end machine learning lifecycle with MLflow
+                            and Databricks. Alongside this, I've been completing the TechWorld with Nana DevOps Bootcamp,
+                            where I built CI/CD pipelines and cloud infrastructure on AWS.
                         </p>
                         <p>
-                            With experience in cloud technologies, automation, and data visualization, I help organizations 
-                            transform their operations through data-driven decision making and scalable infrastructure.
+                            I'm driven by continuous learning and a desire to bridge data science and cloud engineering,
+                            delivering practical, efficient and maintainable solutions.
                         </p>
                     </div>
-                    
+
                     <div class="mt-10 flex flex-wrap gap-5">
                         <a href="#contact" class="gradient-bg text-white px-7 py-3.5 rounded-lg font-medium hover:opacity-90 transition-all">
                             <i class="fas fa-paper-plane mr-2"></i>Hire Me
@@ -723,7 +532,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="animate-slide-in-right">
                     <div class="relative group">
                         <div class="card overflow-hidden rounded-xl shadow-lg w-full max-w-md mx-auto">
@@ -732,7 +541,7 @@
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center">
                                         <div class="w-32 h-32 rounded-full border-4 theme-border mx-auto mb-4 overflow-hidden">
-                                            <!-- Profile image placeholder -->
+                                            <!-- Replace with: <img src="assets/profile.jpg" alt="Fabius Lihanda" class="w-full h-full object-cover"> -->
                                             <div class="w-full h-full gradient-bg flex items-center justify-center">
                                                 <span class="text-4xl font-bold text-white">FL</span>
                                             </div>
@@ -746,11 +555,11 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="text-center">
                                         <div class="text-sm theme-text">Location</div>
-                                        <div class="font-semibold">Nairobi, KE</div>
+                                        <div class="font-semibold">Swindon, UK</div>
                                     </div>
                                     <div class="text-center">
-                                        <div class="text-sm theme-text">Available</div>
-                                        <div class="font-semibold gradient-text">For Work</div>
+                                        <div class="text-sm theme-text">Status</div>
+                                        <div class="font-semibold gradient-text">Open to Work</div>
                                     </div>
                                 </div>
                             </div>
@@ -762,71 +571,67 @@
     </section>
 
     <!-- Expertise Section -->
-    <section id="expertise" class="py-20 theme-bg-primary">
+    <section id="expertise" class="py-16 theme-bg-primary">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Areas of Expertise</h2>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- DevOps -->
                 <div class="card p-6 animate-fade-in-up">
                     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
                         <i class="fas fa-cloud text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">DevOps Engineering</h3>
                     <p class="theme-text mb-4">
-                        Building scalable infrastructure, CI/CD pipelines, and automation workflows with tools like Docker, Kubernetes, and Terraform.
+                        Building CI/CD pipelines, infrastructure as code and container platforms on AWS using Jenkins, Terraform, Docker and Kubernetes.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span class="badge badge-secondary">AWS</span>
-                        <span class="badge badge-secondary">Docker</span>
                         <span class="badge badge-secondary">Kubernetes</span>
+                        <span class="badge badge-secondary">Terraform</span>
                     </div>
                 </div>
 
-                <!-- Data Science -->
                 <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
                     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
                         <i class="fas fa-chart-bar text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Data Science</h3>
                     <p class="theme-text mb-4">
-                        Extracting insights from data using machine learning, statistical analysis, and data visualization techniques.
+                        Predictive and probabilistic forecasting, OCR and LLM applications, and managing the machine learning lifecycle with MLflow and Databricks.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span class="badge badge-secondary">Python</span>
-                        <span class="badge badge-secondary">ML</span>
-                        <span class="badge badge-secondary">Pandas</span>
+                        <span class="badge badge-secondary">MLflow</span>
+                        <span class="badge badge-secondary">Databricks</span>
                     </div>
                 </div>
 
-                <!-- Data Analysis -->
                 <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.2s;">
                     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
                         <i class="fas fa-database text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Data Analysis</h3>
                     <p class="theme-text mb-4">
-                        Transforming raw data into actionable insights through analysis, reporting, and dashboard creation.
+                        Turning raw data into actionable insights through analysis, departmental reporting and dashboards.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span class="badge badge-secondary">SQL</span>
-                        <span class="badge badge-secondary">Power BI</span>
-                        <span class="badge badge-secondary">Excel</span>
+                        <span class="badge badge-secondary">Tableau</span>
+                        <span class="badge badge-secondary">pandas</span>
                     </div>
                 </div>
 
-                <!-- Security -->
                 <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.3s;">
                     <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
                         <i class="fas fa-shield-alt text-white text-xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Security</h3>
                     <p class="theme-text mb-4">
-                        Implementing security best practices in infrastructure and applications with focus on cloud security.
+                        Threat monitoring, incident response and vulnerability assessment experience from KE-CIRT, with cloud security best practices.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="badge badge-secondary">Cloud Sec</span>
-                        <span class="badge badge-secondary">Compliance</span>
+                        <span class="badge badge-secondary">Threat Detection</span>
+                        <span class="badge badge-secondary">Incident Response</span>
                         <span class="badge badge-secondary">Monitoring</span>
                     </div>
                 </div>
@@ -835,29 +640,29 @@
     </section>
 
     <!-- Resume Section -->
-    <section id="resume" class="py-20 theme-bg-secondary">
+    <section id="resume" class="py-16 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Resume</h2>
-            
+
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Left Column - Professional Experience -->
+                <!-- Left Column -->
                 <div class="md:col-span-2 space-y-6">
                     <div class="resume-section animate-fade-in-up">
                         <div class="resume-header">
                             <div>
-                                <h3 class="resume-title">Senior DevOps Engineer</h3>
-                                <p class="resume-subtitle">TechCorp Solutions • Remote</p>
+                                <h3 class="resume-title">Data Science Intern</h3>
+                                <p class="resume-subtitle">The Openwork Partnership • Swindon, England</p>
                             </div>
-                            <div class="resume-date">2022 - Present</div>
+                            <div class="resume-date">Jan 2026 - Present</div>
                         </div>
                         <div class="resume-content">
-                            <p>Lead DevOps initiatives for enterprise-scale applications serving 1M+ users across multiple cloud platforms.</p>
+                            <p>Building data-driven tools and models that support planning, automation and decision-making.</p>
                             <ul class="resume-list">
-                                <li>Reduced deployment time by 85% through automated CI/CD pipelines using Jenkins and GitLab CI</li>
-                                <li>Achieved 99.9% uptime for critical production systems with comprehensive monitoring and alerting</li>
-                                <li>Implemented infrastructure as code using Terraform, reducing provisioning time by 70%</li>
-                                <li>Migrated legacy monolithic applications to microservices architecture on Kubernetes</li>
-                                <li>Established security best practices across all environments, reducing security incidents by 90%</li>
+                                <li>Built predictive and probabilistic forecasting models for business indicators, supporting data-driven planning and critical business decisions</li>
+                                <li>Collaborated on two web applications integrating OCR and LLMs to automate manual case handling and document-sourcing checks, targeting approximately 150 hours of time savings per month</li>
+                                <li>Refined a redress calculation web application, improving the calculation process and reducing reliance on a single individual</li>
+                                <li>Implemented an end-to-end machine learning lifecycle with MLflow and Databricks for an early warning system, covering experiment tracking and model lifecycle management</li>
+                                <li>Supported departmental reporting through data analysis and actionable insights</li>
                             </ul>
                         </div>
                     </div>
@@ -865,19 +670,18 @@
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.1s;">
                         <div class="resume-header">
                             <div>
-                                <h3 class="resume-title">DevOps Engineer</h3>
-                                <p class="resume-subtitle">CloudFirst Technologies • Noida, India</p>
+                                <h3 class="resume-title">Junior Cyber Security Analyst Intern</h3>
+                                <p class="resume-subtitle">Communications Authority of Kenya (KE-CIRT) • Nairobi, Kenya</p>
                             </div>
-                            <div class="resume-date">2020 - 2022</div>
+                            <div class="resume-date">May 2024 - Aug 2024</div>
                         </div>
                         <div class="resume-content">
-                            <p>Designed and maintained cloud infrastructure for SaaS applications serving enterprise clients.</p>
+                            <p>Worked with the national Computer Incident Response Team on monitoring and analysing cyber threats.</p>
                             <ul class="resume-list">
-                                <li>Migrated legacy applications to AWS, saving 40% in infrastructure costs</li>
-                                <li>Implemented comprehensive monitoring solutions using Prometheus and Grafana</li>
-                                <li>Reduced incident response time by 60% through automated alerting systems</li>
-                                <li>Led team of 3 junior engineers in DevOps best practices and cloud architecture</li>
-                                <li>Developed disaster recovery procedures ensuring 99.5% service availability</li>
+                                <li>Monitored and analysed cybersecurity threats to help protect national critical infrastructure</li>
+                                <li>Built hands-on skills in threat detection, incident response and vulnerability assessments</li>
+                                <li>Participated in developing and implementing cybersecurity policies and awareness programmes</li>
+                                <li>Collaborated with a team to investigate emerging threats within the Kenyan cyberspace</li>
                             </ul>
                         </div>
                     </div>
@@ -885,19 +689,19 @@
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.2s;">
                         <div class="resume-header">
                             <div>
-                                <h3 class="resume-title">Cloud Engineer</h3>
-                                <p class="resume-subtitle">StartupTech Inc • Delhi, India</p>
+                                <h3 class="resume-title">DevOps Bootcamp</h3>
+                                <p class="resume-subtitle">TechWorld with Nana • Online</p>
                             </div>
-                            <div class="resume-date">2019 - 2020</div>
+                            <div class="resume-date">Feb 2026 - Present</div>
                         </div>
                         <div class="resume-content">
-                            <p>Built scalable cloud solutions and automated deployment processes for early-stage startups.</p>
+                            <p>Hands-on DevOps training covering the full lifecycle from containers to production monitoring.</p>
                             <ul class="resume-list">
-                                <li>Architected multi-region deployment strategy for global application availability</li>
-                                <li>Automated backup and disaster recovery procedures using AWS services</li>
-                                <li>Implemented security best practices across all cloud environments</li>
-                                <li>Developed cost optimization strategies reducing cloud spending by 25%</li>
-                                <li>Created documentation and training materials for team knowledge sharing</li>
+                                <li>Kubernetes orchestration and Helm charts, including deployments on Amazon EKS</li>
+                                <li>CI/CD pipelines with Jenkins and Amazon ECR</li>
+                                <li>Infrastructure as Code with Terraform and configuration management with Ansible</li>
+                                <li>Monitoring and alerting with Prometheus, Grafana and Alertmanager</li>
+                                <li>Python automation with Boto3 and artifact management with Nexus</li>
                             </ul>
                         </div>
                     </div>
@@ -905,126 +709,123 @@
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.3s;">
                         <div class="resume-header">
                             <div>
-                                <h3 class="resume-title">DevOps Engineering Bootcamp</h3>
-                                <p class="resume-subtitle">TechWorld with Nana</p>
+                                <h3 class="resume-title">AWS re/Start Graduate</h3>
+                                <p class="resume-subtitle">AWS re/Start Kenya – Ajira Digital • Online</p>
                             </div>
-                            <div class="resume-date">2023 - 2024</div>
+                            <div class="resume-date">May - Aug 2024</div>
                         </div>
                         <div class="resume-content">
-                            <p>Intensive training program focusing on modern DevOps practices and cloud infrastructure.</p>
+                            <p>Cloud skills programme focused on practical AWS and Linux experience.</p>
                             <ul class="resume-list">
-                                <li>Kubernetes orchestration and cluster management</li>
-                                <li>Production CI/CD pipeline design and implementation</li>
-                                <li>Infrastructure as Code with Terraform and CloudFormation</li>
-                                <li>Cloud security best practices and compliance</li>
-                                <li>Containerization strategies and Docker best practices</li>
+                                <li>Hands-on experience with EC2, S3, VPC, IAM, RDS and CloudWatch</li>
+                                <li>Foundational skills in Linux, Python, networking and cloud architecture</li>
+                                <li>Applied cloud security best practices and explored monitoring and cost optimisation</li>
+                                <li>Completed hands-on labs and team projects; prepared for the AWS Certified Cloud Practitioner exam</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Column - Education, Certifications, Skills -->
+                <!-- Right Column -->
                 <div class="space-y-6">
-                    <!-- Education -->
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.4s;">
                         <h3 class="text-xl font-bold mb-4">Education</h3>
                         <div class="mb-4">
                             <h4 class="font-semibold">Bachelor of Science in Computer Science</h4>
-                            <p class="text-sm theme-text opacity-80">University of Nairobi</p>
-                            <p class="text-sm theme-text">2018 - 2022</p>
-                            <p class="text-sm theme-text mt-1">Grade: First Class Honors</p>
+                            <p class="text-sm theme-text opacity-80">Egerton University, Njoro, Kenya</p>
+                            <p class="text-sm theme-text">Sep 2021 - Apr 2024</p>
+                            <p class="text-sm theme-text mt-1">Built MkulimaAid, an AI-powered crop disease diagnostic platform</p>
                         </div>
                     </div>
 
-                    <!-- Certifications -->
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.5s;">
                         <h3 class="text-xl font-bold mb-4">Certifications</h3>
-                        <div class="flex flex-wrap">
-                            <div class="cert-badge">
-                                <i class="fab fa-aws mr-2 text-yellow-500"></i>
-                                <span>AWS Solutions Architect</span>
+                        <div>
+                            <div class="cert-tile">
+                                <div class="cert-ico" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)"><i class="fas fa-infinity"></i></div>
+                                <div><div class="cert-name">Certified DevOps Practitioner</div><div class="cert-issuer">TechWorld with Nana</div></div>
                             </div>
-                            <div class="cert-badge">
-                                <i class="fab fa-docker mr-2 text-blue-500"></i>
-                                <span>Docker Certified</span>
+                            <div class="cert-tile">
+                                <div class="cert-ico" style="background:#232f3e;color:#ff9900"><i class="fab fa-aws"></i></div>
+                                <div><div class="cert-name">AWS Certified Cloud Practitioner</div><div class="cert-issuer">Amazon Web Services</div></div>
                             </div>
-                            <div class="cert-badge">
-                                <i class="fas fa-code mr-2 text-green-500"></i>
-                                <span>Kubernetes CKA</span>
+                            <div class="cert-tile">
+                                <div class="cert-ico" style="background:#326ce5"><i class="fas fa-dharmachakra"></i></div>
+                                <div><div class="cert-name">Kubernetes and Cloud Native Essentials (LFS250)</div><div class="cert-issuer">The Linux Foundation</div></div>
                             </div>
-                            <div class="cert-badge">
-                                <i class="fas fa-shield-alt mr-2 text-red-500"></i>
-                                <span>Security+</span>
+                            <div class="cert-tile">
+                                <div class="cert-ico" style="background:linear-gradient(135deg,#4285f4,#34a853)"><i class="fab fa-google"></i></div>
+                                <div><div class="cert-name">Google Data Analytics Professional Certificate</div><div class="cert-issuer">Google</div></div>
                             </div>
-                            <div class="cert-badge">
-                                <i class="fab fa-python mr-2 text-blue-400"></i>
-                                <span>Python Certified</span>
+                            <div class="cert-tile">
+                                <div class="cert-ico" style="background:linear-gradient(135deg,#0d9488,#14b8a6)"><i class="fas fa-brain"></i></div>
+                                <div><div class="cert-name">Cyber Shujaa Data and AI Specialist</div><div class="cert-issuer">Cyber Shujaa</div></div>
                             </div>
-                            <div class="cert-badge">
-                                <i class="fas fa-cloud mr-2 text-purple-500"></i>
-                                <span>Terraform Associate</span>
+                            <div class="cert-tile">
+                                <div class="cert-ico" style="background:linear-gradient(135deg,#3776ab,#f7c948)"><i class="fab fa-python"></i></div>
+                                <div><div class="cert-name">100 Days of Code: Python Pro Bootcamp</div><div class="cert-issuer">Dr Angela Yu</div></div>
                             </div>
+                        </div>
+                        <div id="credlyWrap" class="mt-4 pt-4 border-t theme-border">
+                            <a href="https://www.credly.com/users/fabius-lihanda/badges" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-semibold theme-accent hover:underline">
+                                <i class="fas fa-circle-check mr-2"></i>Verify my badges on Credly <i class="fas fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                            </a>
+                            <div id="credlyBadges" class="credly-strip"></div>
                         </div>
                     </div>
 
-                    <!-- Core Skills -->
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.6s;">
                         <h3 class="text-xl font-bold mb-4">Core Skills</h3>
                         <div class="flex flex-wrap">
                             <span class="skill-tag">AWS</span>
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Helm</span>
                             <span class="skill-tag">Terraform</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">CI/CD</span>
-                            <span class="skill-tag">Linux</span>
-                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Ansible</span>
                             <span class="skill-tag">Jenkins</span>
-                            <span class="skill-tag">GitLab</span>
+                            <span class="skill-tag">GitOps</span>
+                            <span class="skill-tag">Azure DevOps</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Python</span>
                             <span class="skill-tag">Prometheus</span>
                             <span class="skill-tag">Grafana</span>
-                            <span class="skill-tag">Ansible</span>
-                            <span class="skill-tag">Bash</span>
                             <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">MLflow</span>
+                            <span class="skill-tag">Databricks</span>
+                            <span class="skill-tag">Azure ML</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Django</span>
                         </div>
                     </div>
 
-                    <!-- Contact Info -->
                     <div class="resume-section animate-fade-in-up" style="animation-delay: 0.7s;">
                         <h3 class="text-xl font-bold mb-4">Contact Information</h3>
                         <div class="space-y-3">
                             <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone theme-accent"></i>
-                                </div>
+                                <div class="contact-icon"><i class="fas fa-phone theme-accent"></i></div>
                                 <div>
                                     <div class="text-sm theme-text opacity-80">Phone</div>
-                                    <div>+254 796 829 666</div>
+                                    <div>+44 7388 293572</div>
                                 </div>
                             </div>
                             <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope theme-accent"></i>
-                                </div>
+                                <div class="contact-icon"><i class="fas fa-envelope theme-accent"></i></div>
                                 <div>
                                     <div class="text-sm theme-text opacity-80">Email</div>
-                                    <div>fabiuslihandaachevi@gmail.com</div>
+                                    <div class="break-all">fabiuslihandaachevi@gmail.com</div>
                                 </div>
                             </div>
                             <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-map-marker-alt theme-accent"></i>
-                                </div>
+                                <div class="contact-icon"><i class="fas fa-map-marker-alt theme-accent"></i></div>
                                 <div>
                                     <div class="text-sm theme-text opacity-80">Location</div>
-                                    <div>Nairobi, Kenya</div>
+                                    <div>Swindon, England</div>
                                 </div>
                             </div>
                             <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fab fa-linkedin theme-accent"></i>
-                                </div>
+                                <div class="contact-icon"><i class="fab fa-linkedin theme-accent"></i></div>
                                 <div>
                                     <div class="text-sm theme-text opacity-80">LinkedIn</div>
                                     <div>linkedin.com/in/fabius-lihanda</div>
@@ -1037,394 +838,501 @@
         </div>
     </section>
 
-    <!-- Projects Section with Dynamic Carousel -->
-    <section id="projects" class="py-20 theme-bg-primary">
+    <!-- Projects Section with Filter -->
+    <section id="projects" class="py-16 theme-bg-primary">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-4 text-center">Featured Projects</h2>
-            <p class="text-center theme-text mb-12 max-w-2xl mx-auto">Explore my latest work in DevOps, Data Science, and Cloud Architecture</p>
-            
-            <div class="carousel-container">
-                <!-- Previous Button -->
-                <button class="carousel-button prev" id="prevBtn" aria-label="Previous projects">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                
-                <!-- Carousel Track -->
-                <div class="carousel-track" id="carouselTrack">
-                    <!-- Project 1 -->
-                    <div class="carousel-slide">
-                        <div class="card project-hover h-full flex flex-col">
-                            <div class="p-6 flex flex-col h-full">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="badge badge-primary">Data Science</span>
-                                    <span class="text-sm theme-text">⭐ Featured</span>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-3">MkulimaAid</h3>
-                                <p class="theme-text mb-4 flex-grow">
-                                    AI-powered crop disease detection platform using CNN models and interactive dashboards. Helps farmers identify plant diseases instantly.
-                                </p>
-                                <div class="mb-6">
-                                    <div class="chart-preview">
-                                        <div class="chart-line"></div>
-                                    </div>
-                                </div>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="badge badge-secondary">Flask</span>
-                                    <span class="badge badge-secondary">TensorFlow</span>
-                                    <span class="badge badge-secondary">CNN</span>
-                                    <span class="badge badge-secondary">Plotly</span>
-                                </div>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <a href="https://mkulimaaid.onrender.com/" target="_blank" class="inline-flex items-center theme-accent hover:underline">
-                                        Live Demo <i class="fas fa-external-link-alt ml-2 text-xs"></i>
-                                    </a>
-                                    <span class="text-sm theme-text">Dec 2024</span>
+            <p class="text-center theme-text mb-8 max-w-2xl mx-auto">
+                Hands-on work in DevOps, cloud automation, data science and machine learning. Every DevOps project is documented in my
+                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp" target="_blank" rel="noopener" class="theme-accent font-medium hover:underline">bootcamp repository</a>.
+            </p>
+
+            <!-- Filter -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" role="group" aria-label="Filter projects">
+                <button class="filter-btn active" data-filter="all">All <span class="count" id="countAll"></span></button>
+                <button class="filter-btn" data-filter="devops">DevOps <span class="count" id="countDevops"></span></button>
+                <button class="filter-btn" data-filter="data">Data &amp; ML <span class="count" id="countData"></span></button>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectGrid">
+
+                <!-- DevOps projects -->
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">☁️ Cloud</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Kubernetes on AWS (EKS)</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Deployed a Java and MySQL application on Amazon EKS with Fargate, Cluster Autoscaler, NGINX Ingress and ECR. Jenkins pipelines automate image delivery and deployment.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-aws text-4xl text-blue-500"></i>
+                                    <i class="fab fa-jenkins text-4xl text-blue-400 ml-4"></i>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="carousel-slide">
-                        <div class="card project-hover h-full flex flex-col">
-                            <div class="p-6 flex flex-col h-full">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="badge badge-primary">DevOps</span>
-                                    <span class="text-sm theme-text">📝 Tutorial</span>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-3">Production Flask on AWS</h3>
-                                <p class="theme-text mb-4 flex-grow">
-                                    Complete guide to deploying scalable Flask applications on AWS with high availability, auto-scaling, and security best practices.
-                                </p>
-                                <div class="mb-6">
-                                    <div class="h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
-                                        <i class="fab fa-aws text-4xl text-blue-500"></i>
-                                        <i class="fab fa-docker text-4xl text-blue-400 ml-4"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="badge badge-secondary">AWS</span>
-                                    <span class="badge badge-secondary">Docker</span>
-                                    <span class="badge badge-secondary">CI/CD</span>
-                                    <span class="badge badge-secondary">Security</span>
-                                </div>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <a href="https://medium.com/@fabiuslihandaachevi/how-i-deployed-a-production-ready-flask-application-on-aws-with-high-availability-3aeb643f3f9b" target="_blank" class="inline-flex items-center theme-accent hover:underline">
-                                        Read Article <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                                    </a>
-                                    <span class="text-sm theme-text">Nov 2024</span>
-                                </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">EKS</span>
+                                <span class="badge badge-secondary">Fargate</span>
+                                <span class="badge badge-secondary">ECR</span>
+                                <span class="badge badge-secondary">Jenkins</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="carousel-slide">
-                        <div class="card project-hover h-full flex flex-col">
-                            <div class="p-6 flex flex-col h-full">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="badge badge-primary">DevOps</span>
-                                    <span class="text-sm theme-text">📚 Guide</span>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-3">Git Best Practices</h3>
-                                <p class="theme-text mb-4 flex-grow">
-                                    Essential Git workflows and collaboration techniques for DevOps professionals. Master branching strategies and team collaboration.
-                                </p>
-                                <div class="mb-6">
-                                    <div class="h-32 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
-                                        <i class="fab fa-git-alt text-4xl text-green-500"></i>
-                                        <i class="fab fa-github text-4xl text-gray-800 ml-4"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="badge badge-secondary">Git</span>
-                                    <span class="badge badge-secondary">Workflow</span>
-                                    <span class="badge badge-secondary">Best Practices</span>
-                                    <span class="badge badge-secondary">Collaboration</span>
-                                </div>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <a href="https://medium.com/@fabiuslihandaachevi/git-best-practices-every-devops-engineer-should-know-c2266b0895cd" target="_blank" class="inline-flex items-center theme-accent hover:underline">
-                                        Read Guide <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                                    </a>
-                                    <span class="text-sm theme-text">Oct 2024</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 (Example of additional project) -->
-                    <div class="carousel-slide">
-                        <div class="card project-hover h-full flex flex-col">
-                            <div class="p-6 flex flex-col h-full">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="badge badge-primary">Data Science</span>
-                                    <span class="text-sm theme-text">📊 Analysis</span>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-3">E-commerce Analytics</h3>
-                                <p class="theme-text mb-4 flex-grow">
-                                    Customer behavior analysis and sales prediction using machine learning. Interactive dashboards for business intelligence.
-                                </p>
-                                <div class="mb-6">
-                                    <div class="h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-chart-pie text-4xl text-purple-500"></i>
-                                        <i class="fas fa-database text-4xl text-pink-500 ml-4"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="badge badge-secondary">Python</span>
-                                    <span class="badge badge-secondary">Pandas</span>
-                                    <span class="badge badge-secondary">Scikit-learn</span>
-                                    <span class="badge badge-secondary">Tableau</span>
-                                </div>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <a href="#" class="inline-flex items-center theme-accent hover:underline">
-                                        View Project <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                                    </a>
-                                    <span class="text-sm theme-text">Sep 2024</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 5 -->
-                    <div class="carousel-slide">
-                        <div class="card project-hover h-full flex flex-col">
-                            <div class="p-6 flex flex-col h-full">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="badge badge-primary">DevOps</span>
-                                    <span class="text-sm theme-text">🔧 Tool</span>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-3">Kubernetes Monitor</h3>
-                                <p class="theme-text mb-4 flex-grow">
-                                    Custom Kubernetes monitoring solution with real-time metrics, alerting, and visualization using Prometheus and Grafana.
-                                </p>
-                                <div class="mb-6">
-                                    <div class="h-32 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-chart-line text-4xl text-blue-500"></i>
-                                        <i class="fas fa-bell text-4xl text-cyan-500 ml-4"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="badge badge-secondary">K8s</span>
-                                    <span class="badge badge-secondary">Prometheus</span>
-                                    <span class="badge badge-secondary">Grafana</span>
-                                    <span class="badge badge-secondary">AlertManager</span>
-                                </div>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <a href="#" class="inline-flex items-center theme-accent hover:underline">
-                                        GitHub <i class="fab fa-github ml-2"></i>
-                                    </a>
-                                    <span class="text-sm theme-text">Aug 2024</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 -->
-                    <div class="carousel-slide">
-                        <div class="card project-hover h-full flex flex-col">
-                            <div class="p-6 flex flex-col h-full">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="badge badge-primary">Security</span>
-                                    <span class="text-sm theme-text">🛡️ Research</span>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-3">Cloud Security Framework</h3>
-                                <p class="theme-text mb-4 flex-grow">
-                                    Comprehensive security framework for cloud-native applications with automated compliance checking and threat detection.
-                                </p>
-                                <div class="mb-6">
-                                    <div class="h-32 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-shield-alt text-4xl text-red-500"></i>
-                                        <i class="fas fa-cloud text-4xl text-orange-500 ml-4"></i>
-                                    </div>
-                                </div>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="badge badge-secondary">AWS</span>
-                                    <span class="badge badge-secondary">Security Hub</span>
-                                    <span class="badge badge-secondary">GuardDuty</span>
-                                    <span class="badge badge-secondary">Compliance</span>
-                                </div>
-                                <div class="flex items-center justify-between mt-auto">
-                                    <a href="#" class="inline-flex items-center theme-accent hover:underline">
-                                        Whitepaper <i class="fas fa-file-pdf ml-2"></i>
-                                    </a>
-                                    <span class="text-sm theme-text">Jul 2024</span>
-                                </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/kubernetes-on-AWS-exercises" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Next Button -->
-                <button class="carousel-button next" id="nextBtn" aria-label="Next projects">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">🏗️ IaC</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Infrastructure as Code with Terraform</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Automated AWS infrastructure provisioning with reusable Terraform modules, S3-backed remote state and a Jenkins pipeline for consistent, repeatable deployments.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-cubes text-4xl text-purple-500"></i>
+                                    <i class="fab fa-aws text-4xl text-blue-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Terraform</span>
+                                <span class="badge badge-secondary">AWS</span>
+                                <span class="badge badge-secondary">S3 State</span>
+                                <span class="badge badge-secondary">Jenkins</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/terraform-eks-infrastructure" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">📈 Observability</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Monitoring &amp; Observability</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Built a Prometheus and Grafana monitoring stack to track application and infrastructure health, with Alertmanager sending alerts to Slack and email.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-4xl text-blue-500"></i>
+                                    <i class="fas fa-bell text-4xl text-cyan-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Prometheus</span>
+                                <span class="badge badge-secondary">Grafana</span>
+                                <span class="badge badge-secondary">Alertmanager</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/prometheus-exercises" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">🐍 Automation</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Automation with Python</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Boto3 scripts that automate AWS resource monitoring and backups, integrated with Jenkins to reduce manual operational work.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-python text-4xl text-green-500"></i>
+                                    <i class="fab fa-aws text-4xl text-yellow-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Python</span>
+                                <span class="badge badge-secondary">Boto3</span>
+                                <span class="badge badge-secondary">Jenkins</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/automation_with_python_exercises" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">⚙️ Config Mgmt</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Configuration Management with Ansible</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Automated server setup, software installation, application deployment and repository management with reusable Ansible playbooks and roles.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-gears text-4xl text-red-500"></i>
+                                    <i class="fas fa-server text-4xl text-orange-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Ansible</span>
+                                <span class="badge badge-secondary">Playbooks</span>
+                                <span class="badge badge-secondary">Roles</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/ansible-exercises" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">☸️ Kubernetes</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Kubernetes Deployment with Helm</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Packaged a Java and MySQL application into reusable Helm charts and deployed it on Kubernetes, simplifying configuration and keeping deployments consistent.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-dharmachakra text-4xl text-blue-500"></i>
+                                    <i class="fas fa-box text-4xl text-indigo-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Kubernetes</span>
+                                <span class="badge badge-secondary">Helm</span>
+                                <span class="badge badge-secondary">MySQL</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/kubernetes-exercises" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">🛒 Microservices</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Microservices on Kubernetes</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Deployed Google's Online Boutique demo (11 microservices) on Kubernetes, applying production and security best practices.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-store text-4xl text-pink-500"></i>
+                                    <i class="fas fa-shield-alt text-4xl text-purple-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Kubernetes</span>
+                                <span class="badge badge-secondary">Microservices</span>
+                                <span class="badge badge-secondary">Security</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/microservices-demo" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">🔁 CI/CD</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">CI/CD with Jenkins &amp; Docker</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Jenkins pipelines that build, test and deliver containerised applications automatically, alongside Docker and Docker Compose multi-container setups.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-sky-500/10 to-blue-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-jenkins text-4xl text-sky-500"></i>
+                                    <i class="fab fa-docker text-4xl text-blue-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Jenkins</span>
+                                <span class="badge badge-secondary">Docker</span>
+                                <span class="badge badge-secondary">Compose</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/jenkins-exercises" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="devops">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-primary">DevOps</span>
+                                <span class="text-sm theme-text">📦 Artifacts</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Artifact Repository with Nexus</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Ran a Nexus server and used it to store and manage build artifacts for Maven and Gradle projects.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-box-archive text-4xl text-emerald-500"></i>
+                                    <i class="fas fa-code-branch text-4xl text-teal-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Nexus</span>
+                                <span class="badge badge-secondary">Maven</span>
+                                <span class="badge badge-secondary">Gradle</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius/Devops_Nana-Techworld_Bootcamp/tree/main/running_and_deploying_nexus_server" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                                <span class="text-sm theme-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data & ML projects -->
+                <div class="project-item" data-category="data">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-teal">Data &amp; ML</span>
+                                <span class="text-sm theme-text">⭐ Featured</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">MkulimaAid</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                AI-powered crop disease diagnostic platform. Farmers upload a photo and a trained CNN identifies the disease, with dashboards of disease trends. Showcased at the 2025 Nakuru National Agricultural Show, helping 50+ farmers.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-seedling text-4xl text-green-500"></i>
+                                    <i class="fas fa-microscope text-4xl text-teal-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Flask</span>
+                                <span class="badge badge-secondary">CNN</span>
+                                <span class="badge badge-secondary">Python</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://mkulimaaid.onrender.com/" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    Live Demo <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                                </a>
+                                <span class="text-sm theme-text">2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="data">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-teal">Data &amp; ML</span>
+                                <span class="text-sm theme-text">💬 NLP</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Twitter Sentiment Analysis</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Analysed social sentiment with Python (NLTK, pandas) and visualised insights from Twitter data collected through web scraping with Selenium.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-sky-500/10 to-blue-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-twitter text-4xl text-sky-500"></i>
+                                    <i class="fas fa-comments text-4xl text-blue-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">NLTK</span>
+                                <span class="badge badge-secondary">pandas</span>
+                                <span class="badge badge-secondary">Selenium</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="data">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-teal">Data &amp; ML</span>
+                                <span class="text-sm theme-text">📊 Analysis</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Amazon Bestsellers 2009–2019</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                Analysed the top 50 bestselling books from 2009 to 2019 to identify trends in sales, user ratings, price distribution and genre performance, with recommendations for authors and publishers.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-pie text-4xl text-purple-500"></i>
+                                    <i class="fas fa-book text-4xl text-pink-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Python</span>
+                                <span class="badge badge-secondary">pandas</span>
+                                <span class="badge badge-secondary">EDA</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="data">
+                    <div class="card project-hover h-full flex flex-col">
+                        <div class="p-6 flex flex-col h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="badge badge-teal">Data &amp; ML</span>
+                                <span class="text-sm theme-text">📊 Dashboard</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Tableau HR Dashboard</h3>
+                            <p class="theme-text mb-4 flex-grow">
+                                An HR dashboard built in Tableau that mimics a real-world scenario and surfaces key workforce insights.
+                            </p>
+                            <div class="mb-6">
+                                <div class="h-32 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-4xl text-amber-500"></i>
+                                    <i class="fas fa-chart-bar text-4xl text-orange-500 ml-4"></i>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="badge badge-secondary">Tableau</span>
+                                <span class="badge badge-secondary">Dashboards</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto">
+                                <a href="https://github.com/lihandafabius" target="_blank" rel="noopener" class="inline-flex items-center theme-accent hover:underline">
+                                    GitHub <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Carousel Dots -->
-            <div class="carousel-dots" id="carouselDots"></div>
-
-            <!-- View All Projects Button -->
+            <div class="text-center mt-12">
+                <a href="https://github.com/lihandafabius" target="_blank" rel="noopener" class="inline-flex items-center border-2 theme-border theme-text px-7 py-3 rounded-lg font-medium hover:gradient-bg hover:text-white hover:border-transparent transition-all">
+                    <i class="fab fa-github mr-2"></i> View All on GitHub
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 theme-bg-secondary">
+    <section id="skills" class="py-16 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- DevOps Skills -->
-                <div class="card p-6 animate-fade-in-up">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-cloud mr-3 theme-accent"></i>
-                        DevOps & Cloud
-                    </h3>
-                    <div class="space-y-5">
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">AWS Services</span>
-                                <span class="badge badge-primary">90%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">Docker & Kubernetes</span>
-                                <span class="badge badge-primary">85%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">CI/CD Pipelines</span>
-                                <span class="badge badge-primary">88%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">Infrastructure as Code</span>
-                                <span class="badge badge-primary">83%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 83%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Science Skills -->
-                <div class="card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <h3 class="text-xl font-semibold mb-6 flex items-center">
-                        <i class="fas fa-chart-line mr-3 theme-accent"></i>
-                        Data Science & Analysis
-                    </h3>
-                    <div class="space-y-5">
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">Python Data Stack</span>
-                                <span class="badge badge-primary">92%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">Machine Learning</span>
-                                <span class="badge badge-primary">85%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">Data Visualization</span>
-                                <span class="badge badge-primary">87%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 87%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="font-medium theme-text">SQL & Databases</span>
-                                <span class="badge badge-primary">90%</span>
-                            </div>
-                            <div class="w-full theme-bg-primary rounded-full h-2.5">
-                                <div class="gradient-bg h-2.5 rounded-full skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-bold mb-3">Technical Skills</h2>
+                <p class="theme-text opacity-80 max-w-2xl mx-auto">The tools I use to build, ship and monitor, each one applied in the projects above.</p>
             </div>
-
-            <!-- Tools & Technologies -->
-            <div class="mt-12 card p-8 animate-fade-in-up" style="animation-delay: 0.2s;">
-                <h3 class="text-2xl font-bold mb-6 text-center">Tools & Technologies</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
-                    <div class="group">
-                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
-                            <i class="fab fa-aws text-2xl group-hover:text-white"></i>
-                        </div>
-                        <p class="text-sm font-medium theme-text">AWS</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
-                            <i class="fab fa-docker text-2xl group-hover:text-white"></i>
-                        </div>
-                        <p class="text-sm font-medium theme-text">Docker</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
-                            <i class="fab fa-python text-2xl group-hover:text-white"></i>
-                        </div>
-                        <p class="text-sm font-medium theme-text">Python</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
-                            <i class="fas fa-database text-2xl group-hover:text-white"></i>
-                        </div>
-                        <p class="text-sm font-medium theme-text">SQL</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
-                            <i class="fab fa-git-alt text-2xl group-hover:text-white"></i>
-                        </div>
-                        <p class="text-sm font-medium theme-text">Git</p>
-                    </div>
-                    <div class="group">
-                        <div class="w-16 h-16 theme-bg-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:gradient-bg transition-all">
-                            <i class="fas fa-chart-bar text-2xl group-hover:text-white"></i>
-                        </div>
-                        <p class="text-sm font-medium theme-text">Power BI</p>
-                    </div>
-                </div>
+            <div class="card p-4 md:p-6">
+                <div class="flex flex-wrap justify-center gap-2 mb-6" id="skillTabs" role="tablist" aria-label="Skill categories"></div>
+                <div id="skillPanel" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" role="tabpanel"></div>
             </div>
         </div>
     </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 theme-bg-primary">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-2">From My Blog</h2>
+                    <p class="theme-text opacity-80">Notes on DevOps, cloud and data science, published on Medium.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="https://medium.com/@fabiuslihandaachevi" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center text-sm font-semibold theme-accent hover:underline mr-2">
+                        <i class="fab fa-medium mr-2"></i>All articles
+                    </a>
+                    <button class="blog-nav" id="blogPrev" aria-label="Previous articles"><i class="fas fa-chevron-left"></i></button>
+                    <button class="blog-nav" id="blogNext" aria-label="Next articles"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="blog-track" id="blogTrack" aria-live="polite">
+                <div class="blog-card blog-skeleton"><div class="blog-thumb"></div><div class="p-5"><div class="bar" style="width:40%"></div><div class="bar" style="width:90%"></div><div class="bar" style="width:75%"></div></div></div>
+                <div class="blog-card blog-skeleton"><div class="blog-thumb"></div><div class="p-5"><div class="bar" style="width:40%"></div><div class="bar" style="width:90%"></div><div class="bar" style="width:75%"></div></div></div>
+                <div class="blog-card blog-skeleton"><div class="blog-thumb"></div><div class="p-5"><div class="bar" style="width:40%"></div><div class="bar" style="width:90%"></div><div class="bar" style="width:75%"></div></div></div>
+            </div>
+            <div class="dots" id="blogDots"></div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contact" class="py-20 theme-bg-primary">
+    <section id="contact" class="py-16 theme-bg-primary">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Get In Touch</h2>
-            
+
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="animate-fade-in-up">
                     <h3 class="text-xl font-semibold mb-6">Let's Collaborate</h3>
                     <p class="theme-text mb-8">
-                        Interested in DevOps, data science, or security projects? Let's discuss how we can work together 
-                        to build scalable solutions and extract insights from your data.
+                        Interested in DevOps, cloud automation or data science? Get in touch and let's talk about how
+                        I can help build reliable infrastructure and data-driven solutions.
                     </p>
-                    
+
                     <div class="space-y-4">
                         <div class="flex items-center space-x-4">
                             <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center">
@@ -1432,83 +1340,86 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold">Email</h4>
-                                <p class="theme-text">fabiuslihandaachevi@gmail.com</p>
+                                <a href="mailto:fabiuslihandaachevi@gmail.com" class="theme-text break-all hover:underline">fabiuslihandaachevi@gmail.com</a>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-center space-x-4">
                             <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center">
                                 <i class="fas fa-map-marker-alt text-white"></i>
                             </div>
                             <div>
                                 <h4 class="font-semibold">Location</h4>
-                                <p class="theme-text">Nairobi, Kenya</p>
+                                <p class="theme-text">Swindon, England</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-center space-x-4">
                             <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center">
                                 <i class="fas fa-phone text-white"></i>
                             </div>
                             <div>
                                 <h4 class="font-semibold">Phone</h4>
-                                <p class="theme-text">+254 796 829 666</p>
+                                <a href="tel:+447388293572" class="theme-text hover:underline">+44 7388 293572</a>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-8">
                         <h4 class="font-semibold mb-4">Connect With Me</h4>
                         <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/fabius-lihanda" class="w-10 h-10 theme-bg-primary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
+                            <a href="https://www.linkedin.com/in/fabius-lihanda" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 theme-bg-secondary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://github.com/lihandafabius" class="w-10 h-10 theme-bg-primary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
+                            <a href="https://github.com/lihandafabius" target="_blank" rel="noopener" aria-label="GitHub" class="w-10 h-10 theme-bg-secondary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://medium.com/@fabiuslihandaachevi" class="w-10 h-10 theme-bg-primary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
+                            <a href="https://medium.com/@fabiuslihandaachevi" target="_blank" rel="noopener" aria-label="Medium" class="w-10 h-10 theme-bg-secondary rounded-lg flex items-center justify-center hover:gradient-bg hover:text-white transition-all">
                                 <i class="fab fa-medium"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <form action="https://formspree.io/f/meolwawg" method="POST" class="card p-8">
+                    <form id="contactForm" action="https://formspree.io/f/meolwawg" method="POST" class="card p-8">
+                        <input type="hidden" name="_subject" value="New message from your portfolio">
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
                         <div class="mb-6">
                             <label for="name" class="block text-sm font-medium theme-text mb-2">Name</label>
-                            <input type="text" id="name" name="name" required 
-                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text">
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-blue-500 transition-colors theme-bg-primary theme-text">
                         </div>
-                        
+
                         <div class="mb-6">
                             <label for="email" class="block text-sm font-medium theme-text mb-2">Email</label>
-                            <input type="email" id="email" name="email" required 
-                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text">
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-blue-500 transition-colors theme-bg-primary theme-text">
                         </div>
-                        
+
                         <div class="mb-6">
-                            <label for="service" class="block text-sm font-medium theme-text mb-2">Service Interested In</label>
-                            <select id="service" name="service" 
-                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text">
-                                <option value="">Select a service</option>
+                            <label for="service" class="block text-sm font-medium theme-text mb-2">I'm Interested In</label>
+                            <select id="service" name="service"
+                                   class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-blue-500 transition-colors theme-bg-primary theme-text">
+                                <option value="">Select a topic</option>
+                                <option value="job">Job Opportunity</option>
                                 <option value="devops">DevOps Engineering</option>
                                 <option value="datascience">Data Science</option>
                                 <option value="analysis">Data Analysis</option>
-                                <option value="security">Security Consulting</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
+
                         <div class="mb-6">
                             <label for="message" class="block text-sm font-medium theme-text mb-2">Message</label>
                             <textarea id="message" name="message" required rows="5"
-                                      class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-accent transition-colors theme-bg-primary theme-text"></textarea>
+                                      class="w-full px-4 py-3 theme-border border rounded-lg focus:outline-none focus:border-blue-500 transition-colors theme-bg-primary theme-text"></textarea>
                         </div>
-                        
+
                         <button type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all">
                             Send Message
                         </button>
+                    <p id="formStatus" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -1519,21 +1430,21 @@
     <footer class="py-12 theme-bg-secondary">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <div class="flex justify-center items-center space-x-6 mb-6">
-                <a href="https://www.linkedin.com/in/fabius-lihanda" class="theme-text hover:theme-accent transition-colors">
+                <a href="https://www.linkedin.com/in/fabius-lihanda" target="_blank" rel="noopener" aria-label="LinkedIn" class="theme-text hover:theme-accent transition-colors">
                     <i class="fab fa-linkedin-in text-xl"></i>
                 </a>
-                <a href="https://github.com/lihandafabius" class="theme-text hover:theme-accent transition-colors">
+                <a href="https://github.com/lihandafabius" target="_blank" rel="noopener" aria-label="GitHub" class="theme-text hover:theme-accent transition-colors">
                     <i class="fab fa-github text-xl"></i>
                 </a>
-                <a href="https://medium.com/@fabiuslihandaachevi" class="theme-text hover:theme-accent transition-colors">
+                <a href="https://medium.com/@fabiuslihandaachevi" target="_blank" rel="noopener" aria-label="Medium" class="theme-text hover:theme-accent transition-colors">
                     <i class="fab fa-medium text-xl"></i>
                 </a>
-                <a href="https://www.credly.com/users/fabius-lihanda/badges" class="theme-text hover:theme-accent transition-colors">
+                <a href="https://www.credly.com/users/fabius-lihanda/badges" target="_blank" rel="noopener" aria-label="Credly" class="theme-text hover:theme-accent transition-colors">
                     <i class="fas fa-award text-xl"></i>
                 </a>
             </div>
-            <p class="theme-text">&copy; 2025 Fabius Lihanda. All rights reserved.</p>
-            <p class="text-sm theme-text mt-2">DevOps • Data Science • Security</p>
+            <p class="theme-text">&copy; <span id="year">2026</span> Fabius Lihanda. All rights reserved.</p>
+            <p class="text-sm theme-text mt-2">DevOps • Data Science • Cloud</p>
         </div>
     </footer>
 
@@ -1542,27 +1453,22 @@
         <div class="modal-content">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-bold">Download My CV</h3>
-                <button id="closeCvModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors">
+                <button id="closeCvModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors" aria-label="Close">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
-            <!-- File Preview -->
             <div class="text-center mb-6">
                 <div class="file-icon gradient-text mb-3">
                     <i class="fas fa-file-pdf text-6xl"></i>
                 </div>
                 <h4 class="text-xl font-semibold mb-2">Fabius Lihanda - CV.pdf</h4>
-                <p class="theme-text mb-3">Professional CV showcasing DevOps, Data Science, and Cybersecurity expertise</p>
-                <div class="theme-text text-sm mb-2">
-                    <i class="fas fa-hdd mr-2"></i> ~2.1 MB • Updated: December 2024
-                </div>
+                <p class="theme-text mb-3">Professional CV covering data science, DevOps and cloud engineering experience</p>
             </div>
 
-            <!-- Download Options -->
             <div class="space-y-4 mb-8">
                 <h4 class="font-semibold mb-3">Choose your option:</h4>
-                
+
                 <div class="download-option" data-option="view">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
@@ -1570,20 +1476,20 @@
                         </div>
                         <div class="flex-1">
                             <h5 class="font-semibold mb-1">View Online</h5>
-                            <p class="text-sm theme-text">Preview the CV in your browser before downloading</p>
+                            <p class="text-sm theme-text">Preview the CV in your browser</p>
                         </div>
                         <i class="fas fa-chevron-right ml-2"></i>
                     </div>
                 </div>
 
-                <div class="download-option" data-option="download">
+                <div class="download-option active" data-option="download">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
                             <i class="fas fa-download text-xl"></i>
                         </div>
                         <div class="flex-1">
                             <h5 class="font-semibold mb-1">Download Now</h5>
-                            <p class="text-sm theme-text">Direct download to your device</p>
+                            <p class="text-sm theme-text">Save the PDF to your device</p>
                         </div>
                         <i class="fas fa-chevron-right ml-2"></i>
                     </div>
@@ -1596,14 +1502,13 @@
                         </div>
                         <div class="flex-1">
                             <h5 class="font-semibold mb-1">View LinkedIn Profile</h5>
-                            <p class="text-sm theme-text">Check my updated professional profile</p>
+                            <p class="text-sm theme-text">See my professional profile</p>
                         </div>
                         <i class="fas fa-external-link-alt ml-2"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- File Details -->
             <div class="theme-bg-secondary rounded-lg p-4 mb-6">
                 <h5 class="font-semibold mb-2">File Details:</h5>
                 <div class="grid grid-cols-2 gap-3 text-sm">
@@ -1612,16 +1517,16 @@
                         <span class="font-medium ml-2">PDF</span>
                     </div>
                     <div>
-                        <span class="theme-text">Pages:</span>
-                        <span class="font-medium ml-2">3</span>
+                        <span class="theme-text">Language:</span>
+                        <span class="font-medium ml-2">English</span>
                     </div>
                     <div>
                         <span class="theme-text">Last Updated:</span>
-                        <span class="font-medium ml-2">Dec 2024</span>
+                        <span class="font-medium ml-2">Nov 2026</span>
                     </div>
                     <div>
-                        <span class="theme-text">Language:</span>
-                        <span class="font-medium ml-2">English</span>
+                        <span class="theme-text">References:</span>
+                        <span class="font-medium ml-2">On request</span>
                     </div>
                 </div>
             </div>
@@ -1638,41 +1543,31 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-6 right-6 z-40 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all hidden">
+    <button id="backToTop" class="fixed bottom-6 right-6 z-40 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all hidden" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
 
     <script>
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeMobileMenu = document.getElementById('closeMobileMenu');
         const mobileMenu = document.getElementById('mobileMenu');
 
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
+            mobileMenu.style.transform = 'translateX(0)';
         });
+        function hideMobileMenu() { mobileMenu.style.transform = 'translateX(100%)'; }
+        closeMobileMenu.addEventListener('click', hideMobileMenu);
+        document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', hideMobileMenu));
 
-        closeMobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
-
-        // Close mobile menu when clicking links
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
-
-        // Back to top button
+        // Back to top
         const backToTopButton = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('hidden');
-            } else {
-                backToTopButton.classList.add('hidden');
-            }
+            backToTopButton.classList.toggle('hidden', window.scrollY <= 300);
         });
-
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -1680,15 +1575,12 @@
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
@@ -1697,7 +1589,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
-            }, 1000);
+            }, 600);
         });
 
         // Typing animation
@@ -1706,149 +1598,50 @@
             const text = typingElement.textContent;
             typingElement.textContent = '';
             let i = 0;
-            
-            function typeWriter() {
+            (function typeWriter() {
                 if (i < text.length) {
-                    typingElement.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
+                    typingElement.textContent += text.charAt(i++);
+                    setTimeout(typeWriter, 70);
                 }
-            }
-            setTimeout(typeWriter, 1500);
+            })();
         }
 
         // Intersection Observer for animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('animate-fade-in-up');
             });
         }, { threshold: 0.1 });
+        document.querySelectorAll('.card').forEach(el => observer.observe(el));
 
-        // Observe elements
-        document.querySelectorAll('.card, .timeline-item').forEach(el => {
-            observer.observe(el);
-        });
+        // Project filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
 
-        // Carousel Functionality
-        const track = document.getElementById('carouselTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const dotsContainer = document.getElementById('carouselDots');
-        
-        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-        let currentIndex = 0;
-        let slidesPerView = getSlidesPerView();
+        document.getElementById('countAll').textContent = '(' + projectItems.length + ')';
+        document.getElementById('countDevops').textContent = '(' + document.querySelectorAll('.project-item[data-category="devops"]').length + ')';
+        document.getElementById('countData').textContent = '(' + document.querySelectorAll('.project-item[data-category="data"]').length + ')';
 
-        // Get number of slides based on screen width
-        function getSlidesPerView() {
-            if (window.innerWidth >= 1024) return 3;
-            if (window.innerWidth >= 640) return 2;
-            return 1;
-        }
-
-        // Calculate total pages
-        function getTotalPages() {
-            return Math.ceil(slides.length / slidesPerView);
-        }
-
-        // Update carousel position
-        function updateCarousel() {
-            const slideWidth = slides[0].offsetWidth + 32; // Including gap
-            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            
-            // Update buttons
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= slides.length - slidesPerView;
-            
-            // Update dots
-            updateDots();
-        }
-
-        // Create dots
-        function createDots() {
-            const totalPages = getTotalPages();
-            dotsContainer.innerHTML = '';
-            
-            for (let i = 0; i < totalPages; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('carousel-dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => {
-                    currentIndex = i * slidesPerView;
-                    updateCarousel();
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                projectItems.forEach(item => {
+                    const show = filter === 'all' || item.dataset.category === filter;
+                    item.classList.toggle('hidden-project', !show);
                 });
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        // Update dots
-        function updateDots() {
-            const dots = document.querySelectorAll('.carousel-dot');
-            const currentPage = Math.floor(currentIndex / slidesPerView);
-            
-            dots.forEach((dot, index) => {
-                if (index === currentPage) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
             });
-        }
-
-        // Next button click
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < slides.length - slidesPerView) {
-                currentIndex++;
-                updateCarousel();
-            }
         });
-
-        // Previous button click
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const newSlidesPerView = getSlidesPerView();
-            if (newSlidesPerView !== slidesPerView) {
-                slidesPerView = newSlidesPerView;
-                currentIndex = 0; // Reset to first slide
-                createDots();
-                updateCarousel();
-            }
-        });
-
-        // Initialize carousel
-        createDots();
-        updateCarousel();
 
         // CV Download Modal
         const cvModal = document.getElementById('cvModal');
-        const downloadBtn = document.getElementById('downloadCV');
-        const closeCvModal = document.getElementById('closeCvModal');
-        const cancelDownload = document.getElementById('cancelDownload');
-        const confirmAction = document.getElementById('confirmAction');
         const downloadOptions = document.querySelectorAll('.download-option');
-
         let selectedOption = 'download';
 
-        downloadBtn.addEventListener('click', () => {
-            cvModal.classList.add('active');
-        });
-
-        closeCvModal.addEventListener('click', () => {
-            cvModal.classList.remove('active');
-        });
-
-        cancelDownload.addEventListener('click', () => {
-            cvModal.classList.remove('active');
-        });
+        document.getElementById('downloadCV').addEventListener('click', () => cvModal.classList.add('active'));
+        document.getElementById('closeCvModal').addEventListener('click', () => cvModal.classList.remove('active'));
+        document.getElementById('cancelDownload').addEventListener('click', () => cvModal.classList.remove('active'));
 
         downloadOptions.forEach(option => {
             option.addEventListener('click', () => {
@@ -1858,14 +1651,13 @@
             });
         });
 
-        confirmAction.addEventListener('click', () => {
+        document.getElementById('confirmAction').addEventListener('click', () => {
             cvModal.classList.remove('active');
-            
-            switch(selectedOption) {
+            switch (selectedOption) {
                 case 'view':
                     window.open('assets/CV.pdf', '_blank');
                     break;
-                case 'download':
+                case 'download': {
                     const link = document.createElement('a');
                     link.href = 'assets/CV.pdf';
                     link.download = 'Fabius_Lihanda_CV.pdf';
@@ -1873,65 +1665,307 @@
                     link.click();
                     document.body.removeChild(link);
                     break;
+                }
                 case 'linkedin':
                     window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank');
                     break;
             }
         });
 
-        // Close modal when clicking outside
         cvModal.addEventListener('click', (e) => {
-            if (e.target === cvModal) {
-                cvModal.classList.remove('active');
-            }
+            if (e.target === cvModal) cvModal.classList.remove('active');
         });
 
-        // Handle form submission
-        const contactForm = document.querySelector('form');
+        // ---------- Analytics helper ----------
+        function track(name, params) {
+            try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+        }
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest('a');
+            if (!a) return;
+            const href = a.getAttribute('href') || '';
+            if (/^https?:/.test(href) && a.hostname !== location.hostname) {
+                track('outbound_click', { link_url: href, link_text: (a.textContent || '').trim().slice(0, 60) });
+            } else if (href.startsWith('mailto:')) { track('email_click'); }
+            else if (href.startsWith('tel:')) { track('phone_click'); }
+        });
+        filterButtons.forEach(b => b.addEventListener('click', () => track('project_filter', { filter: b.dataset.filter })));
+        document.getElementById('confirmAction').addEventListener('click', () => track('cv_action', { option: selectedOption }));
+        document.getElementById('downloadCV').addEventListener('click', () => track('cv_modal_open'));
+
+        // ---------- Technical skills ----------
+        const SKILLS = {
+            'Cloud & Containers': { icon: 'fa-cloud', items: [
+                { n: 'AWS', c: 'EC2, S3, VPC, IAM, EKS, ECR, Fargate', i: 'fab fa-aws', col: '#ff9900' },
+                { n: 'Docker', c: 'Images, Compose, multi-container apps', i: 'devicon-docker-plain colored' },
+                { n: 'Kubernetes', c: 'EKS, Ingress, autoscaling', i: 'devicon-kubernetes-plain colored' },
+                { n: 'Helm', c: 'Reusable application charts', i: 'fas fa-ship', col: '#0f1689' }
+            ]},
+            'CI/CD & IaC': { icon: 'fa-code-branch', items: [
+                { n: 'Jenkins', c: 'Pipelines to ECR and EKS', i: 'devicon-jenkins-plain colored' },
+                { n: 'Terraform', c: 'Modules, S3 remote state', i: 'devicon-terraform-plain colored' },
+                { n: 'Ansible', c: 'Playbooks and roles', i: 'devicon-ansible-plain colored' },
+                { n: 'Git & GitOps', c: 'Branching and GitOps workflows', i: 'devicon-git-plain colored' },
+                { n: 'Azure DevOps', c: 'Pipelines and boards', i: 'devicon-azure-plain colored' },
+                { n: 'Nexus', c: 'Artifact repository management', i: 'fas fa-box-archive', col: '#1b8c5a' }
+            ]},
+            'Monitoring': { icon: 'fa-gauge-high', items: [
+                { n: 'Prometheus', c: 'Metrics and scraping', i: 'devicon-prometheus-original colored' },
+                { n: 'Grafana', c: 'Dashboards', i: 'devicon-grafana-original colored' },
+                { n: 'Alertmanager', c: 'Slack and email alerts', i: 'fas fa-bell', col: '#e6522c' }
+            ]},
+            'Data Science & ML': { icon: 'fa-brain', items: [
+                { n: 'Python', c: 'pandas, NLTK, Boto3', i: 'devicon-python-plain colored' },
+                { n: 'SQL', c: 'Analysis and reporting', i: 'fas fa-database', col: '#336791' },
+                { n: 'MLflow', c: 'Experiment tracking, model lifecycle', i: 'fas fa-flask-vial', col: '#0194e2' },
+                { n: 'Databricks', c: 'Early warning system', i: 'fas fa-layer-group', col: '#ff3621' },
+                { n: 'Azure ML', c: 'Model development', i: 'devicon-azure-plain colored' },
+                { n: 'OCR & LLMs', c: 'Document automation apps', i: 'fas fa-file-lines', col: '#8b5cf6' },
+                { n: 'Forecasting', c: 'Probabilistic, time-series', i: 'fas fa-chart-line', col: '#3b82f6' },
+                { n: 'Tableau', c: 'Dashboards', i: 'fas fa-chart-column', col: '#e97627' }
+            ]},
+            'Engineering': { icon: 'fa-laptop-code', items: [
+                { n: 'Linux', c: 'Administration and scripting', i: 'devicon-linux-plain' },
+                { n: 'Flask', c: 'Web apps and APIs', i: 'devicon-flask-original' },
+                { n: 'Django', c: 'Full-stack web apps', i: 'devicon-django-plain' },
+                { n: 'Selenium', c: 'Scraping and automation', i: 'devicon-selenium-original colored' },
+                { n: 'Cybersecurity', c: 'Threat detection, incident response', i: 'fas fa-shield-halved', col: '#dc2626' }
+            ]}
+        };
+        const skillTabs = document.getElementById('skillTabs');
+        const skillPanel = document.getElementById('skillPanel');
+
+        function renderSkills(cat) {
+            skillPanel.textContent = '';
+            SKILLS[cat].items.forEach((s, idx) => {
+                const tile = document.createElement('div');
+                tile.className = 'skill-tile';
+                tile.style.animationDelay = (idx * 0.04) + 's';
+                const ico = document.createElement('div');
+                ico.className = 'skill-ico';
+                const i = document.createElement('i');
+                i.className = s.i;
+                if (s.col) i.style.color = s.col;
+                ico.appendChild(i);
+                const txt = document.createElement('div');
+                const nm = document.createElement('div'); nm.className = 'skill-name'; nm.textContent = s.n;
+                const cx = document.createElement('div'); cx.className = 'skill-ctx'; cx.textContent = s.c;
+                txt.append(nm, cx);
+                tile.append(ico, txt);
+                skillPanel.appendChild(tile);
+            });
+        }
+        Object.keys(SKILLS).forEach((cat, idx) => {
+            const b = document.createElement('button');
+            b.className = 'skill-tab' + (idx === 0 ? ' active' : '');
+            b.setAttribute('role', 'tab');
+            const ic = document.createElement('i'); ic.className = 'fas ' + SKILLS[cat].icon;
+            const lb = document.createElement('span'); lb.textContent = cat;
+            const ct = document.createElement('span'); ct.className = 'n'; ct.textContent = SKILLS[cat].items.length;
+            b.append(ic, lb, ct);
+            b.addEventListener('click', () => {
+                skillTabs.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+                b.classList.add('active');
+                renderSkills(cat);
+                track('skill_tab', { category: cat });
+            });
+            skillTabs.appendChild(b);
+        });
+        renderSkills(Object.keys(SKILLS)[0]);
+
+        // ---------- Credly badges (loads live; hidden if Credly blocks the request) ----------
+        (async function loadCredly() {
+            try {
+                const r = await fetch('https://www.credly.com/users/fabius-lihanda/badges.json', { headers: { 'Accept': 'application/json' } });
+                if (!r.ok) return;
+                const j = await r.json();
+                const list = (j.data || []).slice(0, 12);
+                const box = document.getElementById('credlyBadges');
+                list.forEach(b => {
+                    const img = b.image_url || (b.image && b.image.url) || (b.badge_template && (b.badge_template.image_url || (b.badge_template.image && b.badge_template.image.url)));
+                    const name = (b.badge_template && b.badge_template.name) || 'Credly badge';
+                    if (!img || !/^https:\/\//.test(img) || !/^[\w-]+$/.test(String(b.id))) return;
+                    const a = document.createElement('a');
+                    a.href = 'https://www.credly.com/badges/' + b.id + '/public_url';
+                    a.target = '_blank'; a.rel = 'noopener'; a.title = name;
+                    const im = document.createElement('img');
+                    im.src = img; im.alt = name; im.loading = 'lazy';
+                    a.appendChild(im);
+                    box.appendChild(a);
+                });
+            } catch (e) { /* the Credly link above remains */ }
+        })();
+
+        // ---------- Blog carousel (live Medium feed with fallback) ----------
+        const MEDIUM_PROFILE = 'https://medium.com/@fabiuslihandaachevi';
+        const FEED_URL = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://medium.com/feed/@fabiuslihandaachevi');
+        const FALLBACK_POSTS = [
+            { title: 'How I Deployed a Production-Ready Flask Application on AWS with High Availability',
+              link: 'https://medium.com/@fabiuslihandaachevi/how-i-deployed-a-production-ready-flask-application-on-aws-with-high-availability-3aeb643f3f9b',
+              excerpt: 'A guide to deploying scalable Flask applications on AWS with high availability, auto-scaling and security best practices.',
+              tags: ['AWS', 'Flask', 'DevOps'] },
+            { title: 'Git Best Practices Every DevOps Engineer Should Know',
+              link: 'https://medium.com/@fabiuslihandaachevi/git-best-practices-every-devops-engineer-should-know-c2266b0895cd',
+              excerpt: 'Essential Git workflows and collaboration techniques for DevOps professionals, from branching strategies to team collaboration.',
+              tags: ['Git', 'DevOps', 'Workflow'] }
+        ];
+        const blogTrack = document.getElementById('blogTrack');
+        const blogDots = document.getElementById('blogDots');
+
+        function textFromHtml(html) {
+            const doc = new DOMParser().parseFromString(html || '', 'text/html');
+            return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+        }
+        function imgFromHtml(html) {
+            const doc = new DOMParser().parseFromString(html || '', 'text/html');
+            const im = doc.querySelector('img');
+            return im ? im.getAttribute('src') : '';
+        }
+        function fmtDate(s) {
+            if (!s) return '';
+            const d = new Date(String(s).replace(' ', 'T') + (String(s).includes('T') || String(s).includes('Z') ? '' : 'Z'));
+            return isNaN(d) ? '' : d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+        }
+        function buildCard(p) {
+            const a = document.createElement('a');
+            a.className = 'blog-card';
+            a.href = p.link; a.target = '_blank'; a.rel = 'noopener';
+            const th = document.createElement('div'); th.className = 'blog-thumb';
+            const ic = document.createElement('i'); ic.className = 'fab fa-medium'; th.appendChild(ic);
+            if (p.image && /^https:\/\//.test(p.image)) {
+                const im = document.createElement('img');
+                im.src = p.image; im.alt = ''; im.loading = 'lazy';
+                im.onerror = () => im.remove();
+                th.appendChild(im);
+            }
+            const body = document.createElement('div'); body.className = 'p-5 flex flex-col flex-grow';
+            const meta = document.createElement('div'); meta.className = 'text-xs theme-text opacity-70 mb-2';
+            meta.textContent = [fmtDate(p.date), p.read].filter(Boolean).join(' · ') || 'Medium';
+            const t = document.createElement('h3'); t.className = 'text-lg font-semibold mb-2 leading-snug'; t.textContent = p.title;
+            const ex = document.createElement('p'); ex.className = 'text-sm theme-text opacity-80 mb-4 flex-grow'; ex.textContent = p.excerpt;
+            const tags = document.createElement('div'); tags.className = 'flex flex-wrap gap-2 mb-4';
+            (p.tags || []).slice(0, 3).forEach(x => { const s = document.createElement('span'); s.className = 'badge badge-secondary'; s.textContent = x; tags.appendChild(s); });
+            const cta = document.createElement('span'); cta.className = 'text-sm font-medium theme-accent';
+            cta.innerHTML = 'Read on Medium <i class="fas fa-arrow-right ml-1 text-xs"></i>';
+            body.append(meta, t, ex, tags, cta);
+            a.append(th, body);
+            return a;
+        }
+        function renderBlog(posts) {
+            blogTrack.textContent = '';
+            blogDots.textContent = '';
+            posts.forEach((p, i) => {
+                blogTrack.appendChild(buildCard(p));
+                const d = document.createElement('button');
+                d.className = 'dot' + (i === 0 ? ' active' : '');
+                d.setAttribute('aria-label', 'Go to article ' + (i + 1));
+                d.addEventListener('click', () => goTo(i));
+                blogDots.appendChild(d);
+            });
+            blogTrack.scrollLeft = 0;
+        }
+        function cardStep() {
+            const c = blogTrack.querySelector('.blog-card');
+            return c ? c.getBoundingClientRect().width + 20 : 340;
+        }
+        function goTo(i) { blogTrack.scrollTo({ left: i * cardStep(), behavior: 'smooth' }); }
+        function nextBlog(dir) {
+            const max = blogTrack.scrollWidth - blogTrack.clientWidth - 4;
+            if (dir > 0 && blogTrack.scrollLeft >= max) { blogTrack.scrollTo({ left: 0, behavior: 'smooth' }); return; }
+            blogTrack.scrollBy({ left: dir * cardStep(), behavior: 'smooth' });
+        }
+        document.getElementById('blogPrev').addEventListener('click', () => nextBlog(-1));
+        document.getElementById('blogNext').addEventListener('click', () => nextBlog(1));
+        blogTrack.addEventListener('scroll', () => {
+            const idx = Math.round(blogTrack.scrollLeft / cardStep());
+            blogDots.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        }, { passive: true });
+
+        // Gentle autoplay, paused on hover/focus/touch and for reduced-motion users
+        let blogTimer = null;
+        function startAuto() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            stopAuto();
+            blogTimer = setInterval(() => { if (blogTrack.children.length > 1) nextBlog(1); }, 6000);
+        }
+        function stopAuto() { if (blogTimer) { clearInterval(blogTimer); blogTimer = null; } }
+        ['mouseenter', 'focusin', 'touchstart'].forEach(ev => blogTrack.addEventListener(ev, stopAuto, { passive: true }));
+        ['mouseleave', 'focusout'].forEach(ev => blogTrack.addEventListener(ev, startAuto));
+
+        (async function loadBlog() {
+            let posts = null;
+            try {
+                const ctrl = new AbortController();
+                const to = setTimeout(() => ctrl.abort(), 8000);
+                const r = await fetch(FEED_URL, { signal: ctrl.signal });
+                clearTimeout(to);
+                if (r.ok) {
+                    const j = await r.json();
+                    if (j.status === 'ok' && Array.isArray(j.items) && j.items.length) {
+                        posts = j.items.slice(0, 9).map(it => {
+                            const words = textFromHtml(it.content || it.description).split(' ').length;
+                            const ex = textFromHtml(it.description);
+                            return {
+                                title: it.title,
+                                link: it.link,
+                                date: it.pubDate,
+                                image: it.thumbnail || imgFromHtml(it.description || it.content),
+                                excerpt: ex.length > 150 ? ex.slice(0, 147).trimEnd() + '...' : ex,
+                                read: Math.max(1, Math.round(words / 200)) + ' min read',
+                                tags: it.categories || []
+                            };
+                        }).filter(p => /^https:\/\/(.*\.)?medium\.com\//.test(p.link));
+                    }
+                }
+            } catch (e) { /* fall back below */ }
+            renderBlog(posts && posts.length ? posts : FALLBACK_POSTS);
+            startAuto();
+        })();
+
+        // ---------- Contact form (Formspree) ----------
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+        function showStatus(kind, html) {
+            formStatus.className = 'show ' + kind;
+            formStatus.innerHTML = html;
+        }
         if (contactForm) {
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                
-                // Show loading state
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-                
+                const btn = contactForm.querySelector('button[type="submit"]');
+                const original = btn.textContent;
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                formStatus.className = '';
+                const ctrl = new AbortController();
+                const to = setTimeout(() => ctrl.abort(), 15000);
                 try {
-                    const formData = new FormData(contactForm);
-                    const response = await fetch(contactForm.action, {
+                    const res = await fetch(contactForm.action, {
                         method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        body: new FormData(contactForm),
+                        headers: { 'Accept': 'application/json' },
+                        signal: ctrl.signal
                     });
-                    
-                    if (response.ok) {
-                        alert('Message sent successfully!');
+                    const data = await res.json().catch(() => ({}));
+                    if (res.ok) {
+                        showStatus('ok', '<i class="fas fa-circle-check mr-1"></i> Thanks! Your message was sent and I will reply soon.');
                         contactForm.reset();
+                        track('generate_lead', { method: 'contact_form' });
                     } else {
-                        alert('There was an error sending your message. Please try again.');
+                        const msg = (data.errors && data.errors.map(x => x.message).join(', ')) || 'The message could not be sent.';
+                        showStatus('err', msg + ' You can also email me at <a href="mailto:fabiuslihandaachevi@gmail.com">fabiuslihandaachevi@gmail.com</a>.');
+                        track('form_error', { status: res.status });
                     }
-                } catch (error) {
-                    alert('There was an error sending your message. Please try again.');
+                } catch (err) {
+                    showStatus('err', 'Network problem. Please try again or email me at <a href="mailto:fabiuslihandaachevi@gmail.com">fabiuslihandaachevi@gmail.com</a>.');
+                    track('form_error', { status: 'network' });
                 } finally {
-                    // Reset button
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
+                    clearTimeout(to);
+                    btn.textContent = original;
+                    btn.disabled = false;
                 }
             });
         }
-
-        // Initialize animations on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add animation classes to cards
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
     </script>
 </body>
 </html>
