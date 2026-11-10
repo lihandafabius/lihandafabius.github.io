@@ -377,6 +377,12 @@
         #formStatus.ok { color: #059669; }
         #formStatus.err { color: #dc2626; }
         #formStatus a { text-decoration: underline; }
+
+        /* ---------- Hero quote ---------- */
+        .hero-quote { margin: 0 auto; max-width: 30rem; opacity: .55; }
+        .hero-quote blockquote { font-size: .875rem; font-style: italic; line-height: 1.6; color: var(--text); }
+        .hero-quote figcaption { font-size: .75rem; margin-top: .35rem; letter-spacing: .04em; color: var(--text); }
+        .hero-quote figcaption::before { content: "— "; }
     </style>
 </head>
 <body class="font-sans theme-bg-primary theme-text antialiased">
@@ -435,7 +441,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-44">
         <div class="absolute inset-0 theme-bg-secondary"></div>
 
         <div class="absolute top-1/4 left-1/4 w-64 h-64 gradient-bg rounded-full animate-float opacity-10"></div>
@@ -464,7 +470,13 @@
                 </div>
             </div>
 
+        </div>
 
+        <!-- Quote (sits just above the scroll arrow) -->
+        <figure class="hero-quote absolute bottom-20 left-0 right-0 px-6 text-center">
+            <blockquote>“Predicting the future is guesswork. Building it step-by-step is innovation.”</blockquote>
+            <figcaption>Fabius Lihanda</figcaption>
+        </figure>
 
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <a href="#about" class="theme-text hover:theme-accent transition-colors" aria-label="Scroll to about">
