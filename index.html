@@ -350,10 +350,34 @@
         #formStatus a { text-decoration: underline; }
 
         /* ---------- Hero quote ---------- */
-        .hero-quote { margin: 1.75rem auto 0; max-width: 30rem; opacity: .55; }
+        .hero-quote { margin: 0 auto; max-width: 30rem; opacity: .6; }
         .hero-quote blockquote { font-size: .875rem; font-style: italic; line-height: 1.6; color: var(--text); }
         .hero-quote figcaption { font-size: .75rem; margin-top: .35rem; letter-spacing: .04em; color: var(--text); }
         .hero-quote figcaption::before { content: "— "; }
+
+        /* ---------- Scroll cue ---------- */
+        .scroll-cue {
+            display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text);
+            transition: opacity .4s ease, transform .4s ease;
+        }
+        .scroll-cue .mouse {
+            position: relative; width: 24px; height: 38px; border: 2px solid currentColor; border-radius: 14px;
+            opacity: .5; transition: opacity .25s ease, border-color .25s ease;
+        }
+        .scroll-cue .mouse::after {
+            content: ""; position: absolute; top: 7px; left: 50%; width: 3px; height: 7px; margin-left: -1.5px;
+            border-radius: 3px; background: currentColor; animation: wheel 1.8s ease-in-out infinite;
+        }
+        .scroll-cue .label { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; opacity: .55; }
+        .scroll-cue:hover .mouse { opacity: 1; border-color: var(--accent); }
+        .scroll-cue:hover .label { opacity: 1; color: var(--accent); }
+        .scroll-cue.is-hidden { opacity: 0; transform: translateY(8px); pointer-events: none; }
+        @keyframes wheel {
+            0% { opacity: 0; transform: translateY(0); }
+            30% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(13px); }
+        }
+        @media (prefers-reduced-motion: reduce) { .scroll-cue .mouse::after { animation: none; opacity: 1; } }
     </style>
 </head>
 <body class="font-sans theme-bg-primary theme-text antialiased">
@@ -412,7 +436,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-20">
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-28">
         <div class="absolute inset-0 theme-bg-secondary"></div>
 
         <div class="absolute top-1/4 left-1/4 w-64 h-64 gradient-bg rounded-full animate-float opacity-10"></div>
@@ -426,12 +450,17 @@
                 <div class="text-xl md:text-2xl theme-text mb-8 max-w-3xl mx-auto min-h-[2rem]">
                     <span class="typing-animation">Data Scientist & DevOps Engineer</span>
                 </div>
-                <p class="text-lg theme-text mb-12 max-w-2xl mx-auto leading-relaxed">
+                <p class="text-lg theme-text mb-6 max-w-2xl mx-auto leading-relaxed">
                     At heart, I’m a problem solver who loves bringing ideas to life from intelligent algorithms to the cloud systems behind them.
                     I spend my time crafting data-driven tools and building smooth, automated pipelines so great software can reach people faster and run without a hitch.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <figure class="hero-quote">
+                    <blockquote>“Predicting the future is guesswork. Building it step-by-step is innovation.”</blockquote>
+                    <figcaption>Fabius Lihanda</figcaption>
+                </figure>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
                     <a href="#projects" class="gradient-bg text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-105">
                         View My Work
                     </a>
@@ -439,18 +468,14 @@
                         Contact Me
                     </a>
                 </div>
-
-                <figure class="hero-quote">
-                    <blockquote>“Predicting the future is guesswork. Building it step-by-step is innovation.”</blockquote>
-                    <figcaption>Fabius Lihanda</figcaption>
-                </figure>
             </div>
 
         </div>
 
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="theme-text hover:theme-accent transition-colors" aria-label="Scroll to about">
-                <i class="fas fa-chevron-down text-2xl"></i>
+        <div class="absolute bottom-6 left-0 right-0 flex justify-center">
+            <a href="#about" id="scrollCue" class="scroll-cue" aria-label="Scroll down to the About section">
+                <span class="mouse" aria-hidden="true"></span>
+                <span class="label">Scroll</span>
             </a>
         </div>
     </section>
@@ -485,7 +510,7 @@
                             </button>
                             <div id="cvMenu" class="cv-menu" hidden>
                                 <a href="assets/CV.pdf" target="_blank" rel="noopener" data-cv="preview"><i class="fas fa-eye"></i>Preview Online</a>
-                                <a href="assets/CV.pdf" download="Fabius_Lihanda_CV.pdf" data-cv="save"><i class="fas fa-file-arrow-down"></i>Dowload Locally</a>
+                                <a href="assets/CV.pdf" download="Fabius_Lihanda_CV.pdf" data-cv="save"><i class="fas fa-file-arrow-down"></i>Download Locally</a>
                             </div>
                         </div>
                     </div>
@@ -1431,6 +1456,12 @@
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Scroll cue: fades once the visitor starts scrolling
+        const scrollCue = document.getElementById('scrollCue');
+        function updateScrollCue() { scrollCue.classList.toggle('is-hidden', window.scrollY > 80); }
+        window.addEventListener('scroll', updateScrollCue, { passive: true });
+        updateScrollCue();
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
