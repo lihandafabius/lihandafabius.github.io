@@ -125,50 +125,21 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
-        .modal-content {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: modalFadeIn 0.3s ease;
-            margin: auto;
-        }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        /* CV menu */
+        .cv-menu {
+            position: absolute; top: calc(100% + 8px); left: 0; min-width: 11rem; z-index: 30;
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08); padding: 4px;
         }
-        .download-option {
-            background: var(--secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .cv-menu[hidden] { display: none; }
+        .cv-menu a {
+            display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 7px;
+            font-size: .875rem; color: var(--text); transition: background .15s ease;
         }
-        .download-option:hover { background: var(--accent); color: white; transform: translateX(5px); }
-        .download-option:hover .theme-text { color: white; }
-        .download-option.active { background: var(--accent); color: white; border-color: var(--accent); }
-        .download-option.active .theme-text { color: rgba(255,255,255,0.9); }
-        .file-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .cv-menu a:hover { background: var(--primary); }
+        .cv-menu i { width: 1rem; text-align: center; opacity: .6; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--secondary); }
@@ -379,7 +350,7 @@
         #formStatus a { text-decoration: underline; }
 
         /* ---------- Hero quote ---------- */
-        .hero-quote { margin: 0 auto; max-width: 30rem; opacity: .55; }
+        .hero-quote { margin: 1.75rem auto 0; max-width: 30rem; opacity: .55; }
         .hero-quote blockquote { font-size: .875rem; font-style: italic; line-height: 1.6; color: var(--text); }
         .hero-quote figcaption { font-size: .75rem; margin-top: .35rem; letter-spacing: .04em; color: var(--text); }
         .hero-quote figcaption::before { content: "— "; }
@@ -441,7 +412,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-44">
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-20">
         <div class="absolute inset-0 theme-bg-secondary"></div>
 
         <div class="absolute top-1/4 left-1/4 w-64 h-64 gradient-bg rounded-full animate-float opacity-10"></div>
@@ -468,15 +439,14 @@
                         Contact Me
                     </a>
                 </div>
+
+                <figure class="hero-quote">
+                    <blockquote>“Predicting the future is guesswork. Building it step-by-step is innovation.”</blockquote>
+                    <figcaption>Fabius Lihanda</figcaption>
+                </figure>
             </div>
 
         </div>
-
-        <!-- Quote (sits just above the scroll arrow) -->
-        <figure class="hero-quote absolute bottom-20 left-0 right-0 px-6 text-center">
-            <blockquote>“Predicting the future is guesswork. Building it step-by-step is innovation.”</blockquote>
-            <figcaption>Fabius Lihanda</figcaption>
-        </figure>
 
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <a href="#about" class="theme-text hover:theme-accent transition-colors" aria-label="Scroll to about">
@@ -509,9 +479,15 @@
                     </div>
 
                     <div class="mt-10 flex flex-wrap gap-5">
-                        <button id="downloadCV" class="gradient-bg text-white px-7 py-3.5 rounded-lg font-medium hover:opacity-90 transition-all">
-                            <i class="fas fa-download mr-2"></i>Download CV
-                        </button>
+                        <div class="relative inline-block">
+                            <button id="downloadCV" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="cvMenu" class="gradient-bg text-white px-7 py-3.5 rounded-lg font-medium hover:opacity-90 transition-all">
+                                <i class="fas fa-download mr-2"></i>Download CV
+                            </button>
+                            <div id="cvMenu" class="cv-menu" hidden>
+                                <a href="assets/CV.pdf" target="_blank" rel="noopener" data-cv="preview"><i class="fas fa-eye"></i>Preview Online</a>
+                                <a href="assets/CV.pdf" download="Fabius_Lihanda_CV.pdf" data-cv="save"><i class="fas fa-file-arrow-down"></i>Dowload Locally</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1426,100 +1402,6 @@
         </div>
     </footer>
 
-    <!-- CV Download Modal -->
-    <div id="cvModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Download My CV</h3>
-                <button id="closeCvModal" class="w-8 h-8 rounded-full theme-bg-secondary flex items-center justify-center hover:theme-bg-primary transition-colors" aria-label="Close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="text-center mb-6">
-                <div class="file-icon gradient-text mb-3">
-                    <i class="fas fa-file-pdf text-6xl"></i>
-                </div>
-                <h4 class="text-xl font-semibold mb-2">Fabius Lihanda - CV.pdf</h4>
-                <p class="theme-text mb-3">Professional CV covering data science, DevOps and cloud engineering experience</p>
-            </div>
-
-            <div class="space-y-4 mb-8">
-                <h4 class="font-semibold mb-3">Choose your option:</h4>
-
-                <div class="download-option" data-option="view">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
-                            <i class="fas fa-eye text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h5 class="font-semibold mb-1">View Online</h5>
-                            <p class="text-sm theme-text">Preview the CV in your browser</p>
-                        </div>
-                        <i class="fas fa-chevron-right ml-2"></i>
-                    </div>
-                </div>
-
-                <div class="download-option active" data-option="download">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
-                            <i class="fas fa-download text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h5 class="font-semibold mb-1">Download Now</h5>
-                            <p class="text-sm theme-text">Save the PDF to your device</p>
-                        </div>
-                        <i class="fas fa-chevron-right ml-2"></i>
-                    </div>
-                </div>
-
-                <div class="download-option" data-option="linkedin">
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full theme-bg-secondary flex items-center justify-center mr-4">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h5 class="font-semibold mb-1">View LinkedIn Profile</h5>
-                            <p class="text-sm theme-text">See my professional profile</p>
-                        </div>
-                        <i class="fas fa-external-link-alt ml-2"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="theme-bg-secondary rounded-lg p-4 mb-6">
-                <h5 class="font-semibold mb-2">File Details:</h5>
-                <div class="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                        <span class="theme-text">Format:</span>
-                        <span class="font-medium ml-2">PDF</span>
-                    </div>
-                    <div>
-                        <span class="theme-text">Language:</span>
-                        <span class="font-medium ml-2">English</span>
-                    </div>
-                    <div>
-                        <span class="theme-text">Last Updated:</span>
-                        <span class="font-medium ml-2">Nov 2026</span>
-                    </div>
-                    <div>
-                        <span class="theme-text">References:</span>
-                        <span class="font-medium ml-2">On request</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex gap-3">
-                <button id="cancelDownload" class="flex-1 theme-bg-secondary py-3 rounded-lg font-medium hover:theme-bg-primary transition-colors">
-                    Cancel
-                </button>
-                <button id="confirmAction" class="flex-1 gradient-bg text-white py-3 rounded-lg font-medium hover:opacity-90 transition-colors">
-                    Continue
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Back to Top Button -->
     <button id="backToTop" class="fixed bottom-6 right-6 z-40 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all hidden" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
@@ -1612,47 +1494,20 @@
             });
         });
 
-        // CV Download Modal
-        const cvModal = document.getElementById('cvModal');
-        const downloadOptions = document.querySelectorAll('.download-option');
-        let selectedOption = 'download';
-
-        document.getElementById('downloadCV').addEventListener('click', () => cvModal.classList.add('active'));
-        document.getElementById('closeCvModal').addEventListener('click', () => cvModal.classList.remove('active'));
-        document.getElementById('cancelDownload').addEventListener('click', () => cvModal.classList.remove('active'));
-
-        downloadOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                downloadOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                selectedOption = option.dataset.option;
-            });
-        });
-
-        document.getElementById('confirmAction').addEventListener('click', () => {
-            cvModal.classList.remove('active');
-            switch (selectedOption) {
-                case 'view':
-                    window.open('assets/CV.pdf', '_blank');
-                    break;
-                case 'download': {
-                    const link = document.createElement('a');
-                    link.href = 'assets/CV.pdf';
-                    link.download = 'Fabius_Lihanda_CV.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    break;
-                }
-                case 'linkedin':
-                    window.open('https://www.linkedin.com/in/fabius-lihanda', '_blank');
-                    break;
-            }
-        });
-
-        cvModal.addEventListener('click', (e) => {
-            if (e.target === cvModal) cvModal.classList.remove('active');
-        });
+        // CV menu
+        const cvBtn = document.getElementById('downloadCV');
+        const cvMenu = document.getElementById('cvMenu');
+        function setCvMenu(open) {
+            cvMenu.hidden = !open;
+            cvBtn.setAttribute('aria-expanded', String(open));
+        }
+        cvBtn.addEventListener('click', (e) => { e.stopPropagation(); setCvMenu(cvMenu.hidden); });
+        document.addEventListener('click', (e) => { if (!cvMenu.contains(e.target)) setCvMenu(false); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setCvMenu(false); });
+        cvMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            track('cv_' + a.dataset.cv);
+            setCvMenu(false);
+        }));
 
         // ---------- Analytics helper ----------
         function track(name, params) {
@@ -1668,8 +1523,6 @@
             else if (href.startsWith('tel:')) { track('phone_click'); }
         });
         filterButtons.forEach(b => b.addEventListener('click', () => track('project_filter', { filter: b.dataset.filter })));
-        document.getElementById('confirmAction').addEventListener('click', () => track('cv_action', { option: selectedOption }));
-        document.getElementById('downloadCV').addEventListener('click', () => track('cv_modal_open'));
 
         // ---------- Technical skills ----------
         const SKILLS = {
